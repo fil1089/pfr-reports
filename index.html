@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Реестр целевых сообществ и практиков ПФР</title>
+    <title>Центр отчетов и аналитики VK | PFR Reports Hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -14,69 +14,35 @@
             --surface-hover: #1f242c;
             --border: #30363d;
             --primary: #58a6ff;
-            --primary-hover: #79c0ff;
-            --accent-pfr: #f0883e;
-            --accent-pfr-bg: rgba(240, 136, 62, 0.15);
-            --accent-body: #a371f7;
-            --accent-body-bg: rgba(163, 113, 247, 0.15);
             --text-main: #c9d1d9;
             --text-muted: #8b949e;
             --text-bright: #f0f6fc;
             --success: #3fb950;
-            --success-bg: rgba(63, 185, 80, 0.15);
         }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-color);
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-color);
             color: var(--text-main);
             line-height: 1.5;
-            padding: 20px 15px;
+            padding: 24px 16px;
         }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
+        .container { max-width: 960px; margin: 0 auto; }
         header {
             background: linear-gradient(135deg, #161b22 0%, #1a2230 100%);
             border: 1px solid var(--border);
             border-radius: 14px;
-            padding: 24px;
-            margin-bottom: 20px;
+            padding: 28px;
+            margin-bottom: 24px;
             box-shadow: 0 8px 24px rgba(0,0,0,0.4);
         }
-        
-        h1 {
-            color: var(--text-bright);
-            font-size: 1.6rem;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .subtitle {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-        }
-        
+        h1 { color: var(--text-bright); font-size: 1.7rem; margin-bottom: 8px; }
+        .subtitle { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; }
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 12px;
-            margin-bottom: 20px;
         }
-        
         .stat-box {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -84,1575 +50,149 @@
             padding: 14px;
             text-align: center;
         }
-        
-        .stat-value {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text-bright);
-        }
-        
-        .stat-value.pfr { color: var(--accent-pfr); }
-        .stat-value.body { color: var(--accent-body); }
+        .stat-value { font-size: 1.8rem; font-weight: 700; color: var(--text-bright); }
+        .stat-value.primary { color: var(--primary); }
         .stat-value.success { color: var(--success); }
-        
-        .stat-label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 4px;
-        }
-        
-        .action-bar {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 15px;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--surface);
-            color: var(--text-bright);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 10px 16px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-        
-        .btn:hover {
-            background: var(--surface-hover);
-            border-color: var(--primary);
-            color: var(--primary-hover);
-        }
-        
-        .btn-primary {
-            background: #238636;
-            border-color: rgba(240, 246, 252, 0.1);
-            color: #ffffff;
-        }
-        
-        .btn-primary:hover {
-            background: #2ea043;
-            border-color: rgba(240, 246, 252, 0.2);
-            color: #ffffff;
-        }
-        
-        .controls {
+        .stat-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; }
+        .hub-grid {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 16px;
         }
-        
-        @media (min-width: 600px) {
-            .controls {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-            }
-        }
-        
-        .search-box {
-            flex: 1;
-            position: relative;
-        }
-        
-        .search-input {
-            width: 100%;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 10px 14px;
-            color: var(--text-bright);
-            font-size: 0.95rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        
-        .search-input:focus {
-            border-color: var(--primary);
-        }
-        
-        .filters {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding-bottom: 4px;
-        }
-        
-        .filter-btn {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 6px 14px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.2s;
-        }
-        
-        .filter-btn.active {
-            background: var(--primary);
-            border-color: var(--primary);
-            color: #ffffff;
-            font-weight: 600;
-        }
-        
-        .cards-list {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-        
-        .card {
+        .hub-card {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 18px;
-            transition: transform 0.15s ease, border-color 0.15s ease;
+            padding: 20px;
+            transition: all 0.2s ease;
         }
-        
-        .card:hover {
-            border-color: #484f58;
+        .hub-card:hover {
+            border-color: #58a6ff;
             transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
         }
-        
-        .card-header {
+        .hub-card-header {
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 10px;
             margin-bottom: 10px;
-            flex-wrap: wrap;
         }
-        
-        .card-num {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--text-muted);
-        }
-        
-        .badge {
+        .hub-badge {
             font-size: 0.75rem;
             font-weight: 600;
             padding: 3px 10px;
             border-radius: 12px;
+            background: rgba(88, 166, 255, 0.15);
+            color: var(--primary);
+            border: 1px solid rgba(88, 166, 255, 0.3);
             text-transform: uppercase;
-            letter-spacing: 0.4px;
         }
-        
-        .badge-pfr {
-            color: var(--accent-pfr);
-            background: var(--accent-pfr-bg);
-            border: 1px solid rgba(240, 136, 62, 0.3);
-        }
-
-        .badge-energy {
-            color: #3fb950;
-            background: rgba(63, 185, 80, 0.15);
-            border: 1px solid rgba(63, 185, 80, 0.3);
-        }
-        
-        .badge-body {
-            color: var(--accent-body);
-            background: var(--accent-body-bg);
-            border: 1px solid rgba(163, 113, 247, 0.3);
-        }
-        
-        .members-badge {
-            margin-left: auto;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-bright);
-            background: rgba(255, 255, 255, 0.05);
-            padding: 3px 10px;
-            border-radius: 8px;
-        }
-        
-        .card-title {
-            font-size: 1.2rem;
-            margin-bottom: 4px;
-        }
-        
-        .card-title a {
-            color: var(--text-bright);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        
-        .card-title a:hover {
-            color: var(--primary);
-            text-decoration: underline;
-        }
-        
-        .card-id {
-            font-size: 0.85rem;
+        .hub-date {
+            font-size: 0.82rem;
             color: var(--text-muted);
-            margin-bottom: 8px;
         }
-        
-        .card-id code {
-            background: rgba(255,255,255,0.08);
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: var(--primary);
-            font-family: monospace;
+        .hub-title {
+            font-size: 1.25rem;
+            margin-bottom: 6px;
         }
-        
-        .vk-link {
-            color: var(--primary);
+        .hub-title a {
+            color: var(--text-bright);
             text-decoration: none;
         }
-        
-        .vk-link:hover {
+        .hub-title a:hover {
+            color: var(--primary);
             text-decoration: underline;
         }
-        
-        .card-status {
-            color: #d2a8ff;
+        .hub-desc {
             font-size: 0.9rem;
-            margin-bottom: 8px;
+            color: var(--text-main);
+            margin-bottom: 14px;
         }
-        
-        .card-desc {
+        .hub-meta {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 16px;
+            font-size: 0.85rem;
+        }
+        .meta-item.approved strong { color: var(--success); }
+        .meta-item.trash { color: var(--text-muted); }
+        .hub-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .hub-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 14px;
+            border-radius: 8px;
             font-size: 0.88rem;
-            color: var(--text-main);
-            margin-bottom: 12px;
-            white-space: pre-line;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
         }
-        
-        .post-preview {
-            background: rgba(0, 0, 0, 0.25);
-            border-left: 3px solid var(--primary);
-            border-radius: 4px;
-            padding: 10px 12px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-        
-        .post-preview strong {
-            color: var(--text-main);
-        }
-        
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-        
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
+        .hub-btn-primary {
             background: #238636;
             color: #ffffff;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-            pointer-events: none;
-            z-index: 1000;
+            border: 1px solid rgba(255,255,255,0.1);
         }
-        
-        .toast.show {
-            opacity: 1;
-            transform: translateY(0);
+        .hub-btn-primary:hover {
+            background: #2ea043;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🎯 Реестр целевых сообществ и практиков ПФР</h1>
-            <p class="subtitle">Результаты автоматического сбора через VK API и калиброванной фильтрации Jev / System-1</p>
-            
+            <h1>Центр аналитических отчётов и баз VK</h1>
+            <p class="subtitle">Единый защищённый хаб всех собранных данных, практиков и маркетинговых анализов</p>
             <div class="stats-grid">
                 <div class="stat-box">
+                    <div class="stat-value primary">2</div>
+                    <div class="stat-label">Всего отчётов в хабе</div>
+                </div>
+                <div class="stat-box">
                     <div class="stat-value success">67</div>
-                    <div class="stat-label">Одобрено сообществ</div>
+                    <div class="stat-label">Отобранных сообществ</div>
                 </div>
-                <div class="stat-box">
-                    <div class="stat-value pfr">30</div>
-                    <div class="stat-label">Прямые практики ПФР</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-value" style="color: #3fb950;">10</div>
-                    <div class="stat-label">Энерговолна</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-value body">27</div>
-                    <div class="stat-label">Телесная терапия / ТОТ</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-value">206</div>
-                    <div class="stat-label">Отсеяно мусора</div>
-                </div>
-            </div>
-            
-            <div class="action-bar">
-                <button class="btn btn-primary" onclick="downloadIds()">📥 Скачать чистые ID (TXT)</button>
-                <button class="btn" onclick="copyIds()">📋 Скопировать 67 ID для рекламы</button>
             </div>
         </header>
-        
-        <div class="controls">
-            <div class="search-box">
-                <input type="text" id="searchInput" class="search-input" placeholder="🔍 Поиск по имени, описанию или ID..." onkeyup="filterCards()">
-            </div>
-            <div class="filters">
-                <button class="filter-btn active" onclick="setCategory('all', this)">Все (67)</button>
-                <button class="filter-btn" onclick="setCategory('pfr', this)">ПФР (30)</button>
-                <button class="filter-btn" onclick="setCategory('energy', this)">Энерговолна (10)</button>
-                <button class="filter-btn" onclick="setCategory('body', this)">Телеска (27)</button>
-            </div>
-        </div>
-        
-        <div class="cards-list" id="cardsList">
-            
-        <div class="card" data-category="pfr" data-name="alexander kudrin" data-id="5018439">
-            <div class="card-header">
-                <span class="card-num">#1</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 9 493 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/karteas" target="_blank" rel="noopener noreferrer">Alexander Kudrin</a>
-            </h3>
-            <div class="card-id">ID: <code>5018439</code> &bull; <a href="https://vk.com/karteas" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Психолог по отношениям. Качественные и быстрые результаты с 1 сессии. Отзывы в фото. Смотри закреп»</em></div>
-            
-            <div class="post-preview"><strong>Последний пост:</strong> «Здравствуйте!  Я гипнолог, который вначале помог себе решить психологические проблемы и теперь помогаю другим людям быстро и бережно: - Справиться с паническими атаками - Избави...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="gulnara sibgatullina" data-id="177015856">
-            <div class="card-header">
-                <span class="card-num">#2</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 7 432 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/gulnara_pf_r" target="_blank" rel="noopener noreferrer">Gulnara Sibgatullina</a>
-            </h3>
-            <div class="card-id">ID: <code>177015856</code> &bull; <a href="https://vk.com/gulnara_pf_r" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>««Телесный психолог» 
-решу ваш запрос БЕЗ СЛОВ ✋🏻»</em></div>
-            <div class="card-desc">Мама 2х детей. Влюблена. Горжусь тем, какие мы выстроили отношения в нашей семье.
 
-PF_R практик
-Обучалась в Москве, в центре основателя метода Антона Маркова. 
-Кайфую, когда вижу счастливые глаза женщин после прохождения терапии</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «ПРИВЕТ 🌱  Я Гульнара, терапевт психо-функциональной разблокировки (PF_R)  Кроме того, я — пред_жена 😄 и мама 2х детей, счастливая женщина и дочь, которая старается успевать быть...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="alexander firsov" data-id="494946011">
-            <div class="card-header">
-                <span class="card-num">#3</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 5 309 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/aleksfirs" target="_blank" rel="noopener noreferrer">Alexander Firsov</a>
-            </h3>
-            <div class="card-id">ID: <code>494946011</code> &bull; <a href="https://vk.com/aleksfirs" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Гармония тела и души — достижима здесь и сейчас. Применяю научно подтверждённые методы (одобрены ВОЗ) для быстрого и устойчивого результата.»</em></div>
+        <div class="hub-grid">
             
-            <div class="post-preview"><strong>Последний пост:</strong> «Мне понадобились месяцы, чтобы привыкнуть к одному чувству.    После того, как я сам прошёл психофункциональную разблокировку (ПФР), внутри что-то поменялось, и первое время это...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="olesya esipova" data-id="254209902">
-            <div class="card-header">
-                <span class="card-num">#4</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 4 433 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/olesya_esipova" target="_blank" rel="noopener noreferrer">Olesya Esipova</a>
-            </h3>
-            <div class="card-id">ID: <code>254209902</code> &bull; <a href="https://vk.com/olesya_esipova" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Психолог|PF_R-терапевт. Бережная проработка травм и эмоциональных блоков всего за 3 сеанса он-лайн или очно. Запись в лс»</em></div>
-            
-            <div class="post-preview"><strong>Последний пост:</strong> «🤬Можешь и дальше прокачивать свои проблемы ночными беседами с чатом жпт, но за реальной помощью приходят ко мне.  Привет! 👋 Я Олеся Есипова из Липецка. Рада видеть тебя на моей ...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="dygyl mongush" data-id="204578018">
-            <div class="card-header">
-                <span class="card-num">#5</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 4 214 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/dygylmongush" target="_blank" rel="noopener noreferrer">Dygyl Mongush</a>
-            </h3>
-            <div class="card-id">ID: <code>204578018</code> &bull; <a href="https://vk.com/dygylmongush" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Психолог, КПТ терапевт, ПФР практик, коуч»</em></div>
-            
-            <div class="post-preview"><strong>Последний пост:</strong> «Я не делаю рекламы и сейчас нет времени на ведение соц сетей, но клиенты сами записываются по отзывам друзей, знакомых. Жена говорит, что также рекомендуют в женских группах в в...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="yulia filicheva" data-id="553505700">
-            <div class="card-header">
-                <span class="card-num">#6</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 3 898 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/id553505700" target="_blank" rel="noopener noreferrer">Yulia Filicheva</a>
-            </h3>
-            <div class="card-id">ID: <code>553505700</code> &bull; <a href="https://vk.com/id553505700" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Специалист по гипнотехникам, работаю с подсознанием и телом.  Энергопрактик. Хиджама. Массаж звуком, поющие Тибетские чаши,Огненный массаж.»</em></div>
-            <div class="card-desc">Специалист по гипнотехникам, работаю с подсознанием и телом.  Энергопрактик. Хиджама. Массаж звуком, поющие Тибетские чаши,Огненный массаж.</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «🌿 Тысячи женщин сталкиваются с тревогой, стрессом, выгоранием и внутренним дисбалансом. Мечтаешь вернуться к гармонии, спокойствию и ощущению внутренней силы? Я — профессиональн...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="irina karlova" data-id="665733273">
-            <div class="card-header">
-                <span class="card-num">#7</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 3 244 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/id665733273" target="_blank" rel="noopener noreferrer">Irina Karlova</a>
-            </h3>
-            <div class="card-id">ID: <code>665733273</code> &bull; <a href="https://vk.com/id665733273" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«ПСИХОЛОГ ☘️ 
-Психо-функциональный терапевт.»</em></div>
-            
-            <div class="post-preview"><strong>Последний пост:</strong> «Неудобные части себя. Как принять то, что мы в себе отвергаем.  Мы годами ведём войну с собственными чертами. Болтливость, упрямство, медлительность, тревожность, резкость - у к...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="valentina nikolaeva" data-id="4124395">
-            <div class="card-header">
-                <span class="card-num">#8</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 2 841 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/v.nikolaeva_pfr" target="_blank" rel="noopener noreferrer">Valentina Nikolaeva</a>
-            </h3>
-            <div class="card-id">ID: <code>4124395</code> &bull; <a href="https://vk.com/v.nikolaeva_pfr" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Психо-функциональная разблокировка тела онлайн и очно в Ростове-на-Дону 
-#PFR_ROSTOV https://t.me/pfo_pfr»</em></div>
-            
-            
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="armen logyan" data-id="168671206">
-            <div class="card-header">
-                <span class="card-num">#9</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 2 741 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/armenpfr" target="_blank" rel="noopener noreferrer">Armen Logyan</a>
-            </h3>
-            <div class="card-id">ID: <code>168671206</code> &bull; <a href="https://vk.com/armenpfr" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Психолог-консультант по методу PSY2.0, 
-Телесная Терапия(PF_R, ТЭР, гвозди), Психосоматика, Гипноз ,Аромадиагностика.»</em></div>
-            
-            
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="армен и алена про психологию | воронеж" data-id="-222738435">
-            <div class="card-header">
-                <span class="card-num">#10</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 2 071 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/logian_pro_psy" target="_blank" rel="noopener noreferrer">Армен и Алена про Психологию | Воронеж</a>
-            </h3>
-            <div class="card-id">ID: <code>-222738435</code> &bull; <a href="https://vk.com/logian_pro_psy" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«11.05.2026 Курс по цифровой психологии. Научитесь читать людей по одной дате!»</em></div>
-            <div class="card-desc">Мир таинственных знаний, саморазвития и духовного пробуждения
-
-Проводим сессии телесной терапии, психофункциональной разблокировке, гипноз, гвозди, медитации, индивидуальная психологическая помощь.
-
-По всем вопросам пишите в сообщения паблика.
-
-Логян Армен Саакович
-ИНН 366228214906</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «ПРИГЛАШАЕМ ПРИНЯТЬ УЧАСТИЕ В ИССЛЕДОВАНИИ:  &quot;Почему я всё время выбираю мудаков?💔&quot;  Почему постоянно попадаются не те мужчины? Почему одним женщинам легко встретить по...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="anna falschenko" data-id="24441810">
-            <div class="card-header">
-                <span class="card-num">#11</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 1 890 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/anna_falshchenko" target="_blank" rel="noopener noreferrer">Anna Falschenko</a>
-            </h3>
-            <div class="card-id">ID: <code>24441810</code> &bull; <a href="https://vk.com/anna_falshchenko" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Основатель центра развития личности «Цветок жизни», руководитель йога центра «Йога Омск с Анной Фальщенко»»</em></div>
-            <div class="card-desc">ВСЕГДА Я</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «https://t.me/Magic_Anna_Falshchenko  Давайте честно: Кому нужна терапия?  Как эксперт в области психологии, телесной терапии и телесной разблокировки, хочу открыть завесу в этот...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="tatyana bazhenova" data-id="26801269">
-            <div class="card-header">
-                <span class="card-num">#12</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 1 713 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/id26801269" target="_blank" rel="noopener noreferrer">Tatyana Bazhenova</a>
-            </h3>
-            <div class="card-id">ID: <code>26801269</code> &bull; <a href="https://vk.com/id26801269" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">Личная группа в Контакте &quot;Регрессивный гипноз&quot; vk.com/public146891408</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Рада приветствовать вас на моей странице! Давайте знакомиться!   Я Татьяна Баженова, психолог, сертифицированный практик-терапевт по психофункциональной разблокировке, специалис...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="evgeny zozh" data-id="299468861">
-            <div class="card-header">
-                <span class="card-num">#13</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 1 188 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/ezozh" target="_blank" rel="noopener noreferrer">Evgeny Zozh</a>
-            </h3>
-            <div class="card-id">ID: <code>299468861</code> &bull; <a href="https://vk.com/ezozh" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Психотерапия онлайн .»</em></div>
-            
-            <div class="post-preview"><strong>Последний пост:</strong> «Давайте познакомимся🖐😉 :  Зовут меня- Евгений Гладков.  В 1988 г. закончил Свердловский мед. институт. 👍😇  Работал спортивным врачом во врачебно- физкультурно диспансере. 🏃‍♀️🏃‍...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="психолог галина феоктистова" data-id="-199941672">
-            <div class="card-header">
-                <span class="card-num">#14</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 1 091 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/galina_pfr" target="_blank" rel="noopener noreferrer">Психолог Галина Феоктистова</a>
-            </h3>
-            <div class="card-id">ID: <code>-199941672</code> &bull; <a href="https://vk.com/galina_pfr" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Курсы, консультация психолога, медитации, психология отношений, сеансы психо-функциональной разблокировки методом PF_R»</em></div>
-            <div class="card-desc">Все про отношения: с собой, противоположным полом, детьми, родителями, деньгами, миром. Обретение вашей ценности и здоровой самооценки.
-Краткосрочная терапия с быстрым результатом, работаю по методу PF_R (психо-функциональная разблокировка https://m.vk.ru/@galina_pfr-metod-pfr через тело и методо...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Доброго времени суток! Рада вас приветствовать в этом сообществе! Давайте знакомиться!  Я Галина Феоктистова, психолог, специалист краткосрочной терапии.  Я работаю такими метод...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="vasily danilov-psikholog" data-id="429480675">
-            <div class="card-header">
-                <span class="card-num">#15</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 1 060 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/hypnosic" target="_blank" rel="noopener noreferrer">Vasily Danilov-Psikholog</a>
-            </h3>
-            <div class="card-id">ID: <code>429480675</code> &bull; <a href="https://vk.com/hypnosic" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Гипнотерапевт от тревоги. Избавлю от стресса, панических атак, невроза - через проработку внутреннего  состояния.»</em></div>
-            
-            <div class="post-preview"><strong>Последний пост:</strong> «Приветствую!  Меня зовут Василий Данилов — я профессиональный психолог, гипнотерапевт, клинический психолог, гештальт-терапевт, коуч ICU.  Я уже 13 лет работаю с психикой и псих...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="психолог | людмила фирсик" data-id="-211682663">
-            <div class="card-header">
-                <span class="card-num">#16</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 1 036 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/firsik_ludmila" target="_blank" rel="noopener noreferrer">Психолог | Людмила Фирсик</a>
-            </h3>
-            <div class="card-id">ID: <code>-211682663</code> &bull; <a href="https://vk.com/firsik_ludmila" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Приглашаю на диагностику https://vk.com/market/product/naydi-korni-problem-211682663-12352482»</em></div>
-            <div class="card-desc">Дипломированный психолог, психотерапевт, специалист по работе с эмоциями. Работаю в следующих техниках:
-
-- Расстановки
-- КПТ – когнитивно-поведенческая психология
-- ЭОТ – эмоционально-образная терапия
-- НЛП – нейролингвистическое програмирование
-- ТПП – трансперсональная психология
-- Автор собств...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Ко мне часто приходят женщины, которым уже практически ничего не нужно объяснять. Они сами всё про себя понимают, много лет изучают себя и прокачиваются психологически.  Но есть...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="guzel rakhmatullina" data-id="5161387">
-            <div class="card-header">
-                <span class="card-num">#17</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 926 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/richguzel" target="_blank" rel="noopener noreferrer">Guzel Rakhmatullina</a>
-            </h3>
-            <div class="card-id">ID: <code>5161387</code> &bull; <a href="https://vk.com/richguzel" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Астропсихолог, гипнолог, -Консультация по вашему запросу -Консультация по ведической астрологии и фен-шуй
--Гороскоп на месяц и год»</em></div>
-            
-            <div class="post-preview"><strong>Последний пост:</strong> «Всем привет 🌺   Я психолог, который понимает язык вашего тела, я помогаю женщинам возвращать себе себя.   Если у тебя внутри...   🍂 Пустота и выгорание, когда каждое утро начина...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="aygul aminova" data-id="17910047">
-            <div class="card-header">
-                <span class="card-num">#18</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 625 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/aamin15" target="_blank" rel="noopener noreferrer">Aygul Aminova</a>
-            </h3>
-            <div class="card-id">ID: <code>17910047</code> &bull; <a href="https://vk.com/aamin15" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Краткосрочная терапия PF_R, ДПДГ/EMDR2.0, Энерго-Информационные Чистки, Духовный психолог, гипноз, элементы провокативной терапии»</em></div>
-            <div class="card-desc">Духовный психолог, работаю краткосрочными методами терапии с Душой и телом, а так же с энерго-информацией, кармой и моя Миссия привести человека к себе настоящему.</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Чем отличается групповой PF_R  от индивидуального   👇Давайте разберем отличия личных сеансов от групповых. Плюсов и минусов нет, все сугубо индивидуально.    🥺Любая тревога, кон...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="mikhail belov" data-id="472277836">
-            <div class="card-header">
-                <span class="card-num">#19</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 467 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/ai_mindful_manager" target="_blank" rel="noopener noreferrer">Mikhail Belov</a>
-            </h3>
-            <div class="card-id">ID: <code>472277836</code> &bull; <a href="https://vk.com/ai_mindful_manager" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Психология управления, HR и AI-learning.✅»</em></div>
-            
-            <div class="post-preview"><strong>Последний пост:</strong> «Как HR-аутсорсингу внедрить LMS за месяц и снизить зависимость от руководителя  В HR-аутсорсинге качество услуги часто зависит не только от компетенций сотрудников, но и от того...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="александр фирсов | дпдг • #pf_r • гипнотерапия" data-id="-236274472">
-            <div class="card-header">
-                <span class="card-num">#20</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 334 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/psiholog_firsov" target="_blank" rel="noopener noreferrer">Александр Фирсов | ДПДГ • #PF_R • Гипнотерапия</a>
-            </h3>
-            <div class="card-id">ID: <code>-236274472</code> &bull; <a href="https://vk.com/psiholog_firsov" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«ПФР — онлайн: тревога, стресс, психосоматика. Исцеление психики»</em></div>
-            <div class="card-desc">Психолог Александр Фирсов — помогаю выйти из тревоги, хронического напряжения и психосоматики через телесные методы работы с психикой.
-
-Специализация: ПФР (психо-функциональная разблокировка) и метод билатеральной стимуляции — неразговорные подходы, которые работают там, где обычная терапия не да...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Привет! Я психолог Александр Фирсов — помогаю выйти из тревоги,  хронического напряжения и психосоматики через телесные методы.  Раз ты здесь — подсознание привело тебя не случа...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="#pf_r сеансы в ростове и online" data-id="-35731017">
-            <div class="card-header">
-                <span class="card-num">#21</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 291 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/pro_pfr" target="_blank" rel="noopener noreferrer">#PF_R сеансы в Ростове и ONLINE</a>
-            </h3>
-            <div class="card-id">ID: <code>-35731017</code> &bull; <a href="https://vk.com/pro_pfr" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Хочешь постройнеть к ЛЕТУ???! Набираю группу красоток! Пиши в личку!»</em></div>
-            <div class="card-desc">Твое тело помнит всё. Через транс работаю с подавленными эмоциями.</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Когда внутри тишина, а не пустота.   (Очные встречи в Ростове-на-Дону и онлайн)  Знакомо чувство, будто идешь по жизни с тяжелым, невидимым рюкзаком за плечами? Вроде и несешь е...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="екатерина бабичева l пфрlгонг медитации lчита" data-id="-214622068">
-            <div class="card-header">
-                <span class="card-num">#22</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 243 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/svobodatela75" target="_blank" rel="noopener noreferrer">Екатерина Бабичева l ПфрlГонг медитации lчита</a>
-            </h3>
-            <div class="card-id">ID: <code>-214622068</code> &bull; <a href="https://vk.com/svobodatela75" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Психология»</em></div>
-            <div class="card-desc">Меня зовут Екатерина,я инструктор звуковых медитаций,психофункциональной разблокировки,гвоздестояния и йоги. Все мои практики направлены на проработку телесных зажимов и блоков,избавлению от страхов и тревог,на расслабление и отдых☀️</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «ЗВУКОВАЯ МЕДИТАЦИЯ🔉  Может стать мощным инструментом трансформации сознания.  Во время практики звуковой медитации наше тело и ум соприкасаются с гармоничными частотами, которые...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="lilia asadova" data-id="10852859">
-            <div class="card-header">
-                <span class="card-num">#23</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 198 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/id10852859" target="_blank" rel="noopener noreferrer">Lilia Asadova</a>
-            </h3>
-            <div class="card-id">ID: <code>10852859</code> &bull; <a href="https://vk.com/id10852859" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Эмоционально-образный терапевт (ЭОТ), PF_R практик, арт,тот, песочный терапевт, детский психолог 🍀 https://www.b17.ru/b17_lily_asadova/»</em></div>
-            
-            
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="елена петрова | терапевт • психолог • pf_r" data-id="-212856733">
-            <div class="card-header">
-                <span class="card-num">#24</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 98 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/club212856733" target="_blank" rel="noopener noreferrer">ЕЛЕНА ПЕТРОВА | ТЕРАПЕВТ • ПСИХОЛОГ • PF_R</a>
-            </h3>
-            <div class="card-id">ID: <code>-212856733</code> &bull; <a href="https://vk.com/club212856733" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">#Pf_r#Pf_rdub#Красноярск#Россия#терапиярf_r
-Психо-функциональная разблокировка #PF_R. Психосоматика ,Гипнотерапевт. 
-Индивидуально и группы 👫</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «🔓 Психо-функциональная разблокировка (ПФР) — путь к себе, свободный от внутренних ограничений!  Ты чувствуешь, что что-то мешает двигаться вперёд, но не можешь понять, что именн...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="психолог онлайн  | олеся есипова | пфр- терапия" data-id="-238743635">
-            <div class="card-header">
-                <span class="card-num">#25</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 79 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/pfr_lipetsk" target="_blank" rel="noopener noreferrer">Психолог онлайн  | Олеся Есипова | ПФР- терапия</a>
-            </h3>
-            <div class="card-id">ID: <code>-238743635</code> &bull; <a href="https://vk.com/pfr_lipetsk" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">Я Олеся Есипова, практикующий психолог, единственный дипломированный 
-терапевт по психосоматике и психо-функциональной разблокировке (ПФР) 
- в городе Липецк.
-
-🗝️RF_R психо-функциональная разблокировка — это  телесная психотехника , которая работает с подсознанием через тело для разрешения ваших б...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Приветствую вас, мои дорогие ❤  🗝На связи Олеся Есипова, дипломированный психолог, сертифицированный ПФР- терапевт, пока что единственный в городе Липецк.☺  🗝Мои клиенты, часто ...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="lyubomir nikonorov" data-id="676393094">
-            <div class="card-header">
-                <span class="card-num">#26</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 46 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/psychology_healther" target="_blank" rel="noopener noreferrer">Lyubomir Nikonorov</a>
-            </h3>
-            <div class="card-id">ID: <code>676393094</code> &bull; <a href="https://vk.com/psychology_healther" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«ПРОГРАММА УМНОЕ ПОХУДЕНИЕ С ПСИХОЛОГОМ»</em></div>
-            <div class="card-desc">Являюсь членом Союза психотерапевтов и психологов России и Казахстана.  
-    В работе придерживаюсь принципов безусловного и безоценочного принятия клиента, как целостной личности.
-   В психологическом консультировании применяю интегративный научный подход, использую авторский научный метод Психо...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Я психолог, специализируюсь на  растройствах пищевого поведения. У меня есть авторская программа снижения веса, которая называется &quot;Умное похудение с психологом&quot;. Я на...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="семейная квартира без риска| москва| елена" data-id="-241370573">
-            <div class="card-header">
-                <span class="card-num">#27</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 39 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/family_apartment" target="_blank" rel="noopener noreferrer">Семейная квартира без риска| Москва| Елена</a>
-            </h3>
-            <div class="card-id">ID: <code>-241370573</code> &bull; <a href="https://vk.com/family_apartment" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">Привет! Я Елена Бондаренко, риелтор в Москве. Здесь — без воды и скучных объявлений. Только честный взгляд на рынок недвижимости.
-
-В этом канале я делюсь тем, что реально помогает моим клиентам:
-✅ Разборы районов и ЖК Москвы — где выгодно, а где переплата.
-✅ Юридические лайфхаки: как проверить кв...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Продать квартиру в Москве самостоятельно — идея, которая на бумаге выглядит привлекательно: кажется, что можно сэкономить на комиссии. Но на практике продажа жилья, особенно ког...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="анастасия пирожникова/психолог" data-id="-236934892">
-            <div class="card-header">
-                <span class="card-num">#28</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 19 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/anastasiya_pirozhnikova" target="_blank" rel="noopener noreferrer">Анастасия Пирожникова/Психолог</a>
-            </h3>
-            <div class="card-id">ID: <code>-236934892</code> &bull; <a href="https://vk.com/anastasiya_pirozhnikova" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">💚Помогу обрести баланс тела, разума и души 
-
-💚Провожу женские круги, практики, выездные ретриты, индивидуальные терапии 🫂
-
-Написать [club236934892|@anastasiya_pirozhnikova]</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Наш «Денежный ужин»💰   Прекрасно провели вместе время и поработали с денежной сферой 🙌  [id217328754|Елена Зайцева]  [id53625495|Александра Баранова]  [id150468998|Viktoriya She...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="правовая защита в регионах россии: эксперты" data-id="-236531216">
-            <div class="card-header">
-                <span class="card-num">#29</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 18 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/club236531216" target="_blank" rel="noopener noreferrer">Правовая защита в регионах России: эксперты</a>
-            </h3>
-            <div class="card-id">ID: <code>-236531216</code> &bull; <a href="https://vk.com/club236531216" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">Юридическая поддержка в регионах России: защищаем законные интересы граждан и бизнеса. Консультации, экспертиза, сопровождение — профессионалы рядом с вами</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Если вам необходимо получить информацию о начислении пенсии‚ оформить дополнительные выплаты‚ уточнить порядок подачи документов или просто задать любой вопрос‚ связанный с пенс...»</div>
-        </div>
-        
-        <div class="card" data-category="pfr" data-name="сеансы pf_r и pf_r dub" data-id="-240235440">
-            <div class="card-header">
-                <span class="card-num">#30</span>
-                <span class="badge badge-pfr">ПФР Практик</span>
-                <span class="members-badge">👥 4 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/club240235440" target="_blank" rel="noopener noreferrer">Сеансы PF_R и PF_R dub</a>
-            </h3>
-            <div class="card-id">ID: <code>-240235440</code> &bull; <a href="https://vk.com/club240235440" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">Психосоматика, телесная терапия, PF_R и PF_R DUB.
-
-Здесь о том, как стресс, тревога, обиды, страхи и переживания могут застревать в теле: напряжением, зажимами, болью в спине, усталостью, бессонницей, паническими атаками и ощущением, что внутри всё сжато.
-
-PF_R помогает мягко освободить тело от н...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Ты когда-нибудь задумывалась, что происходит во время сеанса? 🤔    Рассказываю ПО ШАГАМ. Чтобы ты знала, что тебя ждёт.    Это сеанс PF_R DUB — глубокая разблокировка через тело...»</div>
-        </div>
-        
-        <div class="card" data-category="energy" data-name="тантра двигательная медитация в екатеринбурге." data-id="-201335086">
-            <div class="card-header">
-                <span class="card-num">#31</span>
-                <span class="badge badge-energy">Энерговолна</span>
-                <span class="members-badge">👥 18 135 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/club201335086" target="_blank" rel="noopener noreferrer">Тантра Двигательная Медитация в Екатеринбурге.</a>
-            </h3>
-            <div class="card-id">ID: <code>-201335086</code> &bull; <a href="https://vk.com/club201335086" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Я тантра-сексолог и тантра-психолог, обучаю тантре, медитации, дао и цигун как очно, так и онлайн. Делаю 14 видов авторских массажей.»</em></div>
-            <div class="card-desc">Меня зовут Алексей Лазебный, я сексолог, тантрик и тренер. Моя цель — помочь женщинам, мужчинам и парам достигать сексуальной реализованности и жить жизнью мечты. Я практикую тантру 25 года и объединяю методы классической сексологии, тантры и даосские техники. В какой-то момент родился мой авторс...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «👩‍❤‍💋‍👨Найдись, моя любовь👩‍❤‍👨 — тренинг для тех, кто готов к НАСТОЯЩЕЙ любви!  —-----------------------------------------------------------------------------------------------...»</div>
-        </div>
-        
-        <div class="card" data-category="energy" data-name="andrey dunaev" data-id="6415164">
-            <div class="card-header">
-                <span class="card-num">#32</span>
-                <span class="badge badge-energy">Энерговолна</span>
-                <span class="members-badge">👥 10 607 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/energiamassage" target="_blank" rel="noopener noreferrer">Andrey Dunaev</a>
-            </h3>
-            <div class="card-id">ID: <code>6415164</code> &bull; <a href="https://vk.com/energiamassage" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Организация тренингов и семинаров. Ведущий тантрических практик, массажи, ретриты, группа vk.com/massagelegko +79219109186»</em></div>
-            
-            <div class="post-preview"><strong>Последний пост:</strong> «Загородный ретрит &quot;Живая тантра&quot; 16-18 октября.  Ведущие Андрей Дунаев (Нитья Ананда) и Наталья Ильина  В мини эко центре &quot;Ананда&quot; под Петербургом на берегу ...»</div>
-        </div>
-        
-        <div class="card" data-category="energy" data-name="tonya zarubina" data-id="30140195">
-            <div class="card-header">
-                <span class="card-num">#33</span>
-                <span class="badge badge-energy">Энерговолна</span>
-                <span class="members-badge">👥 2 020 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/suntoniya" target="_blank" rel="noopener noreferrer">Tonya Zarubina</a>
-            </h3>
-            <div class="card-id">ID: <code>30140195</code> &bull; <a href="https://vk.com/suntoniya" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Жизнь со вкусом ° телесный терапевт, sексолог. Про тело, чувственность, близость и удовольствие.»</em></div>
-            
-            <div class="post-preview"><strong>Последний пост:</strong> «Замечали, как внутренние перемены сразу меняют лицо? Новая аватарка — это как раз про то, что сейчас внутри.  Я получила второе высшее — психолог-тренер. И соединила это с дипло...»</div>
-        </div>
-        
-        <div class="card" data-category="energy" data-name="любовь. отношения. саморазвитие. практики" data-id="-60051656">
-            <div class="card-header">
-                <span class="card-num">#34</span>
-                <span class="badge badge-energy">Энерговолна</span>
-                <span class="members-badge">👥 1 784 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/tantricway" target="_blank" rel="noopener noreferrer">Любовь. Отношения. Саморазвитие. Практики</a>
-            </h3>
-            <div class="card-id">ID: <code>-60051656</code> &bull; <a href="https://vk.com/tantricway" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Тренинг Севы Прем &quot;Искусство прикосновений&quot; (Тантрический массаж 24-25.09 СПб. Запись парами и по одному.»</em></div>
-            <div class="card-desc">Тренинги. Ведущий Сева Прем.
-
-Как создавать
-яркие и гармоничные отношения?
-Знания из древних традиций, очищенные от религии и мистики до практики, которая просто работает.
-Ощутимые эффекты от практики
-
-Увеличение притягательности
-Сила притяжения между мужчиной и женщиной - это основа для построен...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «19-20 сентября НОВЫЙ ТРЕНИНГ СЕВЫ ПРЕМ —  «ИСКУССТВО ПРИКОСНОВЕНИЙ МОДУЛЬ-2»  (&quot;Тантрический массаж 2.0) в Санкт-Петербурге ❤  ПЕРВЫЙ РАЗ В ПЕТЕРБУРГЕ!  СЕВА САМ В ЗАЛЕ ВЕД...»</div>
-        </div>
-        
-        <div class="card" data-category="energy" data-name="elena pavlova" data-id="133785841">
-            <div class="card-header">
-                <span class="card-num">#35</span>
-                <span class="badge badge-energy">Энерговолна</span>
-                <span class="members-badge">👥 1 539 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/alena1006" target="_blank" rel="noopener noreferrer">Elena Pavlova</a>
-            </h3>
-            <div class="card-id">ID: <code>133785841</code> &bull; <a href="https://vk.com/alena1006" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Мастер Звука чашами 🥣Квантовый проводник&amp; Духовный психолог&amp;Энерготерапевт&amp; практик Access Bars»</em></div>
-            <div class="card-desc">Общительная, люблю помогать людям</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Вечерняя тишина, природа и звук… 🌅🍁🔔✨  Посмотрите на это фото. В нём — весь смысл того, зачем мы выезжаем на природу и устраиваем себе такие дни ретрита.  Тихий осенний вечер на...»</div>
-        </div>
-        
-        <div class="card" data-category="energy" data-name="irina zhogina" data-id="40929845">
-            <div class="card-header">
-                <span class="card-num">#36</span>
-                <span class="badge badge-energy">Энерговолна</span>
-                <span class="members-badge">👥 1 520 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/zhogirina" target="_blank" rel="noopener noreferrer">Irina Zhogina</a>
-            </h3>
-            <div class="card-id">ID: <code>40929845</code> &bull; <a href="https://vk.com/zhogirina" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Телесные практики, психосоматика, трансформационные игры»</em></div>
-            <div class="card-desc">Таких, как Ира, встретишь редко —
-Не размазня и не кокетка,
-Нож на соперницу не точит
-И твердо знает, чего хочет.
-
-Ее коллеги уважают,
-Соседи просто обожают
-И ставят все в пример детишкам.
-Она гордится — но не слишком.
-
-Она вперед идет по плану
-И свой растит авторитет,
-Коль запланирует нирвану,
-Е...</div>
-            
-        </div>
-        
-        <div class="card" data-category="energy" data-name="анатолий семашков • целитель • наставник" data-id="-76599908">
-            <div class="card-header">
-                <span class="card-num">#37</span>
-                <span class="badge badge-energy">Энерговолна</span>
-                <span class="members-badge">👥 1 312 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/zelitel89678632111" target="_blank" rel="noopener noreferrer">Анатолий Семашков • Целитель • Наставник</a>
-            </h3>
-            <div class="card-id">ID: <code>-76599908</code> &bull; <a href="https://vk.com/zelitel89678632111" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Энерговолна | Регресс | Правка тела | Тантра массаж | Телесная психотерапия | Экстрасенсорная диагностика чакр |Таро | WhatsApp +79678632111»</em></div>
-            <div class="card-desc">АВТОРСКИЕ МЕТОДИКИ | OЧНО | ONLINЕ
-В арсенале мастера: 
-Массажные техники от классики до востока. 
-Авторская методика &quot;Правка, Ладка, Чистка Огнём&quot;.
-Регрессивный гипноз от возрастной регрессии до прошлых жизней. 
-Авторская практика &quot;Запуск Энерговолны&quot;.
-Глубинная телесная псих...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «⭐️МОСКВА  АНАТОЛИЙ СЕМАШКОВ    25 -30 сентября  ️🔮 Индивидуальные приёмы.  • Экстрасенсорные консультации;  • Остеопрактика;  • Запуск Энерговолны;  • Энергорегресс;  • Наставни...»</div>
-        </div>
-        
-        <div class="card" data-category="energy" data-name="elena ivannikova psikholog" data-id="147450066">
-            <div class="card-header">
-                <span class="card-num">#38</span>
-                <span class="badge badge-energy">Энерговолна</span>
-                <span class="members-badge">👥 318 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/ivelena111" target="_blank" rel="noopener noreferrer">Elena Ivannikova Psikholog</a>
-            </h3>
-            <div class="card-id">ID: <code>147450066</code> &bull; <a href="https://vk.com/ivelena111" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Психолог / психотерапия онлайн»</em></div>
-            
-            <div class="post-preview"><strong>Последний пост:</strong> «Почему он едет к матери, а не остаётся с вами Мне вчера написали в комментариях мысль, которая зацепила: &quot;Мужчина, который не может сказать матери «нет», так и не научился ...»</div>
-        </div>
-        
-        <div class="card" data-category="energy" data-name="красноярский психологический центр" data-id="-228888998">
-            <div class="card-header">
-                <span class="card-num">#39</span>
-                <span class="badge badge-energy">Энерговолна</span>
-                <span class="members-badge">👥 85 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/trigger_happines" target="_blank" rel="noopener noreferrer">Красноярский психологический центр</a>
-            </h3>
-            <div class="card-id">ID: <code>-228888998</code> &bull; <a href="https://vk.com/trigger_happines" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">Здравствуйте, я профессиональный психолог Максим Воронцов 
-
-Добро пожаловать на страницу моего Центра. 
-
-Инновационные методики в психологическом консультировании. 
-
-4D психология: 
-- тело
-- энергия 
-- разум 
-- род
-
-Уникальная методика в работе к клиентами на всех уровнях: 
-
-РАБОТА С ТЕЛОМ - это:...</div>
-            
-        </div>
-        
-        <div class="card" data-category="energy" data-name="запуск энерговолны в пензе" data-id="-226621959">
-            <div class="card-header">
-                <span class="card-num">#40</span>
-                <span class="badge badge-energy">Энерговолна</span>
-                <span class="members-badge">👥 4 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/zapuskenergovolny" target="_blank" rel="noopener noreferrer">Запуск энерговолны в Пензе</a>
-            </h3>
-            <div class="card-id">ID: <code>-226621959</code> &bull; <a href="https://vk.com/zapuskenergovolny" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">Запуск энерговолны в Пензе или Энергетической волны (Energy Wave)
-
-Консультации, индивидуальные и групповые сессии по запуску Энерговолны в теле. Телесная терапия
- 
-С чем обычно приходят на сессию по Запуску Энерговолны: 
- 
-✅с постоянной усталостью 
-✅с проблемой с сексуальностью и принятием себя ...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «👉Отзыв на сессию по запуску энерговолны в теле   Дмитрий, спасибо! Было что-то невероятное. Сначала было сопротивление, потом расслабление, а вот потом... Даже стыдно сказать)) ...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="телесно-ориентированная психотерапия" data-id="-63485629">
-            <div class="card-header">
-                <span class="card-num">#41</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 436 147 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/teleska_tot" target="_blank" rel="noopener noreferrer">Телесно-ориентированная психотерапия</a>
-            </h3>
-            <div class="card-id">ID: <code>-63485629</code> &bull; <a href="https://vk.com/teleska_tot" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">Телесно-ориентированная психотерапия - это область психотерапии, осуществляющая психокоррекцию имеющихся психических, физиологических или энергетических нарушений с помощью процедур телесного контакта и/или использования телесных функций (дыхание, движение, статическое напряжение тела и др.).
- 
-Д...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Boт так нaш мoзг выдаёт наши бессознательные ceкpeты.    Источник: https://vk.cc/9wIA8M    #загадка #сознание #бессознательное #телеска #массаж    Не забудьте подписаться - [clu...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="формула материнства. наталия мурашова" data-id="-63424733">
-            <div class="card-header">
-                <span class="card-num">#42</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 19 705 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/murashovaspace" target="_blank" rel="noopener noreferrer">Формула материнства. Наталия Мурашова</a>
-            </h3>
-            <div class="card-id">ID: <code>-63424733</code> &bull; <a href="https://vk.com/murashovaspace" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«🎁 Книга в ПОДАРОК → https://vk.cc/cZYI5w»</em></div>
-            <div class="card-desc">Помогаю женщинам, у которых не получается стать мамой.
-🎁 Получите в ПОДАРОК книгу «Истоки женских болезней, или Почему я не могу забеременеть» по ссылке: https://vk.ru/app5898182_-63424733#u=2064206&amp;s=3759015&amp;force=1
-
-Меня зовут Наталия Мурашова.
-Я психолог, арт- и телесный терапевт, моя ...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Добро пожаловать! ☀ Меня зовут Наталия Мурашова. Я психолог, арт- и телесный терапевт, автор методики восстановления репродуктивного здоровья женщин, создатель онлайн-школы.   Я...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="liliana solomakhina" data-id="2813782">
-            <div class="card-header">
-                <span class="card-num">#43</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 11 039 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/sexologliliana" target="_blank" rel="noopener noreferrer">Liliana Solomakhina</a>
-            </h3>
-            <div class="card-id">ID: <code>2813782</code> &bull; <a href="https://vk.com/sexologliliana" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Проводник к связи
--&gt;тела и чувственности
--&gt;страхов и близости
--&gt;тела и репродуктивного здоровья
-Без стереотипов и стыда.    ■Обучаю коллег»</em></div>
-            
-            <div class="post-preview"><strong>Последний пост:</strong> «Привет.  Приходят новые подписчики. Хочу познакомиться с вами поближе и рассказать, чем я дышу и как могу наполнить вашу жизнь новыми красками.  Меня зовут Лилиана и я дипломиро...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="darya smirnova" data-id="1145615">
-            <div class="card-header">
-                <span class="card-num">#44</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 10 922 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/doula_ekb" target="_blank" rel="noopener noreferrer">Darya Smirnova</a>
-            </h3>
-            <div class="card-id">ID: <code>1145615</code> &bull; <a href="https://vk.com/doula_ekb" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Психолог, телесно-ориентированный терапевт. Доула. Баня, Спа программы. 89122731715»</em></div>
-            
-            
-        </div>
-        
-        <div class="card" data-category="body" data-name="tatiana skvortsova" data-id="483775624">
-            <div class="card-header">
-                <span class="card-num">#45</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 8 906 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/t.skvorets" target="_blank" rel="noopener noreferrer">Tatiana Skvortsova</a>
-            </h3>
-            <div class="card-id">ID: <code>483775624</code> &bull; <a href="https://vk.com/t.skvorets" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Йогатерапия/Восстановительные тренировки/Психосоматика стресса /Телесные разблокировки  /Коррекция мышечного дисбаланса/ХБС/СамоИсцеление»</em></div>
-            
-            <div class="post-preview"><strong>Последний пост:</strong> «Дом относится к памятнику культуры.»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="tatyana chubartseva biodinamika osteoprakt" data-id="308075009">
-            <div class="card-header">
-                <span class="card-num">#46</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 5 759 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/biodinamicheskoe_zentrirovanie" target="_blank" rel="noopener noreferrer">Tatyana Chubartseva Biodinamika Osteoprakt</a>
-            </h3>
-            <div class="card-id">ID: <code>308075009</code> &bull; <a href="https://vk.com/biodinamicheskoe_zentrirovanie" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Психосоматика. Биодинамическое центрирование. Восстановление здоровья. Реабилитация.Подготовка к беременности родам. Эстетика лица и тела.»</em></div>
-            <div class="card-desc">Работаю по уникальным авторским методикам :
-- Зуфара Алтынбаева &quot;Биодинамическое центрирование &quot;Касание Ангела&quot;, - Александра Иванова - рефлекторно-артикуляционному массажу (синтез восточных техник и остеопатии).
-
-Техники мягкие, остеопатические.
-
-Подход к организму холистический, ...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «✅ПРЕИМУЩЕСТВО КРАНИОСАКРАЛЬНОЙ ТЕРАПИИ  Зачем нужны сеансы краниосакральной терапии и кому она может помочь?    🟧Краниосакральная терапия дает организму ресурс  🟠Освобождает тка...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="tatyana akhpayderova" data-id="67119329">
-            <div class="card-header">
-                <span class="card-num">#47</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 5 107 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/tatyanaah77" target="_blank" rel="noopener noreferrer">Tatyana Akhpayderova</a>
-            </h3>
-            <div class="card-id">ID: <code>67119329</code> &bull; <a href="https://vk.com/tatyanaah77" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Косметология. Массаж. Телесные практики.  Натальные карты. Коворкинг.»</em></div>
-            
-            <div class="post-preview"><strong>Последний пост:</strong> «Приветствую.  Меня зовут Татьяна.  Я специалист с медицинским образованием в сфере красоты и здоровья.   Моя цель — помочь вам  сохранить молодость,  улучшить состояние кожи и т...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в санкт-петербурге" data-id="-163508732">
-            <div class="card-header">
-                <span class="card-num">#48</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 2 392 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/peterburg_teleska" target="_blank" rel="noopener noreferrer">Институт &quot;Интеграция&quot; в Санкт-Петербурге</a>
-            </h3>
-            <div class="card-id">ID: <code>-163508732</code> &bull; <a href="https://vk.com/peterburg_teleska" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">Международный институт практической психологии и психотерапии «Интеграция» осуществляет подготовку высококвалифицированных специалистов в области практической психологии и в сфере управления.
-
-В нашем институте представлены программы профессиональной переподготовки и программы повышения квалифика...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «11 октября 2026 в Санкт-Петербурге пройдет Фестиваль телесно-ориентированной психологии «Тело — точка опоры».   Все говорят о внутренней опоре.  Но как она ощущается в теле?    ...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="marina andreeva" data-id="221011929">
-            <div class="card-header">
-                <span class="card-num">#49</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 2 136 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/lediandreeva" target="_blank" rel="noopener noreferrer">Marina Andreeva</a>
-            </h3>
-            <div class="card-id">ID: <code>221011929</code> &bull; <a href="https://vk.com/lediandreeva" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«От раздражения, апатии К удовольствию и лекости в теле и жизни. Помогаю увидеть ваши критерии вашего успеха и реализовать их.»</em></div>
-            
-            <div class="post-preview"><strong>Последний пост:</strong> «Я Марина Андреева Магистр психологии Специалист в области телелесно-ориентиирванной психотерапии.   Про меня говорят: нормальный психолог без эзотерики.   Здесь я рассказываю о ...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="психолог елена кириллова" data-id="-67605115">
-            <div class="card-header">
-                <span class="card-num">#50</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 1 995 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/ekirillova36" target="_blank" rel="noopener noreferrer">Психолог Елена Кириллова</a>
-            </h3>
-            <div class="card-id">ID: <code>-67605115</code> &bull; <a href="https://vk.com/ekirillova36" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Психологическая поддержка и обучение»</em></div>
-            <div class="card-desc">Я помогаю выстраивать счастливую жизнь!
-
-- Психология отношений
-- Архетипический портрет
-- Поддержка до результата
-- 101% пользы
-
-Консультации лично (в своем кабинете в Воронеже) и онлайн. 
-
-Для записи, пишите в WhatsApp, и я с вами свяжусь.
-
-📞 89103479817</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Золотые слова: отзывы тех, кто нашел свой ключ  Маркетинговые обещания звучат у всех одинаково. «Гармония», «ресурсное состояние», «новая жизнь». Но сухие факты всегда убедитель...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="гипноз | психология | василий данилов" data-id="-148997553">
-            <div class="card-header">
-                <span class="card-num">#51</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 1 650 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/danilov.hypnosis" target="_blank" rel="noopener noreferrer">Гипноз | Психология | Василий Данилов</a>
-            </h3>
-            <div class="card-id">ID: <code>-148997553</code> &bull; <a href="https://vk.com/danilov.hypnosis" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Медитация на внутреннюю гармонию - нажми кнопку &quot;Открыть&quot; &gt;&gt;&gt;&gt;&gt;»</em></div>
-            <div class="card-desc">Приветствую!
-Меня зовут Василий Данилов — я профессиональный психолог, гипнотерапевт, гештальт-терапевт, коуч ICU
-
-Я уже 12 лет работаю с психикой и психосоматикой.
-Ко мне приходят не только по рекомендациям клиентов. Коллеги рекомендуют меня сложным пациентам.
-А некоторые даже приходят ко мне уч...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Когда город не принимает…    Недавно работал с очень интересной ситуацией клиента.  М. 41 год, успешная дама бизнес-вумен. С некоторых пор не может находиться в Москве.  Один — ...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в томске" data-id="-68132188">
-            <div class="card-header">
-                <span class="card-num">#52</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 1 458 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/topvtomske" target="_blank" rel="noopener noreferrer">Институт &quot;Интеграция&quot; в Томске</a>
-            </h3>
-            <div class="card-id">ID: <code>-68132188</code> &bull; <a href="https://vk.com/topvtomske" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">Международный институт практической психологии и психотерапии «Интеграция» осуществляет подготовку высококвалифицированных специалистов в области практической психологии и в сфере управления.
-
-В нашем институте представлены программы профессиональной переподготовки и программы повышения квалифика...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Наше тело никогда не врёт. Оно хранит всё: стрессы, обиды, непрожитые эмоции. Всё, что мы когда-то подавили, оседает в теле зажимами и блоками.  Что-то слышали о телесной терапи...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в челябинске" data-id="-148635798">
-            <div class="card-header">
-                <span class="card-num">#53</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 1 330 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/teleska_psycholog_chelyabinsk" target="_blank" rel="noopener noreferrer">Институт &quot;Интеграция&quot; в Челябинске</a>
-            </h3>
-            <div class="card-id">ID: <code>-148635798</code> &bull; <a href="https://vk.com/teleska_psycholog_chelyabinsk" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">Международный институт практической психологии и психотерапии «Интеграция» осуществляет подготовку высококвалифицированных специалистов в области практической психологии и в сфере управления.
-
-В нашем институте представлены программы профессиональной переподготовки и программы повышения квалифика...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Наше тело никогда не врёт. Оно хранит всё: стрессы, обиды, непрожитые эмоции. Всё, что мы когда-то подавили, оседает в теле зажимами и блоками.  Что-то слышали о телесной терапи...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="институт «интеграция» в москве" data-id="-177807147">
-            <div class="card-header">
-                <span class="card-num">#54</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 948 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/moskow_bodypsychotherapy" target="_blank" rel="noopener noreferrer">Институт «Интеграция» в Москве</a>
-            </h3>
-            <div class="card-id">ID: <code>-177807147</code> &bull; <a href="https://vk.com/moskow_bodypsychotherapy" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">Международный институт практической психологии и психотерапии «Интеграция» осуществляет подготовку высококвалифицированных специалистов в области практической психологии и в сфере управления.
-
-В нашем институте представлены программы профессиональной переподготовки и программы повышения квалифика...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «РАСПИСАНИЕ СЕНТЯБРЬ  03 сентября  ПТ 19:30  ЛЕКЦИЯ &quot;Психология зависимости и созависимости в отношениях&quot;  Оксана Гудошникова  https://protrening.space/llekcia  04 сент...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в хабаровске" data-id="-169736203">
-            <div class="card-header">
-                <span class="card-num">#55</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 914 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/teleska_khabarovsk" target="_blank" rel="noopener noreferrer">Институт &quot;Интеграция&quot; в Хабаровске</a>
-            </h3>
-            <div class="card-id">ID: <code>-169736203</code> &bull; <a href="https://vk.com/teleska_khabarovsk" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">Международный институт практической психологии и психотерапии «Интеграция» осуществляет подготовку высококвалифицированных специалистов в области практической психологии и в сфере управления.
-
-В нашем институте представлены программы профессиональной переподготовки и программы повышения квалифика...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Наше тело никогда не врёт. Оно хранит всё: стрессы, обиды, непрожитые эмоции. Всё, что мы когда-то подавили, оседает в теле зажимами и блоками.  Что-то слышали о телесной терапи...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="ежегодный фестиваль психологии" data-id="-96360682">
-            <div class="card-header">
-                <span class="card-num">#56</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 878 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/psyfestru" target="_blank" rel="noopener noreferrer">Ежегодный фестиваль психологии</a>
-            </h3>
-            <div class="card-id">ID: <code>-96360682</code> &bull; <a href="https://vk.com/psyfestru" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«&quot;СВОЁ МЕСТО&quot; - ежегодный фестиваль психологии на побережье 😊Оставляйте заявки на участие в следующем году😉»</em></div>
-            <div class="card-desc">Приглашаем на 30-й ежегодный Фестиваль практической психологии &quot;Своё место&quot;
-
-Вся информация на сайте - http://www.psy-fest.ru
-
-Есть вопросы? 
-Звоните ☎ +7 (961) 504-83-93 
-Почта reg@psy-fest.ru
-Пишите в сообщения группы!</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Вы просили Программу!👌  Программа  30-го фестиваля «Своё место»  1-4 октября 2026г., Анапа.    Краткое изложение, не расписание (по состоянию на 13 авг)     Бакалдин Сергей (Кра...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в ростове-на-дону" data-id="-172569578">
-            <div class="card-header">
-                <span class="card-num">#57</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 826 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/teleska_rostov" target="_blank" rel="noopener noreferrer">Институт &quot;Интеграция&quot; в Ростове-на-Дону</a>
-            </h3>
-            <div class="card-id">ID: <code>-172569578</code> &bull; <a href="https://vk.com/teleska_rostov" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">Международный институт практической психологии и психотерапии «Интеграция» осуществляет подготовку высококвалифицированных специалистов в области практической психологии и в сфере управления.
-
-В нашем институте представлены программы профессиональной переподготовки и программы повышения квалифика...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Наше тело никогда не врёт. Оно хранит всё: стрессы, обиды, непрожитые эмоции. Всё, что мы когда-то подавили, оседает в теле зажимами и блоками.  Что-то слышали о телесной терапи...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в уфе" data-id="-158176486">
-            <div class="card-header">
-                <span class="card-num">#58</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 804 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/institut_integracia_ufa" target="_blank" rel="noopener noreferrer">Институт &quot;Интеграция&quot; в Уфе</a>
-            </h3>
-            <div class="card-id">ID: <code>-158176486</code> &bull; <a href="https://vk.com/institut_integracia_ufa" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">Международный институт практической психологии и психотерапии «Интеграция» осуществляет подготовку высококвалифицированных специалистов в области практической психологии и в сфере управления.
-
-В нашем институте представлены программы профессиональной переподготовки и программы повышения квалифика...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Идёт набор на ключевые направления обучения в Уфе на 2026 год:  ✅ Телесно-ориентированная психотерапия (ТОП-2) — 👉 integraciya.mippip.ru/teleska  ✅ Возрастная психология телесно...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="alexander burundukov" data-id="80389146">
-            <div class="card-header">
-                <span class="card-num">#59</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 640 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/aburundukov" target="_blank" rel="noopener noreferrer">Alexander Burundukov</a>
-            </h3>
-            <div class="card-id">ID: <code>80389146</code> &bull; <a href="https://vk.com/aburundukov" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Клинический психолог, телесно-ориентированный психотерапевт»</em></div>
-            
-            <div class="post-preview"><strong>Последний пост:</strong> «Сентябрь уже на своем экваторе, а значит совсем скоро начнется наш БЕСПЛАТНЫЙ онлайн марафон «Разблокировка тела. 7 дней телесных практик» ссылочка, чтоб мои тоже могли присоеди...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в перми" data-id="-144987752">
-            <div class="card-header">
-                <span class="card-num">#60</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 588 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/top_perm" target="_blank" rel="noopener noreferrer">Институт &quot;Интеграция&quot; в Перми</a>
-            </h3>
-            <div class="card-id">ID: <code>-144987752</code> &bull; <a href="https://vk.com/top_perm" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">Международный институт практической психологии и психотерапии «Интеграция» осуществляет подготовку высококвалифицированных специалистов в области практической психологии и в сфере управления.
-
-В нашем институте представлены программы профессиональной переподготовки и программы повышения квалифика...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Наше тело никогда не врёт. Оно хранит всё: стрессы, обиды, непрожитые эмоции. Всё, что мы когда-то подавили, оседает в теле зажимами и блоками.  Что-то слышали о телесной терапи...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в иркутске" data-id="-185448262">
-            <div class="card-header">
-                <span class="card-num">#61</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 583 подп.</span>
-            </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/teleska_irkutsk" target="_blank" rel="noopener noreferrer">Институт &quot;Интеграция&quot; в Иркутске</a>
-            </h3>
-            <div class="card-id">ID: <code>-185448262</code> &bull; <a href="https://vk.com/teleska_irkutsk" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">Международный институт практической психологии и психотерапии «Интеграция» осуществляет подготовку высококвалифицированных специалистов в области практической психологии и в сфере управления.
-
-В нашем институте представлены программы профессиональной переподготовки и программы повышения квалифика...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Наше тело никогда не врёт. Оно хранит всё: стрессы, обиды, непрожитые эмоции. Всё, что мы когда-то подавили, оседает в теле зажимами и блоками.  Что-то слышали о телесной терапи...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="ольга травина | телесная терапия" data-id="-221310970">
-            <div class="card-header">
-                <span class="card-num">#62</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 548 подп.</span>
+        <div class="hub-card">
+            <div class="hub-card-header">
+                <span class="hub-badge">Энерговолна</span>
+                <span class="hub-date">24.09.2026 20:35</span>
             </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/travina_body_therapy" target="_blank" rel="noopener noreferrer">Ольга Травина | Телесная терапия</a>
-            </h3>
-            <div class="card-id">ID: <code>-221310970</code> &bull; <a href="https://vk.com/travina_body_therapy" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Мастер остеопатии | Массажист-остеопрактик»</em></div>
-            <div class="card-desc">Уберу боль в шее, спине, пояснице. Восстанавливаю после родов и помогаю беременным. Работаю с детьми ДЦП.</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Кажется, отпуск нужен не только мне, но и моему телу 😄🤎 Хочется немного замедлиться, выдохнуть, сменить обстановку и просто побыть в режиме «никуда не спешу».  А потом — вернуть...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в ижевске" data-id="-190338020">
-            <div class="card-header">
-                <span class="card-num">#63</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 312 подп.</span>
+            <h2 class="hub-title"><a href="energy_wave.html">⚡ Специалисты и сообщества по Энерговолне</a></h2>
+            <p class="hub-desc">Мастера энерговолновой терапии, тантрических и энергетических практик.</p>
+            <div class="hub-meta">
+                <span class="meta-item approved">✅ Одобрено: <strong>10</strong></span>
+                <span class="meta-item trash">🗑️ Отсеяно: 61</span>
             </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/teleska_izhevsk" target="_blank" rel="noopener noreferrer">Институт &quot;Интеграция&quot; в Ижевске</a>
-            </h3>
-            <div class="card-id">ID: <code>-190338020</code> &bull; <a href="https://vk.com/teleska_izhevsk" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">Международный институт практической психологии и психотерапии «Интеграция» осуществляет подготовку высококвалифицированных специалистов в области практической психологии и в сфере управления.
-
-В нашем институте представлены программы профессиональной переподготовки и программы повышения квалифика...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Наше тело никогда не врёт. Оно хранит всё: стрессы, обиды, непрожитые эмоции. Всё, что мы когда-то подавили, оседает в теле зажимами и блоками.  Что-то слышали о телесной терапи...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в алматы" data-id="-149860173">
-            <div class="card-header">
-                <span class="card-num">#64</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 192 подп.</span>
+            <div class="hub-actions">
+                <a href="energy_wave.html" class="hub-btn hub-btn-primary">Открыть веб-отчёт &rarr;</a>
             </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/almaty_teleska" target="_blank" rel="noopener noreferrer">Институт &quot;Интеграция&quot; в Алматы</a>
-            </h3>
-            <div class="card-id">ID: <code>-149860173</code> &bull; <a href="https://vk.com/almaty_teleska" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">Международный институт практической психологии и психотерапии «Интеграция» осуществляет подготовку высококвалифицированных специалистов в области практической психологии и в сфере управления.
-
-В нашем институте представлены программы профессиональной переподготовки и программы повышения квалифика...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Наше тело никогда не врёт. Оно хранит всё: стрессы, обиды, непрожитые эмоции. Всё, что мы когда-то подавили, оседает в теле зажимами и блоками.  Что-то слышали о телесной терапи...»</div>
         </div>
         
-        <div class="card" data-category="body" data-name="chertkova natalya" data-id="620292751">
-            <div class="card-header">
-                <span class="card-num">#65</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 184 подп.</span>
+        <div class="hub-card">
+            <div class="hub-card-header">
+                <span class="hub-badge">ПФР</span>
+                <span class="hub-date">24.09.2026 20:15</span>
             </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/id620292751" target="_blank" rel="noopener noreferrer">Chertkova Natalya</a>
-            </h3>
-            <div class="card-id">ID: <code>620292751</code> &bull; <a href="https://vk.com/id620292751" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            
-            <div class="post-preview"><strong>Последний пост:</strong> «💫💫💫 Вы ещё не знакомы с Биоэнергетическим Массажем? 🤔 Обязательно попробуйте этот необычный массаж! 💥💥💥 Подарите себе новые ощущения, новые эмоции! 💥💥💥 Один сеанс - и вы почувст...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в благовещенске" data-id="-144240894">
-            <div class="card-header">
-                <span class="card-num">#66</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 131 подп.</span>
+            <h2 class="hub-title"><a href="pfr_targets.html">🎯 Практики и сообщества ПФР / Телески</a></h2>
+            <p class="hub-desc">База практиков метода ПФР, учеников Антона Маркова и ведущих сообществ телесной психотерапии.</p>
+            <div class="hub-meta">
+                <span class="meta-item approved">✅ Одобрено: <strong>57</strong></span>
+                <span class="meta-item trash">🗑️ Отсеяно: 145</span>
             </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/top_blagoveshchensk" target="_blank" rel="noopener noreferrer">Институт &quot;Интеграция&quot; в Благовещенске</a>
-            </h3>
-            <div class="card-id">ID: <code>-144240894</code> &bull; <a href="https://vk.com/top_blagoveshchensk" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            
-            <div class="card-desc">Международный институт практической психологии и психотерапии «Интеграция» осуществляет подготовку высококвалифицированных специалистов в области практической психологии и в сфере управления.
-
-В нашем институте представлены программы профессиональной переподготовки и программы повышения квалифика...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «Наше тело никогда не врёт. Оно хранит всё: стрессы, обиды, непрожитые эмоции. Всё, что мы когда-то подавили, оседает в теле зажимами и блоками.  Что-то слышали о телесной терапи...»</div>
-        </div>
-        
-        <div class="card" data-category="body" data-name="йони массаж краснодар | обучени | михаил стифеев" data-id="-239824690">
-            <div class="card-header">
-                <span class="card-num">#67</span>
-                <span class="badge badge-body">Телесная терапия / ТОТ</span>
-                <span class="members-badge">👥 13 подп.</span>
+            <div class="hub-actions">
+                <a href="pfr_targets.html" class="hub-btn hub-btn-primary">Открыть веб-отчёт &rarr;</a>
             </div>
-            <h3 class="card-title">
-                <a href="https://vk.com/yoni_massage_krasnodar" target="_blank" rel="noopener noreferrer">Йони массаж Краснодар | Обучени | Михаил Стифеев</a>
-            </h3>
-            <div class="card-id">ID: <code>-239824690</code> &bull; <a href="https://vk.com/yoni_massage_krasnodar" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
-            <div class="card-status"><em>«Психолог-сексолог. Обучение для мужчин. Йони-массаж Краснодар. Психология близости и сексуальности. 1980 ч. подготовки. Конфиденциально.»</em></div>
-            <div class="card-desc">Сообщество Михаила Стифеева — психолога-сексолога.
-
-Здесь — про близость без стыда, восстановление либидо и доверие в паре. Разбираем, как психика управляет реакциями тела и почему «технически всё правильно», а отклика нет.
-
-Услуги: — Обучение для мужчин: как понимать партнёршу и выстраивать бере...</div>
-            <div class="post-preview"><strong>Последний пост:</strong> «🔥 НАВИГАЦИЯ ПО ЙОНИ СООБЩЕСТВУ! Путеводитель по телесной терапии и психосоматике    Чувственность и оргазмичность начинаются не в теле, а в головном мозге. Вы можете выучить дес...»</div>
-        </div>
-        
         </div>
         
-        <div class="footer">
-            <p>PFR Autonomous Harvester & Jev Classifier &bull; 2026</p>
         </div>
     </div>
-    
-    <div id="toast" class="toast">ID скопированы в буфер обмена!</div>
-    
-    <script>
-        const rawIds = `5018439\n177015856\n494946011\n254209902\n204578018\n553505700\n665733273\n4124395\n168671206\n-222738435\n24441810\n26801269\n299468861\n-199941672\n429480675\n-211682663\n5161387\n17910047\n472277836\n-236274472\n-35731017\n-214622068\n10852859\n-212856733\n-238743635\n676393094\n-241370573\n-236934892\n-236531216\n-240235440\n-201335086\n6415164\n30140195\n-60051656\n133785841\n40929845\n-76599908\n147450066\n-228888998\n-226621959\n-63485629\n-63424733\n2813782\n1145615\n483775624\n308075009\n67119329\n-163508732\n221011929\n-67605115\n-148997553\n-68132188\n-148635798\n-177807147\n-169736203\n-96360682\n-172569578\n-158176486\n80389146\n-144987752\n-185448262\n-221310970\n-190338020\n-149860173\n620292751\n-144240894\n-239824690`;
-        let currentFilter = 'all';
-        
-        function setCategory(cat, btn) {
-            currentFilter = cat;
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            filterCards();
-        }
-        
-        function filterCards() {
-            const query = document.getElementById('searchInput').value.toLowerCase().trim();
-            const cards = document.querySelectorAll('.card');
-            
-            cards.forEach(card => {
-                const cat = card.getAttribute('data-category');
-                const name = card.getAttribute('data-name');
-                const text = card.innerText.toLowerCase();
-                
-                const matchesCat = (currentFilter === 'all' || cat === currentFilter);
-                const matchesQuery = !query || text.includes(query);
-                
-                if (matchesCat && matchesQuery) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-        
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            toast.innerText = msg;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2500);
-        }
-        
-        function copyIds() {
-            navigator.clipboard.writeText(rawIds).then(() => {
-                showToast('✓ 57 ID скопированы в буфер!');
-            }).catch(() => {
-                showToast('Ошибка при копировании');
-            });
-        }
-        
-        function downloadIds() {
-            const blob = new Blob([rawIds], { type: 'text/plain;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'clean_target_ids_pfr.txt';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            showToast('✓ Файл clean_target_ids_pfr.txt скачивается');
-        }
-    </script>
 </body>
 </html>
