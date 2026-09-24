@@ -139,6 +139,41 @@
         .hub-btn-primary:hover {
             background: #2ea043;
         }
+        .hub-btn-danger {
+            background: rgba(248, 81, 73, 0.12);
+            color: #f85149;
+            border: 1px solid rgba(248, 81, 73, 0.3);
+            margin-left: auto;
+            cursor: pointer;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .hub-btn-danger:hover {
+            background: #f85149;
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(248, 81, 73, 0.4);
+        }
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #238636;
+            color: #ffffff;
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        .toast.show { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
@@ -148,67 +183,19 @@
             <p class="subtitle">Единый защищённый хаб всех собранных данных, практиков и маркетинговых анализов</p>
             <div class="stats-grid">
                 <div class="stat-box">
-                    <div class="stat-value primary">5</div>
+                    <div class="stat-value primary" id="stat-total-reports">2</div>
                     <div class="stat-label">Всего отчётов в хабе</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-value success">216</div>
+                    <div class="stat-value success">67</div>
                     <div class="stat-label">Отобранных сообществ</div>
                 </div>
             </div>
         </header>
 
-        <div class="hub-grid">
+        <div class="hub-grid" id="hubGrid">
             
-        <div class="hub-card">
-            <div class="hub-card-header">
-                <span class="hub-badge">VK Design</span>
-                <span class="hub-date">24.09.2026 19:57</span>
-            </div>
-            <h2 class="hub-title"><a href="vk_design_v3.html">🎯 База: Дизайн групп ВКонтакте</a></h2>
-            <p class="hub-desc">Сбор и фильтрация сообществ по теме «VK Design»</p>
-            <div class="hub-meta">
-                <span class="meta-item approved">✅ Одобрено: <strong>147</strong></span>
-                
-            </div>
-            <div class="hub-actions">
-                <a href="vk_design_v3.html" class="hub-btn hub-btn-primary">Открыть веб-отчёт &rarr;</a>
-            </div>
-        </div>
-        
-        <div class="hub-card">
-            <div class="hub-card-header">
-                <span class="hub-badge">VK Design</span>
-                <span class="hub-date">24.09.2026 18:58</span>
-            </div>
-            <h2 class="hub-title"><a href="vk_design_v2.html">🎯 База: Дизайн ВКонтакте</a></h2>
-            <p class="hub-desc">Сбор и фильтрация сообществ по теме «VK Design»</p>
-            <div class="hub-meta">
-                <span class="meta-item approved">✅ Одобрено: <strong>0</strong></span>
-                
-            </div>
-            <div class="hub-actions">
-                <a href="vk_design_v2.html" class="hub-btn hub-btn-primary">Открыть веб-отчёт &rarr;</a>
-            </div>
-        </div>
-        
-        <div class="hub-card">
-            <div class="hub-card-header">
-                <span class="hub-badge">VK Design</span>
-                <span class="hub-date">24.09.2026 18:03</span>
-            </div>
-            <h2 class="hub-title"><a href="vk_design.html">🎯 База: Дизайн групп ВКонтакте</a></h2>
-            <p class="hub-desc">Сбор и фильтрация сообществ по теме «VK Design»</p>
-            <div class="hub-meta">
-                <span class="meta-item approved">✅ Одобрено: <strong>2</strong></span>
-                
-            </div>
-            <div class="hub-actions">
-                <a href="vk_design.html" class="hub-btn hub-btn-primary">Открыть веб-отчёт &rarr;</a>
-            </div>
-        </div>
-        
-        <div class="hub-card">
+        <div class="hub-card" id="card-energy_wave">
             <div class="hub-card-header">
                 <span class="hub-badge">Энерговолна</span>
                 <span class="hub-date">24.09.2026 20:35</span>
@@ -221,10 +208,11 @@
             </div>
             <div class="hub-actions">
                 <a href="energy_wave.html" class="hub-btn hub-btn-primary">Открыть веб-отчёт &rarr;</a>
+                <button onclick="deleteHubReport('energy_wave', '⚡ Специалисты и сообщества по Энерговолне')" class="hub-btn hub-btn-danger" title="Удалить этот отчёт">🗑️ Удалить</button>
             </div>
         </div>
         
-        <div class="hub-card">
+        <div class="hub-card" id="card-pfr_targets">
             <div class="hub-card-header">
                 <span class="hub-badge">ПФР</span>
                 <span class="hub-date">24.09.2026 20:15</span>
@@ -237,10 +225,85 @@
             </div>
             <div class="hub-actions">
                 <a href="pfr_targets.html" class="hub-btn hub-btn-primary">Открыть веб-отчёт &rarr;</a>
+                <button onclick="deleteHubReport('pfr_targets', '🎯 Практики и сообщества ПФР / Телески')" class="hub-btn hub-btn-danger" title="Удалить этот отчёт">🗑️ Удалить</button>
             </div>
         </div>
         
         </div>
     </div>
+
+    <div id="toast" class="toast">✓ Готово!</div>
+
+    <script>
+        const BACKEND_TUNNEL = "";
+        
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            if (!toast) return;
+            toast.innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+        
+        async function deleteHubReport(slug, title) {
+            if (!confirm(`Вы действительно хотите безвозвратно удалить отчёт «${title}»?`)) return;
+            
+            const cardEl = document.getElementById('card-' + slug);
+            if (cardEl) {
+                cardEl.style.opacity = '0.4';
+                cardEl.style.pointerEvents = 'none';
+            }
+            
+            const endpoints = [];
+            // Если мы не на github pages (а на туннеле или локалке) - относительный путь
+            if (!window.location.origin.includes('github.io')) {
+                endpoints.push('/api/delete?slug=' + encodeURIComponent(slug));
+            }
+            if (BACKEND_TUNNEL) {
+                endpoints.push(BACKEND_TUNNEL + '/api/delete?slug=' + encodeURIComponent(slug));
+            }
+            endpoints.push('/api/delete?slug=' + encodeURIComponent(slug));
+            
+            let success = false;
+            for (const ep of endpoints) {
+                try {
+                    const resp = await fetch(ep, { method: 'POST', mode: 'cors' });
+                    if (resp.ok) {
+                        success = true;
+                        break;
+                    }
+                } catch (e) {
+                    // Fallback to next
+                }
+            }
+            
+            if (success) {
+                showToast(`✓ Отчёт «${title}» успешно удален!`);
+                if (cardEl) {
+                    cardEl.style.transition = 'all 0.4s ease';
+                    cardEl.style.transform = 'scale(0.95)';
+                    cardEl.style.opacity = '0';
+                    setTimeout(() => {
+                        cardEl.remove();
+                        const statReports = document.getElementById('stat-total-reports');
+                        if (statReports) {
+                            const cur = parseInt(statReports.innerText) || 1;
+                            statReports.innerText = Math.max(0, cur - 1);
+                        }
+                    }, 400);
+                }
+            } else {
+                if (cardEl) {
+                    cardEl.style.opacity = '1';
+                    cardEl.style.pointerEvents = 'auto';
+                }
+                const cmd = `Удали отчёт ${slug}`;
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(cmd);
+                }
+                alert(`Команда скопирована в буфер обмена:\n\n«${cmd}»\n\nОтправьте её нашему боту в чат VK — он мгновенно удалит отчёт с сервера и снимет публикацию с GitHub Pages!`);
+            }
+        }
+    </script>
 </body>
 </html>
