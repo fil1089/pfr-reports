@@ -1,0 +1,1879 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 Оформление и дизайн групп ВКонтакте</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --surface: #161b22;
+            --surface-hover: #1f242c;
+            --border: #30363d;
+            --primary: #58a6ff;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --text-bright: #f0f6fc;
+            --success: #3fb950;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 20px 15px;
+        }
+        .container { max-width: 960px; margin: 0 auto; }
+        .nav-back {
+            margin-bottom: 15px;
+        }
+        .nav-back a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .nav-back a:hover { text-decoration: underline; }
+        header {
+            background: linear-gradient(135deg, #161b22 0%, #1a2230 100%);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        h1 { color: var(--text-bright); font-size: 1.5rem; margin-bottom: 8px; }
+        .subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 18px; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .stat-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+        }
+        .stat-value { font-size: 1.6rem; font-weight: 700; color: var(--text-bright); }
+        .stat-value.success { color: var(--success); }
+        .stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; }
+        .action-bar { display: flex; gap: 10px; flex-wrap: wrap; }
+        .btn {
+            background: var(--surface);
+            color: var(--text-bright);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn:hover { background: var(--surface-hover); border-color: var(--primary); color: var(--primary); }
+        .btn-primary { background: #238636; border-color: rgba(240, 246, 252, 0.1); color: #fff; }
+        .btn-primary:hover { background: #2ea043; color: #fff; }
+        .search-input {
+            width: 100%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: var(--text-bright);
+            font-size: 0.95rem;
+            outline: none;
+            margin-bottom: 20px;
+        }
+        .search-input:focus { border-color: var(--primary); }
+        .cards-list { display: flex; flex-direction: column; gap: 14px; }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+            transition: transform 0.15s ease, border-color 0.15s ease;
+        }
+        .card:hover { border-color: #484f58; transform: translateY(-2px); }
+        .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+        .card-num { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); }
+        .badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 12px;
+            text-transform: uppercase;
+        }
+        .members-badge {
+            margin-left: auto;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-bright);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3px 10px;
+            border-radius: 8px;
+        }
+        .card-title { font-size: 1.15rem; margin-bottom: 4px; }
+        .card-title a { color: var(--text-bright); text-decoration: none; }
+        .card-title a:hover { color: var(--primary); text-decoration: underline; }
+        .card-id { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; }
+        .card-id code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; color: var(--primary); }
+        .vk-link { color: var(--primary); text-decoration: none; }
+        .vk-link:hover { text-decoration: underline; }
+        .card-status { color: #d2a8ff; font-size: 0.88rem; margin-bottom: 8px; }
+        .card-desc { font-size: 0.88rem; color: var(--text-main); margin-bottom: 12px; white-space: pre-line; }
+        .post-preview {
+            background: rgba(0, 0, 0, 0.25);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #238636;
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        .toast.show { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-back">
+            <a href="index.html">&larr; 🏠 Все отчёты и базы (Главный хаб)</a>
+        </div>
+        <header>
+            <h1>🎨 Оформление и дизайн групп ВКонтакте</h1>
+            <p class="subtitle">Автономный поиск через VK API + калиброванная фильтрация Jev</p>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-value success">82</div>
+                    <div class="stat-label">Одобрено целевых</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">171</div>
+                    <div class="stat-label">Отсеяно мусора</div>
+                </div>
+            </div>
+            <div class="action-bar">
+                <button class="btn btn-primary" onclick="downloadIds()">📥 Скачать 82 ID (TXT)</button>
+                <button class="btn" onclick="copyIds()">📋 Скопировать ID</button>
+            </div>
+        </header>
+
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Поиск по названию или описанию..." onkeyup="filterCards()">
+
+        <div class="cards-list" id="cardsList">
+            
+        <div class="card" data-name="дизайн | инфографика | нейросети | photoshop" data-id="-54337486">
+            <div class="card-header">
+                <span class="card-num">#1</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 44 270 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/design_cultura" target="_blank" rel="noopener noreferrer">Дизайн | Инфографика | Нейросети | Photoshop</a>
+            </h3>
+            <div class="card-id">ID: <code>-54337486</code> &bull; <a href="https://vk.com/design_cultura" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Хотите научиться дизайну? Пишите в сообщения группы»</em></div>
+            <div class="card-desc">Сообщество о графическом дизайне. Photoshop, нейросети и промпты. Уроки дизайна, инфографика для маркетплейсов, карточки Wildberries и Ozon, дизайн для соцсетей, оформление ВКонтакте, ChatGPT, Midjourney, NanoBanana, любые ИИ, AI, обучение дизайну с нуля, фриланс и заработок на дизайне.</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Дизайнер недели [id540341563|Татьяна Волакова]   Быть выбранной «Дизайнером недели» — это невероятно важный для меня момент! ✨  За каждым макетом всегда стоит огромный пласт нев...»</div>
+        </div>
+        
+        <div class="card" data-name="оформление группы вконтакте. реклама | дизайн." data-id="-163508198">
+            <div class="card-header">
+                <span class="card-num">#2</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 23 417 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/oformlyaem_vkontakt" target="_blank" rel="noopener noreferrer">Оформление группы ВКонтакте. Реклама | Дизайн.</a>
+            </h3>
+            <div class="card-id">ID: <code>-163508198</code> &bull; <a href="https://vk.com/oformlyaem_vkontakt" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Не ленись - развивайся!»</em></div>
+            <div class="card-desc">Оформление групп ВКонтакте, разработка логотипа и печатной продукции. А так же продвижение ВКонтакте и Яндекс!</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Упаковка мастера маникюра!  Сделали логотип, группу, сертификаты, прайс и визитки 😍  Хотите так же? Просто напишите мне: vk.com/smm_loves»</div>
+        </div>
+        
+        <div class="card" data-name="dibrovsmotrit" data-id="-70047039">
+            <div class="card-header">
+                <span class="card-num">#3</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 20 574 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/dibrov_smotrit" target="_blank" rel="noopener noreferrer">DibrovSmotrit</a>
+            </h3>
+            <div class="card-id">ID: <code>-70047039</code> &bull; <a href="https://vk.com/dibrov_smotrit" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Канал в Дзен - https://zen.yandex.ru/id/60b73d328abfce4f7ab0e878»</em></div>
+            <div class="card-desc">Сообщество правды! Друзья вас много, я один, многим не могу ответить в личной беседе! Отбираю только очень волнующие темы для обсуждения!</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Европа против России? Войны будущего и сценарии войны 2030-х»</div>
+        </div>
+        
+        <div class="card" data-name="вакансии для дизайнеров фриланс" data-id="-75949236">
+            <div class="card-header">
+                <span class="card-num">#4</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 11 734 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/design.vacancy" target="_blank" rel="noopener noreferrer">Вакансии для дизайнеров фриланс</a>
+            </h3>
+            <div class="card-id">ID: <code>-75949236</code> &bull; <a href="https://vk.com/design.vacancy" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Оформление вашей группы от 1190 руб. Подробности в сообщения сообщества.»</em></div>
+            <div class="card-desc">Вакансии для дизайнеров.
+
+Для размещения объявлений подпишитесь на сообщество и нажмите &quot;предложить новость&quot;.</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Собрали для вас папку с самыми полезными каналами с вакансиями в телеграме.  Больше не нужно подписываться на кучу каналов, достаточно просто добавить папку перейдя по ссылке ht...»</div>
+        </div>
+        
+        <div class="card" data-name="тим таргет | продвижение бизнеса вконтакте" data-id="-203863200">
+            <div class="card-header">
+                <span class="card-num">#5</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 8 197 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/kuin_vk" target="_blank" rel="noopener noreferrer">Тим Таргет | Продвижение бизнеса ВКонтакте</a>
+            </h3>
+            <div class="card-id">ID: <code>-203863200</code> &bull; <a href="https://vk.com/kuin_vk" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Все должно быть просто и понятно.»</em></div>
+            <div class="card-desc">🚀 Продвижение бизнеса, через ВКонтакте.
+
+С 2018 года помогаем предпринимателям разбираться во ВКонтакте.
+
+По консультации, писать сюда 👉 vk.me/kuin_vk
+
+ИНН 760412602298
+ИП Куин Тимофей Александрович</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Таргет отдельно, сайт отдельно, контент отдельно — а собирать всё это в систему снова приходится владельцу бизнеса  Мне всё меньше нравится схема, когда у бизнеса отдельно тарге...»</div>
+        </div>
+        
+        <div class="card" data-name="лайф про продвижение вконтакте | реклама | смм" data-id="-221123382">
+            <div class="card-header">
+                <span class="card-num">#6</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 6 933 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/myschoolt" target="_blank" rel="noopener noreferrer">Лайф про ПРОДВИЖЕНИЕ ВКОНТАКТЕ | РЕКЛАМА | СММ</a>
+            </h3>
+            <div class="card-id">ID: <code>-221123382</code> &bull; <a href="https://vk.com/myschoolt" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Застука Татьяна 🖖 | Тут про жизнь СММщика. 
+Сертифицированный СММ ВКОНТАКТЕ) ну как же без понтов! 
+Маркетолог и экспериментатор 👋
+Работаю с VK, снимаю видео, тестирую продвижение и показываю всё без идеальной картинки.
+
+📌 Моя жизнь, работа, реклама, путешествия и реальные будни СММщика. Показыва...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «🔥 Новый поток курса по ВК стартует 05.10! 🔥  Зачем вам этот курс? Если вы читаете этот пост, скорее всего, мысль уже где-то есть 😄 💡 хотите сами разобраться в ВК и не зависеть п...»</div>
+        </div>
+        
+        <div class="card" data-name="дизайн. создание сайтов. набережные челны" data-id="-96270398">
+            <div class="card-header">
+                <span class="card-num">#7</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 6 198 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/designnabchelny" target="_blank" rel="noopener noreferrer">Дизайн. Создание сайтов. Набережные Челны</a>
+            </h3>
+            <div class="card-id">ID: <code>-96270398</code> &bull; <a href="https://vk.com/designnabchelny" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Дизайн, разработка и продвижение сайтов, регистрация товарных знаков»</em></div>
+            <div class="card-desc">Дизайн логотипов, рекламный дизайн, дизайн интерьера, создание и продвижение сайтов, регистрация товарных знаков, полиграфия.
+- Веб-студия &quot;Блокс&quot; https://blox.ru/
+- Рекламное агентство &quot;Алиф-пресс&quot; https://alifpress.ru/
+#новости@designnabchelny</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Архитектурная визуализация — это графическое отображение архитектурного объекта или градостроительной ситуации с помощью цифровых технологий. Это процесс создания наглядных изоб...»</div>
+        </div>
+        
+        <div class="card" data-name="дизайн и продвижение сообщества вк" data-id="-145763517">
+            <div class="card-header">
+                <span class="card-num">#8</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 5 936 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/allart31" target="_blank" rel="noopener noreferrer">Дизайн и продвижение сообщества вк</a>
+            </h3>
+            <div class="card-id">ID: <code>-145763517</code> &bull; <a href="https://vk.com/allart31" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Создадим-оформим-настроем Ваше сообщество &quot;ПОД КЛЮЧ&quot; Так же разрабатываем сайты на Tilda, карточки товаров маркетплейсов и полиграфию.»</em></div>
+            <div class="card-desc">Добро пожаловать в студию дизайна AllArt
+
+Вы вкладываете много сил и ресурсов в развитие своего бизнеса, но ваше сообщество ВКонтакте выглядит стандартно и не привлекает внимание потенциальных клиентов? 
+
+Конкуренты обходят вас, а подписчики остаются неактивными. Опускаются руки, ведь вы хотите, ...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Вы создали сообщество, но продажи стоят на месте, посты читаете вы и ваши родственники, а счетчик подписчиков застыло на цифре 3? Мы знаем эту проблему! 💡    Красивое оформление...»</div>
+        </div>
+        
+        <div class="card" data-name="new art | оформление и дизайн вк | smm" data-id="-217086721">
+            <div class="card-header">
+                <span class="card-num">#9</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 5 149 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/newarten" target="_blank" rel="noopener noreferrer">New Art | Оформление и дизайн ВК | SMM</a>
+            </h3>
+            <div class="card-id">ID: <code>-217086721</code> &bull; <a href="https://vk.com/newarten" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Графический дизайнер | Оформление ВК | SMM | Полиграфия | Наружная реклама»</em></div>
+            <div class="card-desc">Привет!
+
+Меня зовут Станислав, я - профессиональный графический дизайнер, маркетолог и SMM-специалист с опытом работы более 4-х лет.
+
+Приглашаю к сотрудничеству тех, кто заинтересован в развитии своего бизнеса, достижении ощутимых результатов, готов меняться и идти в ногу со временем. Узнать боль...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «У тебя есть друг, который нуждается в крутом дизайне или SMM продвижении?  _______________________________________   Рад представить новую программу лояльности &quot;Кэшбэк&quot...»</div>
+        </div>
+        
+        <div class="card" data-name="обложка для трека, анимация | rvvs" data-id="-195721400">
+            <div class="card-header">
+                <span class="card-num">#10</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 5 005 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/rvvsfc" target="_blank" rel="noopener noreferrer">Обложка для трека, Анимация | RVVS</a>
+            </h3>
+            <div class="card-id">ID: <code>-195721400</code> &bull; <a href="https://vk.com/rvvsfc" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Обложка к треку | Анимация | Биты | Оформление Соц.Сетей | Сведение и мастеринг | Логотипы | Иллюстрации 💎»</em></div>
+            <div class="card-desc">💎Credits: [club83040434|Big Baby Tape] • [club70129929|Aarne] • [club169111656|АДЛИН] • [club161995393|BUSHIDO ZHO] • [club5784877|Птаха] • [club19745275|Гамора] • [club193686171|Криминальный бит] • [club185965930|Tanir &amp; Tyomcha] • [club35212688|Andery Toronto] • [club119868970|Килджо] • [cl...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «👉 Ознакомиться с каталогом : [https://vk.com/@rvvsfc-katalog-gotovyh-oblozhek2|Готовые обложки]    Каждая работа в каталоге представлена в единственном экземпляре — после покупк...»</div>
+        </div>
+        
+        <div class="card" data-name="дизайн в бикини и без." data-id="-187622727">
+            <div class="card-header">
+                <span class="card-num">#11</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 4 648 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/reklamaland_rastishka_business" target="_blank" rel="noopener noreferrer">Дизайн в бикини и без.</a>
+            </h3>
+            <div class="card-id">ID: <code>-187622727</code> &bull; <a href="https://vk.com/reklamaland_rastishka_business" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Эффективная реклама товаров и услуг в социальных сетях. Вацап +7 (916) 810-58-76»</em></div>
+            <div class="card-desc">Дизайн для бизнеса, маркетплейсов и соцсетей.
+
+Оформление группы • посты для группы • карточки WB и Яндекс Маркет • рекламные объявления • баннеры • нейрофотосессии</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Привет! Я создаю визуал, который помогает бизнесу выглядеть заметно и профессионально.  Что могу сделать для тебя: • оформление группы ВК • группа ВК под ключ • комплект из 15 п...»</div>
+        </div>
+        
+        <div class="card" data-name="оформление групп вк | визитки | логотип | дизайн" data-id="-230289880">
+            <div class="card-header">
+                <span class="card-num">#12</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 3 774 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/darya.burm.design" target="_blank" rel="noopener noreferrer">Оформление групп ВК | Визитки | Логотип | Дизайн</a>
+            </h3>
+            <div class="card-id">ID: <code>-230289880</code> &bull; <a href="https://vk.com/darya.burm.design" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">✨Дизайн с любовью ✨ 
+
+Приветствую вас в моем творческом уголке! Здесь я создаю стильный и гармоничный дизайн, который поможет вашему сообществу, бренду или хобби заиграть новыми красками.  
+
+✨ Что я предлагаю:  
+✔️ Оформление групп ВКонтакте — от шапки до меню;  
+✔️ Логотипы — запоминающиеся и ду...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Помните, недавно я показывала вам набор полиграфии для мастерской «Волшебные ручки»? 💕  А теперь мы пошли дальше и оформили сообщество ВКонтакте в том же стиле ✨  Сохранили нежн...»</div>
+        </div>
+        
+        <div class="card" data-name="таргетолог | дмитрий журавлев | таргет | реклама" data-id="-217175378">
+            <div class="card-header">
+                <span class="card-num">#13</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 3 187 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/wemarketing" target="_blank" rel="noopener noreferrer">Таргетолог | Дмитрий Журавлев | Таргет | Реклама</a>
+            </h3>
+            <div class="card-id">ID: <code>-217175378</code> &bull; <a href="https://vk.com/wemarketing" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«👉Настрою таргет ВК, который приносит заявки, а не охваты»</em></div>
+            <div class="card-desc">🔥 Таргетолог ВКонтакте — настройка и ведение рекламы под ключ для бизнеса, работаю удалённо по всей России и СНГ
+
+Больше 4 лет занимаюсь таргетированной рекламой ВК: настраиваю кампании, привлекаю трафик и заявки, довожу до результата, который можно посчитать в цифрах, а не в &quot;охватах ради о...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Сколько стоит заявка, если делать рекламу ВКонтакте по уму, а не &quot;на глаз&quot;? 👇  Собрал в статье честный разбор своей работы: что реально входит в услуги, как выглядит п...»</div>
+        </div>
+        
+        <div class="card" data-name="про таргет, дизайн, я.карты, директ и маркетинг" data-id="-167487255">
+            <div class="card-header">
+                <span class="card-num">#14</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 2 930 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/vzlet_biz" target="_blank" rel="noopener noreferrer">Про Таргет, Дизайн, Я.Карты, Директ и маркетинг</a>
+            </h3>
+            <div class="card-id">ID: <code>-167487255</code> &bull; <a href="https://vk.com/vzlet_biz" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Реклама и присутствие бизнеса в Яндексе и ВКонтакте для компаний, услуги которых уже ищут потенциальные клиенты»</em></div>
+            <div class="card-desc">«Взлёт» - рекламное агентство для бизнеса, услуги которого уже ищут потенциальные клиенты.
+
+Помогаем компаниям быть заметнее в Яндексе и ВКонтакте, понятнее для своей аудитории и эффективнее использовать рекламный бюджет.
+
+Выстраиваем систему привлечения клиентов: оформляем и ведём Яндекс Карты, ...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Продвижение ВК: оформление сообщества, таргетированная реклама и ведение  Когда поток обращений нестабилен, а публикации в сообществе не приносят понятного результата, недостато...»</div>
+        </div>
+        
+        <div class="card" data-name="rozalia titova" data-id="2622201">
+            <div class="card-header">
+                <span class="card-num">#15</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 2 667 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/rozaliya_music" target="_blank" rel="noopener noreferrer">Rozalia Titova</a>
+            </h3>
+            <div class="card-id">ID: <code>2622201</code> &bull; <a href="https://vk.com/rozaliya_music" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Помогу оформить ВК/Авито/Настроить частную практику/Подружу с ИИ/Научу играть на ф-но детей 3+ и взрослых/Пиши в личку»</em></div>
+            
+            
+        </div>
+        
+        <div class="card" data-name="дизайнер | оформление вк | генерация фото" data-id="-221154232">
+            <div class="card-header">
+                <span class="card-num">#16</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 2 590 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/vikki_design" target="_blank" rel="noopener noreferrer">Дизайнер | Оформление Вк | Генерация фото</a>
+            </h3>
+            <div class="card-id">ID: <code>-221154232</code> &bull; <a href="https://vk.com/vikki_design" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Оформление сообществ ВКонтакте и креативы для рекламы.⚡»</em></div>
+            <div class="card-desc">Ваша группа ВКонтакте может терять клиентов ещё до первого сообщения.
+
+Когда человек заходит на вашу страницу, он за несколько секунд решает: доверять вам или пройти мимо.
+
+Неудобная навигация, слабый визуал и отсутствие единого стиля могут создавать ощущение непрофессионализма — даже если ваш пр...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «✨ Создаю упаковку бизнеса, которая помогает вызывать доверие.   Привет! Меня зовут Виктория 🤍  Я занимаюсь визуальной упаковкой бизнеса и помогаю проектам выглядеть профессионал...»</div>
+        </div>
+        
+        <div class="card" data-name="yulia alexeeva" data-id="3966077">
+            <div class="card-header">
+                <span class="card-num">#17</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 2 262 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/alekseevayy" target="_blank" rel="noopener noreferrer">Yulia Alexeeva</a>
+            </h3>
+            <div class="card-id">ID: <code>3966077</code> &bull; <a href="https://vk.com/alekseevayy" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Помогу сделать ваш мир ярче и заметнее! Дизайн соц.сетей,а также художественная обработка фото и продающие видеоролики!»</em></div>
+            <div class="card-desc">графический дизайнер, иллюстратор, мама. 
+ ✅ оформляю группы в соц.сетях, 
+✅ дизайн полиграфической продукции (визитки, листовки, баннеры, плакаты) 
+✅создаю продающие видео или поздравительные слайдшоу.  
+✅Рисую портреты, вписываю в картины (фотомонтаж)  
+✅Изготавливаю шокобоксы и праздничную атр...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Если бы не они, я, скорее всего, не стала бы дизайнером  Смотрю на эту фотографию и понимаю, что эти двое когда-то очень сильно изменили мою жизнь. Хотя, конечно, совершенно не ...»</div>
+        </div>
+        
+        <div class="card" data-name="дизайн вк,smm, target, романа ланцова" data-id="-222797737">
+            <div class="card-header">
+                <span class="card-num">#18</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 1 741 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/23designe" target="_blank" rel="noopener noreferrer">Дизайн ВК,SMM, target, Романа Ланцова</a>
+            </h3>
+            <div class="card-id">ID: <code>-222797737</code> &bull; <a href="https://vk.com/23designe" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">С 2004 года я занимался разнотипным дизайном и с 2022 года  по сообществам ВК и в других соц сетях! Рисую современные логотипы,  верстаю полиграфию, создаю сочные баннеры и современный рекламный креатив, анимирую живые обложки. 
+
+✔ Более 300 оформленных сообществ и        групп это только в ВК
+✔ ...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Приветствую всех, кто уже обращался и обратиться в первый раз…Я буду очень признателен если поделитесь в комментариях ( в виде отзыва ) под этим постом о моей работе 😇🙃»</div>
+        </div>
+        
+        <div class="card" data-name="взгляд лисы - ии фото и дизайн" data-id="-236541841">
+            <div class="card-header">
+                <span class="card-num">#19</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 1 688 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/foxvisionai" target="_blank" rel="noopener noreferrer">Взгляд Лисы - ИИ фото и дизайн</a>
+            </h3>
+            <div class="card-id">ID: <code>-236541841</code> &bull; <a href="https://vk.com/foxvisionai" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">«Взгляд Лисы» — ИИ-фото, дизайн и видео.
+
+Здесь мы показываем наши работы, процесс создания AI-контента, оформление сообществ ВКонтакте, обработку изображений, генерацию видео, инфографику и рекламные материалы.
+
+Показываем реальные примеры, идеи и то, как из обычного исходника получается готовый...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Создаём визуал, который помогает проекту выглядеть цельно, понятно и профессионально.  Во «Взгляде Лисы» мы работаем с разными задачами:  • создаём AI-фото и необычные образы • ...»</div>
+        </div>
+        
+        <div class="card" data-name="оформление визуал вк сайт логотип smm чат-бот" data-id="-229968622">
+            <div class="card-header">
+                <span class="card-num">#20</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 1 595 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/kristina_silabrenda" target="_blank" rel="noopener noreferrer">Оформление визуал ВК сайт логотип smm чат-бот</a>
+            </h3>
+            <div class="card-id">ID: <code>-229968622</code> &bull; <a href="https://vk.com/kristina_silabrenda" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">🔥 ЗАСТАВЛЯЮ СОЦ.СЕТИ РАБОТАТЬ
+
+Ваш бизнес должны замечать, запоминать и выбирать.
+Соцсети должны не просто красиво выглядеть, а приводить к заявке и покупке.
+
+Я завершила уже более 200 проектов в совершенно разных нишах — от экспертов и beauty до стоматологии и  учебного центра.
+
+И я давно поняла...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «3 ПРИЧИНЫ, ПОЧЕМУ ВАШИ СОЦСЕТИ НЕ ПРИВОДЯТ КЛИЕНТОВ👇🏻  Иногда кажется: «Нужно просто чаще выкладывать посты» «Нужно запустить рекламу» «Нужно сделать красивое оформление»  Но пр...»</div>
+        </div>
+        
+        <div class="card" data-name="тетрис i ирина и маркетинг" data-id="-235415174">
+            <div class="card-header">
+                <span class="card-num">#21</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 1 276 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/tetris74" target="_blank" rel="noopener noreferrer">Тетрис I Ирина и Маркетинг</a>
+            </h3>
+            <div class="card-id">ID: <code>-235415174</code> &bull; <a href="https://vk.com/tetris74" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">&quot;Ты уверен, что твой клиент действительно понимает, почему ему стоит покупать именно у тебя?&quot;
+
+Зачастую почти каждый предприниматель отвечает:
+— «Да, конечно понимает!»
+
+Но в реальности всё происходит с точностью наоборот.
+Клиент часто не осознает:
+— почему ты, а не конкурент
+— почему э...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Важное напоминание от студии &quot;Тетрис&quot; ✨  ✅ Закажите независимый аудит вашего проекта. Иногда одна консультация позволяет увидеть то, чего не замечают те, кто годами на...»</div>
+        </div>
+        
+        <div class="card" data-name="инфографика • wb•ozon•нейрофото•дизайн" data-id="-237239177">
+            <div class="card-header">
+                <span class="card-num">#22</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 1 049 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/club237239177" target="_blank" rel="noopener noreferrer">Инфографика • WB•Ozon•Нейрофото•Дизайн</a>
+            </h3>
+            <div class="card-id">ID: <code>-237239177</code> &bull; <a href="https://vk.com/club237239177" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«📊 Инфографика, которая продает, пока вы спите. Делаю из скучных картинок космический восторг.»</em></div>
+            <div class="card-desc">Здравствуйте!
+
+Меня зовут Юлия Подручная.
+
+Я — AI-дизайнер, и моя главная задача — создавать эстетичный, продающий и по-настоящему живой контент для вас и вашего бизнеса.
+
+Чем я могу быть полезна:
+
+Карточки для маркетплейсов.
+Стильные рекламные баннеры.
+Эстетичный визуал для наполнения ваших соци...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «🚀 Открываю новую главу в вк и теперь я официально дизайнер инфографики! 💻✨  Теперь я тот самый человек, который может сделать из скучного фото товара — «конфетку».  Как это вооб...»</div>
+        </div>
+        
+        <div class="card" data-name="дизайн группы | оформление сообщества вк сторис" data-id="-226552982">
+            <div class="card-header">
+                <span class="card-num">#23</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 1 041 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/alyona_design" target="_blank" rel="noopener noreferrer">Дизайн группы | оформление сообщества вк сторис</a>
+            </h3>
+            <div class="card-id">ID: <code>-226552982</code> &bull; <a href="https://vk.com/alyona_design" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">🌸 Я Алёна - дизайнер соцсетей и SMM-специалист. Опыт работы 3 года и +50 оформленных групп. 
+
+Занимаюсь:
+🔹 Оформлением соцсетей 
+🔹 Ведением 
+🔹 Логотипами 
+🔹 Визитками и листовками
+
+Чем отличаюсь от конкурентов:
+ 
+🔹 Доведение своего клиента до того результата, пока ему на 100% понравится работа. 
+...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «👋 Всем привет!  Меня зовут Алёна. Я дизайнер сообществ и личных страниц ВКонтакте.  😊 Рада видеть тебя в своём сообществе. Подписывайся!  Я сделала навигацию для того, чтобы теб...»</div>
+        </div>
+        
+        <div class="card" data-name="anastasia komarova" data-id="23265730">
+            <div class="card-header">
+                <span class="card-num">#24</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 904 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/komarovavideolab" target="_blank" rel="noopener noreferrer">Anastasia Komarova</a>
+            </h3>
+            <div class="card-id">ID: <code>23265730</code> &bull; <a href="https://vk.com/komarovavideolab" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Дизайн и монтаж для соцсетей | Инфографика 
+📂 Портфолио 👇»</em></div>
+            <div class="card-desc">SMM|ДИЗАЙН|КОНТЕНТ
+
+дизайн сообщества под ключ
+рекламная motion графика
+монтаж видео + ИИ
+оформление постов</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Помогаю создать аккуратное и привлекательное сообщество ВК:  Дизайн для соцсетей и маркетплейсов:  ️️✅ Оформлю сообщество под ключ: обложка, аватар, кнопки, навигация - в едином...»</div>
+        </div>
+        
+        <div class="card" data-name="дизайн и автоматизация сообществ вконтакте" data-id="-191979366">
+            <div class="card-header">
+                <span class="card-num">#25</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 772 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/biznesvseti13" target="_blank" rel="noopener noreferrer">Дизайн и автоматизация сообществ ВКонтакте</a>
+            </h3>
+            <div class="card-id">ID: <code>-191979366</code> &bull; <a href="https://vk.com/biznesvseti13" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Мастерская успешных сообществ.»</em></div>
+            <div class="card-desc">Ваше сообщество может больше. Покажу, как 💌
+Хочешь развивать свою группу ВКонтакте, но теряешься в настройках? Не понимаешь, как запустить рассылку или подключить бота? Всё кажется сложным и запутанным?
+
+Меня зовут Наталья Передельская. Я эксперт по настройке и оформлению групп ВКонтакте. 
+Покажу...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Жуть, я никогда не смогу сделать так сама… 😱  Знакомо?    Вы понимаете: для работы нужно свое сообщество. Но стоит зайти к конкурентам — и наступает ступор.  У них:  ❌ Идеальные...»</div>
+        </div>
+        
+        <div class="card" data-name="дизайн | оформление вк | инфографика" data-id="-219886951">
+            <div class="card-header">
+                <span class="card-num">#26</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 745 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/alxndra.design" target="_blank" rel="noopener noreferrer">Дизайн | Оформление ВК | Инфографика</a>
+            </h3>
+            <div class="card-id">ID: <code>-219886951</code> &bull; <a href="https://vk.com/alxndra.design" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Инфографика | Соцсети | Баннеры»</em></div>
+            <div class="card-desc">Привет, меня зовут Александра и я дизайнер для бизнеса и маркетплейсов
+Помогаю привлекать клиентов и увеличивать продажи с помощью дизайна
+
+Занимаюсь:
+- созданием инфографики для маркетплейсов
+- разработкой индивидуального дизайна сообщества VK, а также оформлением других социальных сетей
+- созда...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Оформление сообщества ВКонтакте для магазина автозапчастей   Чтобы заказать дизайн, пишите [https://vk.me/alxndra.design|в личные сообщения] 📩»</div>
+        </div>
+        
+        <div class="card" data-name="смм | оформление вк | великий новгород" data-id="-140918224">
+            <div class="card-header">
+                <span class="card-num">#27</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 648 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/nadyaulyanova14" target="_blank" rel="noopener noreferrer">Смм | Оформление ВК | Великий Новгород</a>
+            </h3>
+            <div class="card-id">ID: <code>-140918224</code> &bull; <a href="https://vk.com/nadyaulyanova14" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Фотосессии в Великом Новгороде и Санкт-Петербурге 📸»</em></div>
+            <div class="card-desc">Меня зовут Надежда. Я специалист по визуальному контенту.
+
+Чем я занимаюсь:
+
+▫️SMM-специалист (полное ведение сообществ)
+▫️Оформление сообщества ВК 
+▫️Графический дизайн (полиграфия, разработка логотипа, визиток, баннеров и тд.)
+▫️Мобильный фотограф
+
+Опыт работы в SMM более 4 лет, работала с разн...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Оформлю ваше сообщество ВКонтакте  📲 Пишите»</div>
+        </div>
+        
+        <div class="card" data-name="digital-агентство / веб-дизайн  / обучение" data-id="-227391981">
+            <div class="card-header">
+                <span class="card-num">#28</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 642 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/webdesignma" target="_blank" rel="noopener noreferrer">Digital-Агентство / Веб-дизайн  / Обучение</a>
+            </h3>
+            <div class="card-id">ID: <code>-227391981</code> &bull; <a href="https://vk.com/webdesignma" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«По настоящему продающий дизайн💯»</em></div>
+            <div class="card-desc">Дизайн-агентство Марины Агафоновой
+
+Делаем оформление группы ВК под ключ 🎨 Наш Уникальный дизайн Вконтакте работает на все 100% Клиенты начинают писать сами📈 Готовим сообщество ВК к подключению рекламы. Комплексный подход с маркетинговым анализом и SEO, SMM специалист дают результат уже в 1 недел...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Неужели вы до сих пор теряете клиентов из-за этого? 💔  Знаете главную ошибку 9 из 10 мастеров в индустрии красоты? Они вкладывают всю душу в работу «в кресле», но их соцсети выг...»</div>
+        </div>
+        
+        <div class="card" data-name="оформление вк | просто космос" data-id="-141840857">
+            <div class="card-header">
+                <span class="card-num">#29</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 593 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/kosmo_klient" target="_blank" rel="noopener noreferrer">Оформление ВК | Просто Космос</a>
+            </h3>
+            <div class="card-id">ID: <code>-141840857</code> &bull; <a href="https://vk.com/kosmo_klient" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Пользуйтесь лучшим маркетингом 👽»</em></div>
+            <div class="card-desc">Оформление ВК &quot;Просто Космос&quot; это не только дизайн, это продающее сообщество вашего бизнеса, готовое к рекламе! 
+
+Что вы получаете:
+⭐ Профессиональный дизайн с душой.
+⭐ Маркетинговый вдумчивый подход к каждому элементу сообщества.
+⭐ Воронку продаж и чат-бота.
+⭐ Удобство для ваших клиент...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «КАК МЫ РАБОТАЕМ    Многие воспринимают оформление сообщества (оформление группы) как просто красивую картинку, которая должна быть на обложке, в лучшем случае еще в меню.    На ...»</div>
+        </div>
+        
+        <div class="card" data-name="hot design | худяков семён" data-id="-209786119">
+            <div class="card-header">
+                <span class="card-num">#30</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 556 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/khudyakov_dsgn" target="_blank" rel="noopener noreferrer">Hot Design | Худяков Семён</a>
+            </h3>
+            <div class="card-id">ID: <code>-209786119</code> &bull; <a href="https://vk.com/khudyakov_dsgn" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Оформляю соцсети | Сообщество | Креативы | Превью | Карточки товаров | Презентации | Анимационный дизайн | Визитки | Листовки | Логотипы»</em></div>
+            <div class="card-desc">Помогаю бизнесам привлекать больше клиентов через дизайн.
+
+Упаковал свыше 600 проектов в различных нишах и оставил довольными своих клиентов!
+
+💌Отзывы моих клиентов - https://vk.ru/board209786119
+
+📌Мое портфолио - https://vk.ru/albums-209786119
+
+🤝Связаться - https://vk.ru/im?sel=-209786119</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Чем могу быть полезен 🤝  Здесь собираю свои работы и рассказываю, как делаю дизайн, который не просто красиво выглядит, а реально помогает бизнесу: привлекает клиентов, вызывает...»</div>
+        </div>
+        
+        <div class="card" data-name="smm・контент・таргет・дизайн・вконтакте телеграм max" data-id="-186682087">
+            <div class="card-header">
+                <span class="card-num">#31</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 534 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/smm_2268" target="_blank" rel="noopener noreferrer">SMM・Контент・Таргет・Дизайн・ВКонтакте Телеграм Max</a>
+            </h3>
+            <div class="card-id">ID: <code>-186682087</code> &bull; <a href="https://vk.com/smm_2268" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Превращаем посты в продажи 🔥 Для БЕСПЛАТНОГО аудита пишите &quot;+&quot; в сообщения группы»</em></div>
+            <div class="card-desc">Помогаем бизнесу получать клиентов из социальных сетей 📱 
+
+Более 10 лет работаем с продвижением и знаем: универсальной схемы не существует!
+
+Поэтому сначала разбираемся в вашем проекте, аудитории и задачах и только потом предлагаем, что действительно поможет вам расти.
+
+🎯  Кейсы: vk.cc/d1z3HY
+🎯  ...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «⚪ БЮРО 22/68 —&gt; маркетинг с головой, душой и вниманием!  Мы помогаем бизнесу развиваться в социальных сетях: создаём оформление, готовим контент, запускаем рекламу и выстраив...»</div>
+        </div>
+        
+        <div class="card" data-name="mimimileo мимимилео дизайн" data-id="-100593780">
+            <div class="card-header">
+                <span class="card-num">#32</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 520 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/mimimileo" target="_blank" rel="noopener noreferrer">MimimiLeo МимимиЛео Дизайн</a>
+            </h3>
+            <div class="card-id">ID: <code>-100593780</code> &bull; <a href="https://vk.com/mimimileo" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Мы 🦁mimimileo Мы в Instagram: @mimimileo»</em></div>
+            <div class="card-desc">Наши услуги
+
+Визуал и дизайн
+
+Генерация изображений: аватары, обложки, баннеры, иллюстрации, фоны, паттерны
+Оформление соцсетей: посты, stories, обложки сообществ, аватарки, хайлайтс
+Рекламные макеты: афиши, карточки товаров, промо, билборды, флаеры
+Логотипы, фирменный стиль, гайд по цветам и шри...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Подарочный сертификат для Центра эстетической косметологии. Печать производилась с использованием имитацией золота - тиснение золотой фольгой✨  Разрабатываю макеты для бизнеса и...»</div>
+        </div>
+        
+        <div class="card" data-name="padonok" data-id="-201177131">
+            <div class="card-header">
+                <span class="card-num">#33</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 513 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/padonokds" target="_blank" rel="noopener noreferrer">PadonoK</a>
+            </h3>
+            <div class="card-id">ID: <code>-201177131</code> &bull; <a href="https://vk.com/padonokds" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Моя цель 2к ❤»</em></div>
+            <div class="card-desc">🎨 PADONOK DESIGN — ЗАЛЕТАЙ ЗА СТИЛЕМ!
+
+Тут не клепаем скучный дизайн — тут ловим твой вайб и делаем сочно, стильно и с характером 🔥
+
+Хочешь выделяться? 😈
+Тогда залетай в сообщения — разберём ТЗ и сделаем пушку 💥
+
+Дизайн который работает на тебя</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Иногда именно одна деталь делает дизайн действительно сильным.  В PADONOK DESIGN мы обращаем внимание не только на картинку в целом, но и на то, что обычно остаётся незаметным: ...»</div>
+        </div>
+        
+        <div class="card" data-name="полина тимофеева | графический дизайн &amp; нейминг" data-id="-211104752">
+            <div class="card-header">
+                <span class="card-num">#34</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 484 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/polinapro_content" target="_blank" rel="noopener noreferrer">Полина Тимофеева | Графический дизайн &amp; нейминг</a>
+            </h3>
+            <div class="card-id">ID: <code>-211104752</code> &bull; <a href="https://vk.com/polinapro_content" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«В интернет-маркетинге с 2016 года.»</em></div>
+            <div class="card-desc">Брендинг ° Нейминг ° Графический дизайн ° Логотип и фирменный стиль ° Анимация 2D
+
+Работаю со средним, малым и микро-бизнесом. Возможна работа по договору с самозанятым.
+
+Что вы можете заказать у бренд-дизайнера Полины Тимофеевой:
+- разработку уникального и запоминающегося названия для вашего про...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Разрабатываю названия и логотипы, которые можно зарегистрировать как товарный знак: — нахожу уникальные и свободные имена в нужных МКТУ — создаю оригинальные логотипы, которые п...»</div>
+        </div>
+        
+        <div class="card" data-name="дизайн вк | оформление сообщества | smm" data-id="-231129746">
+            <div class="card-header">
+                <span class="card-num">#35</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 463 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/dizain74mgn" target="_blank" rel="noopener noreferrer">Дизайн Вк | Оформление сообщества | SMM</a>
+            </h3>
+            <div class="card-id">ID: <code>-231129746</code> &bull; <a href="https://vk.com/dizain74mgn" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Интернет-маркетолог, таргетолог.
+
+ВКонтакте под ключ — для экспертов и бизнеса
+
+Чем могу помочь:
+— Сделаю анализ конкурентов
+— Красиво оформлю группу
+— Выстрою стратегию
+— Создам вовлекающий контент
+
+Подписывайся, будет много полезного!</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Друзья, делюсь прайсом на дизайн и своими работами❤  Прайс 👉 https://vk.com/@-231129746-prais-na-oformlenie-gruppy-v-vkontakte Мои работы 👉 https://vk.com/album-231129746_309179...»</div>
+        </div>
+        
+        <div class="card" data-name="оформление сообществ вк | дизайн под ключ" data-id="-240490191">
+            <div class="card-header">
+                <span class="card-num">#36</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 458 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/vksuperdizain" target="_blank" rel="noopener noreferrer">Оформление сообществ ВК | Дизайн под ключ</a>
+            </h3>
+            <div class="card-id">ID: <code>-240490191</code> &bull; <a href="https://vk.com/vksuperdizain" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Оформление сообществ ВК под ключ: обложки, меню, карточки товаров и единый стиль. Создаю современный дизайн, который привлекает внимание, вызывает доверие и помогает получать больше заявок.</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «✨ Оформили группу ВКонтакте для школы макияжа Александры Матвеевой    Главная задача проекта — передать атмосферу профессиональной школы красоты: уверенность, премиальный подход...»</div>
+        </div>
+        
+        <div class="card" data-name="влада нитка | дизайн | упаковка вк | фото" data-id="-218251180">
+            <div class="card-header">
+                <span class="card-num">#37</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 402 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/nitka_design" target="_blank" rel="noopener noreferrer">Влада Нитка | Дизайн | Упаковка ВК | Фото</a>
+            </h3>
+            <div class="card-id">ID: <code>-218251180</code> &bull; <a href="https://vk.com/nitka_design" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«ЗАБИРАЙ ГАЙД ПО ОФОРМЛЕНИЮ ГРУППЫ ВК В ПОДАРОК!»</em></div>
+            <div class="card-desc">Меня зовут Влада, и я с радостью помогу вам с оформлением ваших социальных сетей.
+
+Упаковка группы ВК, баннеры, сертификаты, обложки актуальных stories, подарочные карты/сертификаты и многое другое.</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Привет! Я Влада - ваш помощник в мире дизайна ✨ Люблю эстетику, порядок и развитие. Помогаю экспертам и бизнесу выглядеть профессионально и гармонично ✔  📍 Чем я могу быть полез...»</div>
+        </div>
+        
+        <div class="card" data-name="упаковка вк / дизайнер вк / оформление сообществ" data-id="-240723982">
+            <div class="card-header">
+                <span class="card-num">#38</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 390 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/club240723982" target="_blank" rel="noopener noreferrer">УПАКОВКА ВК / ДИЗАЙНЕР ВК / ОФОРМЛЕНИЕ СООБЩЕСТВ</a>
+            </h3>
+            <div class="card-id">ID: <code>-240723982</code> &bull; <a href="https://vk.com/club240723982" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">⚡ Твой бизнес заслуживает большего, чем «просто страничка»⚡
+
+Привет! Я Ирина, и я  помогаю предпринимателям превращать группы ВКонтакте из «очередных пабликов» в мощные инструменты продаж.
+
+Если вы чувствуете, что ваша текущая упаковка не дотягивает до уровня вашего продукта или нужно с нуля офор...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Друзья, я закончила работу над прайс-листом для студии Lumière! 🖤✨  Мой любимый момент в этом проекте — работа с деталями. Посмотрите на этот минимализм: строгие линии, теплый с...»</div>
+        </div>
+        
+        <div class="card" data-name="nadezhda tsaregorodtseva" data-id="1112827143">
+            <div class="card-header">
+                <span class="card-num">#39</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 377 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/id1112827143" target="_blank" rel="noopener noreferrer">Nadezhda Tsaregorodtseva</a>
+            </h3>
+            <div class="card-id">ID: <code>1112827143</code> &bull; <a href="https://vk.com/id1112827143" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«💻 Сайты • Taplink • Дизайн ВК • Чат-боты • ИИ-фото | Заказы в ЛС 💙»</em></div>
+            
+            
+        </div>
+        
+        <div class="card" data-name="оформление вк, дизайн | bluelight design" data-id="-198976361">
+            <div class="card-header">
+                <span class="card-num">#40</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 373 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/bluelight_design" target="_blank" rel="noopener noreferrer">Оформление ВК, дизайн | BlueLight Design</a>
+            </h3>
+            <div class="card-id">ID: <code>-198976361</code> &bull; <a href="https://vk.com/bluelight_design" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Оформление соцсетей | Рекламные креативы | Превью | Инфографика | Обработка и ретушь фото»</em></div>
+            <div class="card-desc">👋 Приветствую. На связи команда BlueLight Design. Мы занимаемся созданием эстетичного дизайна, который помогает повысить продажи.
+
+❓Почему нужно работать именно с нами?
+• Целая команда, а не 1 человек.
+• Мы на рынке уже более 5 лет. За нашими плечами более 300 успешно реализованных проектов.
+• Не...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «✨ Сделай своё сообщество привлекательным и продающим  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  🚀 До конца сентября возьмём 3 сообщества по скидке 30%!  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀  📋 Буквально за 2-3...»</div>
+        </div>
+        
+        <div class="card" data-name="ai студия | фото • дизайн • креатив" data-id="-229977924">
+            <div class="card-header">
+                <span class="card-num">#41</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 290 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/rabotabezvlogenivdk" target="_blank" rel="noopener noreferrer">AI СТУДИЯ | Фото • Дизайн • Креатив</a>
+            </h3>
+            <div class="card-id">ID: <code>-229977924</code> &bull; <a href="https://vk.com/rabotabezvlogenivdk" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«БЕСПЛАТНЫЕ ТОВАРЫ ЗА ОТЗЫВ  НА ВБ и ОЗОН  ТОВАРЫ СО СКИДКОЙ 90-95 %   Как это работает?  Вы помогаете поставщикам улучшить позиции их товаро»</em></div>
+            <div class="card-desc">AI СТУДИЯ | Фото • Дизайн • Креатив
+
+Здесь нейросети работают не ради «вау, как красиво», а на результат 🔥
+
+Что делаю:
+
+✨ Нейрофотосессии — стильные фото без студии, фотографа и долгих съёмок. Сохраняю ваши черты лица и создаю образы, которые хочется ставить на аватарку и показывать всем.
+
+🔥 Прод...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Хочешь красивые фото, но без фотографа, студий, сборов и поездок?  Сделаю тебе нейрофотосессию, где ты получишь стильные, дорогие, цепляющие кадры — под любой образ, настроение ...»</div>
+        </div>
+        
+        <div class="card" data-name="дизайн и настройка сообществ вк • светлана" data-id="-212509304">
+            <div class="card-header">
+                <span class="card-num">#42</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 259 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/svetlana_m_design" target="_blank" rel="noopener noreferrer">Дизайн и настройка сообществ ВК • Светлана</a>
+            </h3>
+            <div class="card-id">ID: <code>-212509304</code> &bull; <a href="https://vk.com/svetlana_m_design" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Ищете, как оформить и настроить сообщество ВКонтакте так, чтобы в нём было красиво, понятно, удобно и хотелось остаться? 
+ 
+Без чёткой системы всё превращается в хаос: 
+- оформление не отражает суть продукта 
+- визуал не цепляет нужную аудиторию 
+- важная информация теряется 
+- потенциальные клие...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Немного моих работ по оформлению сообществ ВК ✨    Для каждого проекта подбираю своё решение: цвета, шрифты, композицию и детали, чтобы оформление подходило именно этому бизнесу...»</div>
+        </div>
+        
+        <div class="card" data-name="графический дизайн|дизайн соцсетей|инфопродукты" data-id="-160072832">
+            <div class="card-header">
+                <span class="card-num">#43</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 247 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/kopydes" target="_blank" rel="noopener noreferrer">Графический дизайн|Дизайн соцсетей|Инфопродукты</a>
+            </h3>
+            <div class="card-id">ID: <code>-160072832</code> &bull; <a href="https://vk.com/kopydes" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Привет, я веб-дизайнер, Анна :)
+
+Услуги, которые я оказываю бизнесу, экспертам и брендам:
+
+- Дизайн соцсетей
+оформление ВКонтакте
+оформление Инстаграм*
+дизайн ценников и инфо-продуктов
+
+Связаться со мной:
+https://vk.ru/annabarsova
+bars912@yandex.ru
+
+*Инстаграм - соцсеть, запрещенная на территории...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «📌ДИЗАЙН СООБЩЕСТВА ДЛЯ САЛОНА КРАСОТЫ [этапы работы] - [фрагмент презентации] - [что заказать]  ✅В карусели пример моей работы - дизайн-упаковка ВК-сообщества для салона красоты...»</div>
+        </div>
+        
+        <div class="card" data-name="оформление сообществ вк | дизайн под ключ" data-id="-196264615">
+            <div class="card-header">
+                <span class="card-num">#44</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 247 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/rafinad78" target="_blank" rel="noopener noreferrer">Оформление сообществ ВК | Дизайн под ключ</a>
+            </h3>
+            <div class="card-id">ID: <code>-196264615</code> &bull; <a href="https://vk.com/rafinad78" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Продвижение бизнеса через вертикальный видеоконтент.»</em></div>
+            <div class="card-desc">Помогаю бизнесу, экспертам и проектам выглядеть профессионально во ВКонтакте.
+
+Создаю оформление сообществ, которое привлекает внимание, передаёт характер бренда и вызывает доверие у аудитории. Разрабатываю обложки, аватары, баннеры, меню, шаблоны публикаций и другие элементы в едином стиле.
+
+Зде...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Создали 10 сторис для публикации в социальных сетях ВКонтакте, MAX и Telegram.  В основе серии современный дизайн, единый визуальный стиль и понятная подача информации. Каждая и...»</div>
+        </div>
+        
+        <div class="card" data-name="оформление групп вконтакте" data-id="-197126006">
+            <div class="card-header">
+                <span class="card-num">#45</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 239 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/edddddddi" target="_blank" rel="noopener noreferrer">Оформление групп ВКонтакте</a>
+            </h3>
+            <div class="card-id">ID: <code>-197126006</code> &bull; <a href="https://vk.com/edddddddi" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Дизайн под вашу задачу 🔥»</em></div>
+            <div class="card-desc">🔥 Социальные сети 
+🔥 Маркетплейсы
+🔥 Нейросети
+🔥 Баннеры
+
+Нужно оформление? Обращайтесь, поработаем.</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «В данной группе можно заказать комплексный дизайн сообщества ВКонтакте.   Обложки, виджеты, иконки, товары, посты.  💙 Активно работаю с нейросетям, создам любую композицию под в...»</div>
+        </div>
+        
+        <div class="card" data-name="алёна сарана | визуальный дизайнер" data-id="-241234268">
+            <div class="card-header">
+                <span class="card-num">#46</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 216 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/sarasaalena" target="_blank" rel="noopener noreferrer">АЛЁНА САРАНА | ВИЗУАЛЬНЫЙ ДИЗАЙНЕР</a>
+            </h3>
+            <div class="card-id">ID: <code>-241234268</code> &bull; <a href="https://vk.com/sarasaalena" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Помогаю бизнесу выглядеть понятно и профессионально ✨
+Оформляю сообщества ВК и создаю инфографику для маркетплейсов.
+
+Здесь — мои работы, процесс, идеи и немного жизни дизайнера 🤎
+
+💬 По вопросам сотрудничества — в сообщения сообщества</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «То, что вы не увидите в готовом макете 😅  Иногда смотрю на папку с вариантами одного макета и думаю:  «А ведь клиент никогда не узнает, сколько всего здесь происходило» 😂  Потом...»</div>
+        </div>
+        
+        <div class="card" data-name="дизайнер алёна| нейросети,ai-видео и упаковка вк" data-id="-240213139">
+            <div class="card-header">
+                <span class="card-num">#47</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 213 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/club240213139" target="_blank" rel="noopener noreferrer">Дизайнер Алёна| Нейросети,AI-видео и упаковка ВК</a>
+            </h3>
+            <div class="card-id">ID: <code>-240213139</code> &bull; <a href="https://vk.com/club240213139" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Нейросети для бизнеса, творчества и яркого контента.
+Создаю визуал с помощью AI: нейрофотосессии, генерация видео, мультфильмы и анимация, изображения и креативы для социальных сетей.
+Помогаю сделать сообщество стильным и узнаваемым: оформление ВК, дизайн сообщества, обложки, баннеры и визуальная...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «✨ Мой актуальный прайс на услуги  Собрала всё в одном месте, чтобы вам было проще выбрать подходящий вариант 🤎 Каждый проект создаю индивидуально, стараясь передать вашу идею, н...»</div>
+        </div>
+        
+        <div class="card" data-name="дизайнер i елена соколова" data-id="-220492730">
+            <div class="card-header">
+                <span class="card-num">#48</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 160 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/design_elena_sokolova" target="_blank" rel="noopener noreferrer">Дизайнер I Елена Соколова</a>
+            </h3>
+            <div class="card-id">ID: <code>-220492730</code> &bull; <a href="https://vk.com/design_elena_sokolova" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Делаю визуал для соцсетей, который увеличивает вовлеченность и продажи. Без воды, бесконечных правок и шаблонных решений.»</em></div>
+            <div class="card-desc">Добро пожаловать в мое сообщество по дизайну!
+
+Я, Соколова Елена, СММ-специалист и дизайнер.
+Чем я могу  помочь вашему бизнесу:
+
+📍Создать продающий дизайн в соц. сетях
+
+📍Выделить ваш бизнес среди конкурентов за счёт дизайна
+
+📍Подобрать правильный цвет для Вашего бизнеса
+
+📍Создать продающий пост
+
+...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Елена Соколова | дизайнер для соцсетей  👉 [https://vk.com/album-220492730_293062676|портфолио] 👉 [https://vk.com/topic-220492730_49906423|отзывы] 👉 [https://vk.com/album-2204927...»</div>
+        </div>
+        
+        <div class="card" data-name="лада/именные сказки, дизайн, нейрофото" data-id="-240653312">
+            <div class="card-header">
+                <span class="card-num">#49</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 152 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/club240653312" target="_blank" rel="noopener noreferrer">Лада/именные сказки, дизайн, нейрофото</a>
+            </h3>
+            <div class="card-id">ID: <code>-240653312</code> &bull; <a href="https://vk.com/club240653312" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">✨ Добро пожаловать в мою творческую студию!
+
+Создаю красоту и волшебные истории специально для вас:
+
+📸 нейрофотосессии по вашим фотографиям;
+🎨 дизайн визиток, прайс-листов, сертификатов, листовок, меню, календарей, рекламных сторис и т.д.;
+📚 именные сказки для детей с индивидуальными иллюстрациям...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «✨ Добро пожаловать! Давайте знакомиться ✨  Меня зовут Лада. Я занимаюсь творчеством и создаю красивые работы для вас, вашего бизнеса и ваших близких 💕  В моём сообществе можно з...»</div>
+        </div>
+        
+        <div class="card" data-name="дизайн вк | оформление соцсетей | визуал |промты" data-id="-237769884">
+            <div class="card-header">
+                <span class="card-num">#50</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 150 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/katinova_visual" target="_blank" rel="noopener noreferrer">Дизайн ВК | Оформление соцсетей | Визуал |Промты</a>
+            </h3>
+            <div class="card-id">ID: <code>-237769884</code> &bull; <a href="https://vk.com/katinova_visual" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Добро пожаловать 👋
+
+Я — Валерия Катинова, графический дизайнер, который создаёт визуал, привлекающий внимание и усиливающий ваш бренд.
+
+Помогаю:
+✔ оформить сообщество ВК под ключ
+✔ создать продающий визуал 
+✔ выделиться среди конкурентов 
+✔ упаковать услуги и повысить доверие  
+
+Работаю с эксперт...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Оформление сообщества для организатора мероприятий  Разработала цельный визуальный стиль: фирменную палитру, логотип, аватар, обложки для ПК и мобильной версии, карточки услуг и...»</div>
+        </div>
+        
+        <div class="card" data-name="продающий дизайн и смм в вк | кристина никова" data-id="-230713108">
+            <div class="card-header">
+                <span class="card-num">#51</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 117 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/digitaldesign_kris" target="_blank" rel="noopener noreferrer">Продающий дизайн и СММ в ВК | Кристина Никова</a>
+            </h3>
+            <div class="card-id">ID: <code>-230713108</code> &bull; <a href="https://vk.com/digitaldesign_kris" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Хочешь, масштабировать и развивать свой бизнес во Вконтакте, через сильный визуал?
+Я помогу тебе в этом!
+
+Меня зовут Кристина. Я графический дизайнер – работаю с мастерами, коучами и владельцами малого бизнеса, помогая вывести визуальное оформление ВКонтакте на новый уровень, превращая дизайн в и...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «П О С Т ── И Г Р А  « Счᴀᴄᴛᴧиʙый ᴨᴏдᴀᴩᴏᴋ »  • • • • 🍂🎁🍂 • • • •    Согреем тебя 🤎  ОСЕНЬ обнимает…  Снова золотые листья, вкусный чай и уютные вечера.  Новый сезон, новые планы ...»</div>
+        </div>
+        
+        <div class="card" data-name="getclient | дизайн | вакансии" data-id="-230165790">
+            <div class="card-header">
+                <span class="card-num">#52</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 112 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/getclient_design" target="_blank" rel="noopener noreferrer">GetClient | Дизайн | Вакансии</a>
+            </h3>
+            <div class="card-id">ID: <code>-230165790</code> &bull; <a href="https://vk.com/getclient_design" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Ежедневная публикация свежих заказов по дизайну.</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «#удаленка, #диджитал #дизайнер, #design, #графическийдизайнер  Вакансия: Дизайнер в ИП «Крона» (Ковка металла)    Мы – ИП «Крона», занимаемся художественной ковкой и создаем экс...»</div>
+        </div>
+        
+        <div class="card" data-name="нейромагия" data-id="-239437681">
+            <div class="card-header">
+                <span class="card-num">#53</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 97 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/club239437681" target="_blank" rel="noopener noreferrer">НейроМагия</a>
+            </h3>
+            <div class="card-id">ID: <code>-239437681</code> &bull; <a href="https://vk.com/club239437681" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">💞 Всем привет! 
+
+Меня зовут Ольга,  и я создаю цифровое искусство.
+
+С удовольствием сделаю для вас:
+
+✨ Нейрообразы
+✨ Нейрофотосессии
+✨ Семейные и парные нейрообразы
+✨ Оживление старых фото («живое фото»)
+✨ Песни на заказ
+✨ Классические открытки
+✨ Открытки-хобби
+✨ Визуалы для соцсетей
+✨ Визитки , ...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Немного важной информации перед оформлением заказа 💞 Пожалуйста, ознакомьтесь.»</div>
+        </div>
+        
+        <div class="card" data-name="контент как" data-id="-221812669">
+            <div class="card-header">
+                <span class="card-num">#54</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 90 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/designmarsh" target="_blank" rel="noopener noreferrer">КОНТЕНТ КАК</a>
+            </h3>
+            <div class="card-id">ID: <code>-221812669</code> &bull; <a href="https://vk.com/designmarsh" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Контент как: дизайн соцсетей, стратегия продвижения, смм, воронка продаж, тексты.
+  
+Меня зовут Марина. 
+Красиво оформлю ваши аккаунты в соцсетях. Чтобы картинки постов ловили максимум охватов и продавали ваши товары, услуги. Подберу дизайн и цвета. Разработаю инфографику товара для маркетплейсов...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Бьет по глазам адреналин или как не попасть в психушку    Суббота, 6:00 утра. Уже за компьютером, работаю. Открываю проект в фотошопе, над которым корпела неделю. Вношу корректи...»</div>
+        </div>
+        
+        <div class="card" data-name="olga-diz/графический дизайн" data-id="-235012784">
+            <div class="card-header">
+                <span class="card-num">#55</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 87 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/olgradiz" target="_blank" rel="noopener noreferrer">Olga-Diz/Графический дизайн</a>
+            </h3>
+            <div class="card-id">ID: <code>-235012784</code> &bull; <a href="https://vk.com/olgradiz" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Графический дизайнер: создаю визуал, который привлекает внимание!
+
+Здравствуйте! Я — графический дизайнер из Москвы. 
+Не так давно открыла это направление. Я подхожу к работе со всей ответственностью и стремлюсь к совершенству в каждом проекте.
+Почему стоит подписаться?
+Здесь вы найдёте:
+• полезн...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Как я могу помочь вашему магазину: услуги, форматы, результаты Вы уже знаете, зачем вашему магазину полупрозрачные элементы и где их использовать. Теперь — о том, как я могу пом...»</div>
+        </div>
+        
+        <div class="card" data-name="evita / студия дизайна" data-id="-241363665">
+            <div class="card-header">
+                <span class="card-num">#56</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 78 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/evitadesign" target="_blank" rel="noopener noreferrer">EVITA / студия дизайна</a>
+            </h3>
+            <div class="card-id">ID: <code>-241363665</code> &bull; <a href="https://vk.com/evitadesign" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Студия дизайна»</em></div>
+            <div class="card-desc">Приветствуем в студии дизайна EVITA! ✨
+
+Мы создаём не просто красивую картинку, а стильный, продуманный и продающий визуал, который приковывает взгляды, влюбляет клиентов в ваш бренд и поднимает продажи на новый уровень! 🚀
+
+Для нас дизайн - это сильный маркетинговый инструмент, поэтому мы погружа...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «🔥 СКИДКА 30% НА ЛЮБОЙ ЗАКАЗ ДЛЯ ПЕРВЫХ 5 КЛИЕНТОВ! 🔥  Хотите выгодно обновить визуал своего бренда, сделать стильную презентацию, сочную инфографику для маркетплейсов или разраб...»</div>
+        </div>
+        
+        <div class="card" data-name="дизайнер александр симаев" data-id="-241348673">
+            <div class="card-header">
+                <span class="card-num">#57</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 66 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/simdizz94" target="_blank" rel="noopener noreferrer">Дизайнер Александр Симаев</a>
+            </h3>
+            <div class="card-id">ID: <code>-241348673</code> &bull; <a href="https://vk.com/simdizz94" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">👋 Всем привет! Я Александр Симаев.
+
+Я тот самый человек, который может сделать так, чтобы ваше сообщество выглядело не как «создали пять минут назад и забыли пароль», а как полноценный бренд, которому хочется доверять. 😎
+
+Чем занимаюсь:
+
+🎨 Оформляю сообщества — обложки, аватарки, меню, баннеры и ...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «👋 Всем привет! Я Александр Симаев.    Я тот самый человек, который может сделать так, чтобы ваше сообщество выглядело не как «создали пять минут назад и забыли пароль», а как по...»</div>
+        </div>
+        
+        <div class="card" data-name="grafichesky dizayner" data-id="1110756359">
+            <div class="card-header">
+                <span class="card-num">#58</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 54 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/id1110756359" target="_blank" rel="noopener noreferrer">Grafichesky Dizayner</a>
+            </h3>
+            <div class="card-id">ID: <code>1110756359</code> &bull; <a href="https://vk.com/id1110756359" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Дизайн ВК под ключ|
+Нейрофотосессия|
+Инфографика»</em></div>
+            
+            <div class="post-preview"><strong>Последний пост:</strong> «Завершила оформление сообщества ВКонтакте для таролога, астролога. Создала единый магический стиль: обложку, аватар и кнопки меню. Получилось атмосферно, красиво и узнаваемо . Н...»</div>
+        </div>
+        
+        <div class="card" data-name="дизайнерi русинова фаина" data-id="-229011291">
+            <div class="card-header">
+                <span class="card-num">#59</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 47 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/club229011291" target="_blank" rel="noopener noreferrer">ДизайнерI Русинова Фаина</a>
+            </h3>
+            <div class="card-id">ID: <code>-229011291</code> &bull; <a href="https://vk.com/club229011291" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Создание индивидуальных макетов по различным темам. Обучение</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Всем привет! 👋😊  Меня зовут Фаина Русинова 🎨  Я начинающий дизайнер и сейчас активно развиваюсь в сфере оформления сообществ и создания графики для бизнеса. Мне очень нравится с...»</div>
+        </div>
+        
+        <div class="card" data-name="сергей грязнов | vk • gpt • amocrm" data-id="-222891972">
+            <div class="card-header">
+                <span class="card-num">#60</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 47 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/prilibofas" target="_blank" rel="noopener noreferrer">Сергей Грязнов | VK • GPT • amoCRM</a>
+            </h3>
+            <div class="card-id">ID: <code>-222891972</code> &bull; <a href="https://vk.com/prilibofas" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Консультации о порядке»</em></div>
+            <div class="card-desc">Сергей Грязнов — специалист по цифровому порядку и продвижению.
+
+Помогаю предпринимателям и специалистам:
+
+— упаковать и оформить VK;
+— создавать продающий нейроконтент;
+— настроить amoCRM и сервисы;
+— создать GPT-агента под свои задачи;
+— навести порядок в цифровых инструментах.
+
+Можно начать с ...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Нужна помощь с VK, нейросетями или цифровыми инструментами?  Я — Сергей Грязнов.  Помогаю предпринимателям и специалистам наводить порядок в работе и превращать цифровые инструм...»</div>
+        </div>
+        
+        <div class="card" data-name="дизайн | инфографика | оформление вк |" data-id="-236854664">
+            <div class="card-header">
+                <span class="card-num">#61</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 42 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/infografika_kut" target="_blank" rel="noopener noreferrer">ДИЗАЙН | ИНФОГРАФИКА | ОФОРМЛЕНИЕ ВК |</a>
+            </h3>
+            <div class="card-id">ID: <code>-236854664</code> &bull; <a href="https://vk.com/infografika_kut" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Меня зовут Ксения, я - графический дизайнер, помогаю брендам выглядеть профессионально, привлекать внимание и повышать продажи с помощью продуманного дизайна. 
+
+Моя задача не просто сделать красиво, а создать дизайн, который помогает бизнесам продавать, вызывать доверие и усиливать ваш бренд.
+
+✅ ...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Привет! 👋  Меня зовут Ксения, я – графический дизайнер, помогаю бизнесам на маркетплейсах и в сообществах ВК сделать визуал не просто красивым, а понятным, современным и работаю...»</div>
+        </div>
+        
+        <div class="card" data-name="ирина дизайн i инфографика, дизайн для соцсетей" data-id="-238931552">
+            <div class="card-header">
+                <span class="card-num">#62</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 36 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/club238931552" target="_blank" rel="noopener noreferrer">Ирина Дизайн I Инфографика, дизайн для соцсетей</a>
+            </h3>
+            <div class="card-id">ID: <code>-238931552</code> &bull; <a href="https://vk.com/club238931552" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Добро пожаловать в сообщество! 📣Меня зовут Ирина и я являюсь дипломированным графическим дизайнером, а также занимаюсь созданием карточек товаров для маркетплейсов (Wildberries и OZON).
+
+Также занимаюсь оформлением дизайна для Вконтакте. Оформлю прайс-лист, баннер, буклет и многое другое.</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Новый кейс: ✅оформление группы VK для студии маникюра — обложка, аватарка, плашки меню и товары.»</div>
+        </div>
+        
+        <div class="card" data-name="визуал без хаоса | дизайн и нейросети" data-id="-241693558">
+            <div class="card-header">
+                <span class="card-num">#63</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 23 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/bezhaosa.design" target="_blank" rel="noopener noreferrer">Визуал без хаоса | дизайн и нейросети</a>
+            </h3>
+            <div class="card-id">ID: <code>-241693558</code> &bull; <a href="https://vk.com/bezhaosa.design" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Обложки · баннеры · карточки · посты · презентации»</em></div>
+            <div class="card-desc">Привет! Меня зовут Анна.
+
+Я помогаю экспертам, мастерам, небольшим брендам и предпринимателям привести визуал в порядок.
+
+Мой подход — красиво, понятно и без хаоса. Что я могу сделать:
+
+1. Оформление группы ВК
+Помогу привести группу в аккуратный и понятный вид.
+
+2. Баннеры и визуал для постов
+Соз...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Добро пожаловать в “Визуал без хаоса” 🤍    Меня зовут Анна. Я создаю визуал для проектов, которым хочется выглядеть аккуратно, красиво и профессионально ✨    Мне близок подход, ...»</div>
+        </div>
+        
+        <div class="card" data-name="анна бужан | дизайн для бизнеса" data-id="-240104457">
+            <div class="card-header">
+                <span class="card-num">#64</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 22 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/buzhan_design" target="_blank" rel="noopener noreferrer">АННА БУЖАН | ДИЗАЙН ДЛЯ БИЗНЕСА</a>
+            </h3>
+            <div class="card-id">ID: <code>-240104457</code> &bull; <a href="https://vk.com/buzhan_design" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Презентации. Рекламная продукция. Оформление соц. сетей»</em></div>
+            <div class="card-desc">Создаю работающие инструменты для самозанятых, малого и среднего бизнеса.
+
+Рассказываю про самозанятость, юридические аспекты и изменения в законодательстве для малого бизнеса.
+
+Чем помогу вашему бренду:
+• Логотипы и фирменный стиль (айдентика) + понятный b2b-гайдлайн
+• Комплексная упаковка сообщ...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «СИСТЕМНЫЙ ДИЗАЙН ДЛЯ РОСТА ВАШЕГО БИЗНЕСА  Привет! Я Анна Бужан — графический дизайнер для бизнеса с экономическим и юридическим бэкграундом.  Чем я полезна вашему бренду: ✅Внед...»</div>
+        </div>
+        
+        <div class="card" data-name="дизайн и анимация" data-id="-235084568">
+            <div class="card-header">
+                <span class="card-num">#65</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 20 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/neurodesign" target="_blank" rel="noopener noreferrer">Дизайн и Анимация</a>
+            </h3>
+            <div class="card-id">ID: <code>-235084568</code> &bull; <a href="https://vk.com/neurodesign" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Дизайн и Анимация — визуальные решения для бизнеса и личных проектов.
+
+Баннеры • Оформление соцсетей • Маркетплейсы • Превью для видео • Презентации
+
+Использую современные профессиональные инструменты и нейросети для ускорения производства, генерации идей и улучшения визуала.
+
+Для заказа и беспла...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Очередная работа в портфолио — обложка для сообщества ВКонтакте, посвящённого профессиональному окрашиванию волос.   В основе оформления — контрастная цветовая гамма, акцентное ...»</div>
+        </div>
+        
+        <div class="card" data-name="qwerty | дизайн, который продаёт" data-id="-230286940">
+            <div class="card-header">
+                <span class="card-num">#66</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 18 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/qwdsgn" target="_blank" rel="noopener noreferrer">Qwerty | Дизайн, который продаёт</a>
+            </h3>
+            <div class="card-id">ID: <code>-230286940</code> &bull; <a href="https://vk.com/qwdsgn" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Упакую ваш проект в дизайн, который продаёт.
+
+Делаю:
+• Оформление ВК
+• Карточки для маркетплейсов
+• Telegram-каналы
+• Превью для YouTube и Twitch
+
+Под задачу и аудиторию.
+
+⏱️ Быстро • Чётко • По делу
+📈 С акцентом на результат
+
+Пишите в личные сообщения — обсудим и начнём работу.</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «⛩ Новый кейс в портфолио.    Оформление для Twitch-канала.   Как вам результат? 👀    📩 За дизайном — в личные сообщения.»</div>
+        </div>
+        
+        <div class="card" data-name="дизайн вк, сайты, карточки товаров | бюро" data-id="-232436875">
+            <div class="card-header">
+                <span class="card-num">#67</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 16 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/airtisensebureau" target="_blank" rel="noopener noreferrer">Дизайн ВК, сайты, карточки товаров | Бюро</a>
+            </h3>
+            <div class="card-id">ID: <code>-232436875</code> &bull; <a href="https://vk.com/airtisensebureau" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Здесь можно заказать упаковку ВК-группы, сайт, карточку товара, разбор задачи, работу рядом онлайн или готовый цифровой-материал.
+
+Это небольшое авторское бюро услуг и продуктов.
+
+Здесь я выкладываю то, что можно заказать или купить: от помощи с конкретной задачей до визуального оформления проект...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «🎨 Оформление группы ВКонтакте - четыре варианта работы    Если группе нужен аккуратный первый экран, полноценное оформление с меню или еще и карточки услуг/товаров, в Бюро AIrti...»</div>
+        </div>
+        
+        <div class="card" data-name="катя | дизайнер соц-сетей | обучение" data-id="-240858627">
+            <div class="card-header">
+                <span class="card-num">#68</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 15 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/designervi4" target="_blank" rel="noopener noreferrer">Катя | Дизайнер соц-сетей | Обучение</a>
+            </h3>
+            <div class="card-id">ID: <code>-240858627</code> &bull; <a href="https://vk.com/designervi4" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Работаю с пн-вс с 11:00 до 21:00 (по мск)»</em></div>
+            <div class="card-desc">Привет! Я Катя - дизайнер с опытом 1,5 года. Помогаю экспертам, брендам и кураторам онлайн-школ создавать стильные и продающие страницы в ВК, Telegram и Instagram.
+
+Что я делаю:
+• Оформление ВК-сообществ под ключ
+• Упаковка Telegram-каналов с нуля
+• Дизайн Instagram-аккаунтов (посты, сторис, акту...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Создаю упаковку бизнеса, которая повышает заявки и вызывает доверие   Привет! Меня зовут Катя 🤍    Я занимаюсь визуальной упаковкой социальных сетей и помогаю экспертам, брендам...»</div>
+        </div>
+        
+        <div class="card" data-name="оформление сообществ вк | дизайн" data-id="-240345165">
+            <div class="card-header">
+                <span class="card-num">#69</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 15 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/vk_design_tlt" target="_blank" rel="noopener noreferrer">Оформление сообществ ВК | Дизайн</a>
+            </h3>
+            <div class="card-id">ID: <code>-240345165</code> &bull; <a href="https://vk.com/vk_design_tlt" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Здравствуйте! 👋
+Спасибо, что заглянули в наше сообщество!
+Мы создаём современное оформление ВКонтакте.Ответим на все интересующие вас вопросы.</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Проект «Кислотный педикюр» пополнил наше портфолио! ✨ Мы оформили сообщество для мастера педикюра в Тольятти- https://vk.ru/club210629202.  Главная задача — создать яркое, совре...»</div>
+        </div>
+        
+        <div class="card" data-name="графический дизайнер" data-id="-239636266">
+            <div class="card-header">
+                <span class="card-num">#70</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 13 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/club239636266" target="_blank" rel="noopener noreferrer">Графический дизайнер</a>
+            </h3>
+            <div class="card-id">ID: <code>-239636266</code> &bull; <a href="https://vk.com/club239636266" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Привет! Я создаю визуал, который не просто радует глаз, а реально помогает бизнесу: привлекает внимание, повышает вовлечённость и конверсию. Если хочешь, чтобы твоё сообщество, товар или личный бренд выглядели профессионально — ты по адресу! 😊
+
+Что я предлагаю:
+🔹 Оформление сообществ ВКонтакте
+Сд...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Завершила оформление сообщества ВКонтакте для таролога, астролога. Создала единый магический стиль: обложку, аватар и кнопки меню. Получилось атмосферно, красиво и узнаваемо . Н...»</div>
+        </div>
+        
+        <div class="card" data-name="таргетированная реклама" data-id="-241187118">
+            <div class="card-header">
+                <span class="card-num">#71</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 11 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/targetmarketingg" target="_blank" rel="noopener noreferrer">Таргетированная реклама</a>
+            </h3>
+            <div class="card-id">ID: <code>-241187118</code> &bull; <a href="https://vk.com/targetmarketingg" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">✔️Настраиваю рекламу в ВКонтакте, Авито и Яндекс Директе так, чтобы она приносила не просто клики, а реальные заявки и продажи.✔️
+
+📌Проанализирую конкурентов👀
+📌Работаю на результат📊
+📌Бесплатная консультация🗨️
+📌Заказывайте профессиональный таргет ВКонтакте, Авито, Яндекс-Директ! Я всегда на связи,...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Оформление сообщества ВК - это не «для красоты». Это часть подготовки к запуску рекламы.  Можно настроить идеальную рекламную кампанию, подобрать аудиторию и написать сильные об...»</div>
+        </div>
+        
+        <div class="card" data-name="дизайн соцсетей | обложки для вк" data-id="-238219134">
+            <div class="card-header">
+                <span class="card-num">#72</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 10 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/pixelana" target="_blank" rel="noopener noreferrer">Дизайн соцсетей | Обложки для ВК</a>
+            </h3>
+            <div class="card-id">ID: <code>-238219134</code> &bull; <a href="https://vk.com/pixelana" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Профессиональное оформление сообществ ВКонтакте и графический дизайн любой сложности. Стильные обложки для ВК профиля, уникальные обои, дизайн календарей, открыток и рекламных креативов. Быстро, качественно, с гарантией результата.
+
+📌 Оставайтесь с нами, чтобы получать:
+
+• 🖼 Готовые эксклюзивные ...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «#обложки #вк #vc #вконтакте #обложка #осень #робот #андроид #пейзаж #листья»</div>
+        </div>
+        
+        <div class="card" data-name="дизайн соцсетей | оформление вк | креативы" data-id="-241571453">
+            <div class="card-header">
+                <span class="card-num">#73</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 7 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/edie_social_design" target="_blank" rel="noopener noreferrer">Дизайн соцсетей | Оформление ВК | Креативы</a>
+            </h3>
+            <div class="card-id">ID: <code>-241571453</code> &bull; <a href="https://vk.com/edie_social_design" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Функциональный дизайн не только на словах ✔️ 
+
+Меня зовут Эдие. Я создаю дизайн для социальных сетей, который привлекает клиентов, остаётся заметным и, главное, работает на ваш бизнес. Этого мне удаётся достичь с помощью нужных цветов, типографики, композиции, смыслов.
+
+Сегодня дизайн – первое, с...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Приветствую! Меня зовут Эдие, и я дизайнер социальных сетей.  Создаю визуал, который не только привлекает клиентов, но и формирует «лицо» специалиста, бренда, организации. Как я...»</div>
+        </div>
+        
+        <div class="card" data-name="rinat &amp; digital" data-id="-241670982">
+            <div class="card-header">
+                <span class="card-num">#74</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 5 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/rinatdigital" target="_blank" rel="noopener noreferrer">RINAT &amp; DIGITAL</a>
+            </h3>
+            <div class="card-id">ID: <code>-241670982</code> &bull; <a href="https://vk.com/rinatdigital" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">🚀 Помогаю бизнесу получать клиентов из интернета
+💻 Сайты • ВК • Квизы • Продвижение
+🎯 Разрабатываю решения под ваш бизнес, а не шаблоны
+📩 Напишите — обсудим вашу задачу</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «🔥 Сайт, который работает на продажи, а не просто красиво выглядит  Показываю один из сайтов, который мы разработали для мебельной компании.  Клиент заходит на сайт и сразу поним...»</div>
+        </div>
+        
+        <div class="card" data-name="инфографика| дизайн соцсетей| taplink| баннеры" data-id="-232961197">
+            <div class="card-header">
+                <span class="card-num">#75</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 4 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/club232961197" target="_blank" rel="noopener noreferrer">Инфографика| Дизайн соцсетей| Taplink| Баннеры</a>
+            </h3>
+            <div class="card-id">ID: <code>-232961197</code> &bull; <a href="https://vk.com/club232961197" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Добро пожаловать! 
+
+Меня зовут Ольга, помогу оформить:
+
+✅ Инфографика/дизайн карточек для маркетплейсов
+✅ Дизайн соцсетей 
+✅ Taplink 
+✅ Баннеры 
+✅ Гайды
+✅ Сторис
+И многое другое 👩🏻‍💻
+
+Обсудить задачу и сделать заказ 👇🏻
+ 📌Прямая ссылка для связи со мной:
+t.me/budaevaolya
+
+📌Портфолио: 
+https://pin....</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Оформление сторис для детского спортивного клуба 💪  Если вам тоже нужно оформление соцсетей — личного блога, экспертного аккаунта или бизнеса — буду рада сотрудничеству 📩    📌Об...»</div>
+        </div>
+        
+        <div class="card" data-name="нейромастер" data-id="-241607798">
+            <div class="card-header">
+                <span class="card-num">#76</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 3 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/club241607798" target="_blank" rel="noopener noreferrer">НейроМастер</a>
+            </h3>
+            <div class="card-id">ID: <code>-241607798</code> &bull; <a href="https://vk.com/club241607798" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Делаю обложки и визуал для соцсетей.  Нейросети использую как инструмент.
+Близок спокойный, понятный стиль. Есть примеры работ.</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Что можно заказать в НейроМастер  Сейчас я работаю по четырём направлениям:  • обложки и визуал для соцсетей • карточки и посты • короткие видео • AI-визуал для бизнеса  Каждую ...»</div>
+        </div>
+        
+        <div class="card" data-name="шмидт pro vk | настройка и оформление сообществ" data-id="-240919724">
+            <div class="card-header">
+                <span class="card-num">#77</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 3 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/shmidtprovk" target="_blank" rel="noopener noreferrer">Шмидт Pro VK | Настройка и оформление сообществ</a>
+            </h3>
+            <div class="card-id">ID: <code>-240919724</code> &bull; <a href="https://vk.com/shmidtprovk" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Открыт к новым предложениям и вопросам.»</em></div>
+            <div class="card-desc">🔥 Настраиваю и оформляю сообщества ВКонтакте для своих клиентов.
+
+• Оформление
+• Меню 
+• Виджеты 
+• Услуги 
+• Автоответы 
+• И другие настройки.
+
+Помогаю сделать сообщество понятным и удобным для клиентов.
+
+Напишите в сообщения сообщества, либо позвоните по телефону, обсудим вашу задачу.
+
+Социальн...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Привет! 👋  Я занимаюсь настройкой и оформлением сообществ ВКонтакте.  Помогу сделать ваше сообщество более удобным и понятным для клиентов:  • оформление сообщества • настройка ...»</div>
+        </div>
+        
+        <div class="card" data-name="avelis design | дизайн и оформление" data-id="-241264566">
+            <div class="card-header">
+                <span class="card-num">#78</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 3 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/avelisdesign" target="_blank" rel="noopener noreferrer">AVELIS DESIGN | Дизайн и оформление</a>
+            </h3>
+            <div class="card-id">ID: <code>-241264566</code> &bull; <a href="https://vk.com/avelisdesign" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            
+            <div class="post-preview"><strong>Последний пост:</strong> «Новая работа в портфолио Avelis Design.  На этот раз была задача создать полноценное оформление игрового YouTube-канала «КАМЫШКА», посвящённого прохождениям, стримам и разным иг...»</div>
+        </div>
+        
+        <div class="card" data-name="вк для бизнеса | ведение сообществ" data-id="-241481416">
+            <div class="card-header">
+                <span class="card-num">#79</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 2 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/vkforbusinec" target="_blank" rel="noopener noreferrer">ВК для бизнеса | Ведение сообществ</a>
+            </h3>
+            <div class="card-id">ID: <code>-241481416</code> &bull; <a href="https://vk.com/vkforbusinec" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Помогаю бизнесу вести ВК без хаоса: контент, оформление, идеи для публикаций и развитие сообщества.
+
+Что могу сделать:
+— оформить и привести группу в порядок;
+— составить контент-план;
+— подготовить посты и идеи;
+— улучшить подачу услуг;
+— сделать сообщество понятнее и удобнее для клиентов.
+
+Напи...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Помогаю сделать сообщество ВК аккуратным, понятным и полезным для клиентов.  Что могу взять на себя: — оформление и структура сообщества; — контент-план и идеи для публикаций; —...»</div>
+        </div>
+        
+        <div class="card" data-name="евгения | smm и дизайн для бизнеса" data-id="-240882955">
+            <div class="card-header">
+                <span class="card-num">#80</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 2 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/club240882955" target="_blank" rel="noopener noreferrer">Евгения | SMM и дизайн для бизнеса</a>
+            </h3>
+            <div class="card-id">ID: <code>-240882955</code> &bull; <a href="https://vk.com/club240882955" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">SMM и дизайн для вашего бизнеса 🩷
+
+• Ведение и оформление групп ВК
+• Контент и визуал
+• Дизайн карточек для маркетплейсов
+• Инфографика
+
+Помогаю сделать ваш бизнес заметным и привлекательным для клиентов.
+
+📩 По вопросам сотрудничества пишите</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «В преддверии 1 сентября сегодня я решила проделать работу с карточкой по рюкзаку😊  Какую работу я проделала?!   📸 Подготовлено и оформлено фото товара 🎨 Разработан единый дизайн...»</div>
+        </div>
+        
+        <div class="card" data-name="pixelrocket" data-id="-241516228">
+            <div class="card-header">
+                <span class="card-num">#81</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 1 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/club241516228" target="_blank" rel="noopener noreferrer">Pixelrocket</a>
+            </h3>
+            <div class="card-id">ID: <code>-241516228</code> &bull; <a href="https://vk.com/club241516228" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Мы - дизайн студия Pixelrocket. Запускаем ваши идеи в визуал, упаковываем ваши продукты в цифровой формат.
+Создаём многостраничные сайты, лендинги, корпоративные и имиджевые сайты на Яндекс KIT и Тильде.
+Разрабатываем айдентику, которая формирует узнаваемый образ вашего бренда и выделяет его сред...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «СОЗДАЕМ КАРТОЧКИ ТОВАРОВ ДЛЯ МАРКЕТПЛЕЙСОВ WB, Ozon, Золотое яблоко, Бессовестно талантливый и других торговых площадок. Делаем дизайн карточек, которые привлекают внимание, дос...»</div>
+        </div>
+        
+        <div class="card" data-name="smm-клондайк" data-id="-241307567">
+            <div class="card-header">
+                <span class="card-num">#82</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Дизайн ВК</span>
+                <span class="members-badge">👥 1 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/club241307567" target="_blank" rel="noopener noreferrer">SMM-клондайк</a>
+            </h3>
+            <div class="card-id">ID: <code>-241307567</code> &bull; <a href="https://vk.com/club241307567" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            
+            <div class="post-preview"><strong>Последний пост:</strong> «SMM-менеджер ВК и Макс (ТомаТ, 2026), часть 18   Бонус. Маркировка рекламы: 11. Регистрация в Яндекс ОРД, часть1 12. Получение ключа в Яндекс ОРД, часть 2  Бонус. Мессенджер MAX...»</div>
+        </div>
+        
+        </div>
+    </div>
+
+    <div id="toast" class="toast">ID скопированы!</div>
+
+    <script>
+        const rawIds = `-54337486\n-163508198\n-70047039\n-75949236\n-203863200\n-221123382\n-96270398\n-145763517\n-217086721\n-195721400\n-187622727\n-230289880\n-217175378\n-167487255\n2622201\n-221154232\n3966077\n-222797737\n-236541841\n-229968622\n-235415174\n-237239177\n-226552982\n23265730\n-191979366\n-219886951\n-140918224\n-227391981\n-141840857\n-209786119\n-186682087\n-100593780\n-201177131\n-211104752\n-231129746\n-240490191\n-218251180\n-240723982\n1112827143\n-198976361\n-229977924\n-212509304\n-160072832\n-196264615\n-197126006\n-241234268\n-240213139\n-220492730\n-240653312\n-237769884\n-230713108\n-230165790\n-239437681\n-221812669\n-235012784\n-241363665\n-241348673\n1110756359\n-229011291\n-222891972\n-236854664\n-238931552\n-241693558\n-240104457\n-235084568\n-230286940\n-232436875\n-240858627\n-240345165\n-239636266\n-241187118\n-238219134\n-241571453\n-241670982\n-232961197\n-241607798\n-240919724\n-241264566\n-241481416\n-240882955\n-241516228\n-241307567`;
+        function filterCards() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = (!query || text.includes(query)) ? 'block' : 'none';
+            });
+        }
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+        function copyIds() {
+            navigator.clipboard.writeText(rawIds).then(() => showToast('✓ ID скопированы в буфер!'));
+        }
+        function downloadIds() {
+            const blob = new Blob([rawIds], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'vk_design_clean_ids.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast('✓ Файл vk_design_clean_ids.txt скачивается');
+        }
+    </script>
+</body>
+</html>
