@@ -253,6 +253,12 @@
             background: var(--accent-pfr-bg);
             border: 1px solid rgba(240, 136, 62, 0.3);
         }
+
+        .badge-energy {
+            color: #3fb950;
+            background: rgba(63, 185, 80, 0.15);
+            border: 1px solid rgba(63, 185, 80, 0.3);
+        }
         
         .badge-body {
             color: var(--accent-body);
@@ -374,7 +380,7 @@
             
             <div class="stats-grid">
                 <div class="stat-box">
-                    <div class="stat-value success">57</div>
+                    <div class="stat-value success">67</div>
                     <div class="stat-label">Одобрено сообществ</div>
                 </div>
                 <div class="stat-box">
@@ -382,18 +388,22 @@
                     <div class="stat-label">Прямые практики ПФР</div>
                 </div>
                 <div class="stat-box">
+                    <div class="stat-value" style="color: #3fb950;">10</div>
+                    <div class="stat-label">Энерговолна</div>
+                </div>
+                <div class="stat-box">
                     <div class="stat-value body">27</div>
                     <div class="stat-label">Телесная терапия / ТОТ</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-value">145</div>
-                    <div class="stat-label">Отсеяно мусора (ПФР РФ)</div>
+                    <div class="stat-value">206</div>
+                    <div class="stat-label">Отсеяно мусора</div>
                 </div>
             </div>
             
             <div class="action-bar">
                 <button class="btn btn-primary" onclick="downloadIds()">📥 Скачать чистые ID (TXT)</button>
-                <button class="btn" onclick="copyIds()">📋 Скопировать 57 ID для рекламы</button>
+                <button class="btn" onclick="copyIds()">📋 Скопировать 67 ID для рекламы</button>
             </div>
         </header>
         
@@ -402,8 +412,9 @@
                 <input type="text" id="searchInput" class="search-input" placeholder="🔍 Поиск по имени, описанию или ID..." onkeyup="filterCards()">
             </div>
             <div class="filters">
-                <button class="filter-btn active" onclick="setCategory('all', this)">Все (57)</button>
+                <button class="filter-btn active" onclick="setCategory('all', this)">Все (67)</button>
                 <button class="filter-btn" onclick="setCategory('pfr', this)">ПФР (30)</button>
+                <button class="filter-btn" onclick="setCategory('energy', this)">Энерговолна (10)</button>
                 <button class="filter-btn" onclick="setCategory('body', this)">Телеска (27)</button>
             </div>
         </div>
@@ -906,9 +917,207 @@ PF_R помогает мягко освободить тело от н...</div>
             <div class="post-preview"><strong>Последний пост:</strong> «Ты когда-нибудь задумывалась, что происходит во время сеанса? 🤔    Рассказываю ПО ШАГАМ. Чтобы ты знала, что тебя ждёт.    Это сеанс PF_R DUB — глубокая разблокировка через тело...»</div>
         </div>
         
-        <div class="card" data-category="body" data-name="телесно-ориентированная психотерапия" data-id="-63485629">
+        <div class="card" data-category="energy" data-name="тантра двигательная медитация в екатеринбурге." data-id="-201335086">
             <div class="card-header">
                 <span class="card-num">#31</span>
+                <span class="badge badge-energy">Энерговолна</span>
+                <span class="members-badge">👥 18 135 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/club201335086" target="_blank" rel="noopener noreferrer">Тантра Двигательная Медитация в Екатеринбурге.</a>
+            </h3>
+            <div class="card-id">ID: <code>-201335086</code> &bull; <a href="https://vk.com/club201335086" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Я тантра-сексолог и тантра-психолог, обучаю тантре, медитации, дао и цигун как очно, так и онлайн. Делаю 14 видов авторских массажей.»</em></div>
+            <div class="card-desc">Меня зовут Алексей Лазебный, я сексолог, тантрик и тренер. Моя цель — помочь женщинам, мужчинам и парам достигать сексуальной реализованности и жить жизнью мечты. Я практикую тантру 25 года и объединяю методы классической сексологии, тантры и даосские техники. В какой-то момент родился мой авторс...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «👩‍❤‍💋‍👨Найдись, моя любовь👩‍❤‍👨 — тренинг для тех, кто готов к НАСТОЯЩЕЙ любви!  —-----------------------------------------------------------------------------------------------...»</div>
+        </div>
+        
+        <div class="card" data-category="energy" data-name="andrey dunaev" data-id="6415164">
+            <div class="card-header">
+                <span class="card-num">#32</span>
+                <span class="badge badge-energy">Энерговолна</span>
+                <span class="members-badge">👥 10 607 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/energiamassage" target="_blank" rel="noopener noreferrer">Andrey Dunaev</a>
+            </h3>
+            <div class="card-id">ID: <code>6415164</code> &bull; <a href="https://vk.com/energiamassage" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Организация тренингов и семинаров. Ведущий тантрических практик, массажи, ретриты, группа vk.com/massagelegko +79219109186»</em></div>
+            
+            <div class="post-preview"><strong>Последний пост:</strong> «Загородный ретрит &quot;Живая тантра&quot; 16-18 октября.  Ведущие Андрей Дунаев (Нитья Ананда) и Наталья Ильина  В мини эко центре &quot;Ананда&quot; под Петербургом на берегу ...»</div>
+        </div>
+        
+        <div class="card" data-category="energy" data-name="tonya zarubina" data-id="30140195">
+            <div class="card-header">
+                <span class="card-num">#33</span>
+                <span class="badge badge-energy">Энерговолна</span>
+                <span class="members-badge">👥 2 020 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/suntoniya" target="_blank" rel="noopener noreferrer">Tonya Zarubina</a>
+            </h3>
+            <div class="card-id">ID: <code>30140195</code> &bull; <a href="https://vk.com/suntoniya" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Жизнь со вкусом ° телесный терапевт, sексолог. Про тело, чувственность, близость и удовольствие.»</em></div>
+            
+            <div class="post-preview"><strong>Последний пост:</strong> «Замечали, как внутренние перемены сразу меняют лицо? Новая аватарка — это как раз про то, что сейчас внутри.  Я получила второе высшее — психолог-тренер. И соединила это с дипло...»</div>
+        </div>
+        
+        <div class="card" data-category="energy" data-name="любовь. отношения. саморазвитие. практики" data-id="-60051656">
+            <div class="card-header">
+                <span class="card-num">#34</span>
+                <span class="badge badge-energy">Энерговолна</span>
+                <span class="members-badge">👥 1 784 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/tantricway" target="_blank" rel="noopener noreferrer">Любовь. Отношения. Саморазвитие. Практики</a>
+            </h3>
+            <div class="card-id">ID: <code>-60051656</code> &bull; <a href="https://vk.com/tantricway" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Тренинг Севы Прем &quot;Искусство прикосновений&quot; (Тантрический массаж 24-25.09 СПб. Запись парами и по одному.»</em></div>
+            <div class="card-desc">Тренинги. Ведущий Сева Прем.
+
+Как создавать
+яркие и гармоничные отношения?
+Знания из древних традиций, очищенные от религии и мистики до практики, которая просто работает.
+Ощутимые эффекты от практики
+
+Увеличение притягательности
+Сила притяжения между мужчиной и женщиной - это основа для построен...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «19-20 сентября НОВЫЙ ТРЕНИНГ СЕВЫ ПРЕМ —  «ИСКУССТВО ПРИКОСНОВЕНИЙ МОДУЛЬ-2»  (&quot;Тантрический массаж 2.0) в Санкт-Петербурге ❤  ПЕРВЫЙ РАЗ В ПЕТЕРБУРГЕ!  СЕВА САМ В ЗАЛЕ ВЕД...»</div>
+        </div>
+        
+        <div class="card" data-category="energy" data-name="elena pavlova" data-id="133785841">
+            <div class="card-header">
+                <span class="card-num">#35</span>
+                <span class="badge badge-energy">Энерговолна</span>
+                <span class="members-badge">👥 1 539 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/alena1006" target="_blank" rel="noopener noreferrer">Elena Pavlova</a>
+            </h3>
+            <div class="card-id">ID: <code>133785841</code> &bull; <a href="https://vk.com/alena1006" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Мастер Звука чашами 🥣Квантовый проводник&amp; Духовный психолог&amp;Энерготерапевт&amp; практик Access Bars»</em></div>
+            <div class="card-desc">Общительная, люблю помогать людям</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Вечерняя тишина, природа и звук… 🌅🍁🔔✨  Посмотрите на это фото. В нём — весь смысл того, зачем мы выезжаем на природу и устраиваем себе такие дни ретрита.  Тихий осенний вечер на...»</div>
+        </div>
+        
+        <div class="card" data-category="energy" data-name="irina zhogina" data-id="40929845">
+            <div class="card-header">
+                <span class="card-num">#36</span>
+                <span class="badge badge-energy">Энерговолна</span>
+                <span class="members-badge">👥 1 520 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/zhogirina" target="_blank" rel="noopener noreferrer">Irina Zhogina</a>
+            </h3>
+            <div class="card-id">ID: <code>40929845</code> &bull; <a href="https://vk.com/zhogirina" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Телесные практики, психосоматика, трансформационные игры»</em></div>
+            <div class="card-desc">Таких, как Ира, встретишь редко —
+Не размазня и не кокетка,
+Нож на соперницу не точит
+И твердо знает, чего хочет.
+
+Ее коллеги уважают,
+Соседи просто обожают
+И ставят все в пример детишкам.
+Она гордится — но не слишком.
+
+Она вперед идет по плану
+И свой растит авторитет,
+Коль запланирует нирвану,
+Е...</div>
+            
+        </div>
+        
+        <div class="card" data-category="energy" data-name="анатолий семашков • целитель • наставник" data-id="-76599908">
+            <div class="card-header">
+                <span class="card-num">#37</span>
+                <span class="badge badge-energy">Энерговолна</span>
+                <span class="members-badge">👥 1 312 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/zelitel89678632111" target="_blank" rel="noopener noreferrer">Анатолий Семашков • Целитель • Наставник</a>
+            </h3>
+            <div class="card-id">ID: <code>-76599908</code> &bull; <a href="https://vk.com/zelitel89678632111" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Энерговолна | Регресс | Правка тела | Тантра массаж | Телесная психотерапия | Экстрасенсорная диагностика чакр |Таро | WhatsApp +79678632111»</em></div>
+            <div class="card-desc">АВТОРСКИЕ МЕТОДИКИ | OЧНО | ONLINЕ
+В арсенале мастера: 
+Массажные техники от классики до востока. 
+Авторская методика &quot;Правка, Ладка, Чистка Огнём&quot;.
+Регрессивный гипноз от возрастной регрессии до прошлых жизней. 
+Авторская практика &quot;Запуск Энерговолны&quot;.
+Глубинная телесная псих...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «⭐️МОСКВА  АНАТОЛИЙ СЕМАШКОВ    25 -30 сентября  ️🔮 Индивидуальные приёмы.  • Экстрасенсорные консультации;  • Остеопрактика;  • Запуск Энерговолны;  • Энергорегресс;  • Наставни...»</div>
+        </div>
+        
+        <div class="card" data-category="energy" data-name="elena ivannikova psikholog" data-id="147450066">
+            <div class="card-header">
+                <span class="card-num">#38</span>
+                <span class="badge badge-energy">Энерговолна</span>
+                <span class="members-badge">👥 318 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/ivelena111" target="_blank" rel="noopener noreferrer">Elena Ivannikova Psikholog</a>
+            </h3>
+            <div class="card-id">ID: <code>147450066</code> &bull; <a href="https://vk.com/ivelena111" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Психолог / психотерапия онлайн»</em></div>
+            
+            <div class="post-preview"><strong>Последний пост:</strong> «Почему он едет к матери, а не остаётся с вами Мне вчера написали в комментариях мысль, которая зацепила: &quot;Мужчина, который не может сказать матери «нет», так и не научился ...»</div>
+        </div>
+        
+        <div class="card" data-category="energy" data-name="красноярский психологический центр" data-id="-228888998">
+            <div class="card-header">
+                <span class="card-num">#39</span>
+                <span class="badge badge-energy">Энерговолна</span>
+                <span class="members-badge">👥 85 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/trigger_happines" target="_blank" rel="noopener noreferrer">Красноярский психологический центр</a>
+            </h3>
+            <div class="card-id">ID: <code>-228888998</code> &bull; <a href="https://vk.com/trigger_happines" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Здравствуйте, я профессиональный психолог Максим Воронцов 
+
+Добро пожаловать на страницу моего Центра. 
+
+Инновационные методики в психологическом консультировании. 
+
+4D психология: 
+- тело
+- энергия 
+- разум 
+- род
+
+Уникальная методика в работе к клиентами на всех уровнях: 
+
+РАБОТА С ТЕЛОМ - это:...</div>
+            
+        </div>
+        
+        <div class="card" data-category="energy" data-name="запуск энерговолны в пензе" data-id="-226621959">
+            <div class="card-header">
+                <span class="card-num">#40</span>
+                <span class="badge badge-energy">Энерговолна</span>
+                <span class="members-badge">👥 4 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/zapuskenergovolny" target="_blank" rel="noopener noreferrer">Запуск энерговолны в Пензе</a>
+            </h3>
+            <div class="card-id">ID: <code>-226621959</code> &bull; <a href="https://vk.com/zapuskenergovolny" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Запуск энерговолны в Пензе или Энергетической волны (Energy Wave)
+
+Консультации, индивидуальные и групповые сессии по запуску Энерговолны в теле. Телесная терапия
+ 
+С чем обычно приходят на сессию по Запуску Энерговолны: 
+ 
+✅с постоянной усталостью 
+✅с проблемой с сексуальностью и принятием себя ...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «👉Отзыв на сессию по запуску энерговолны в теле   Дмитрий, спасибо! Было что-то невероятное. Сначала было сопротивление, потом расслабление, а вот потом... Даже стыдно сказать)) ...»</div>
+        </div>
+        
+        <div class="card" data-category="body" data-name="телесно-ориентированная психотерапия" data-id="-63485629">
+            <div class="card-header">
+                <span class="card-num">#41</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 436 147 подп.</span>
             </div>
@@ -925,7 +1134,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="формула материнства. наталия мурашова" data-id="-63424733">
             <div class="card-header">
-                <span class="card-num">#32</span>
+                <span class="card-num">#42</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 19 705 подп.</span>
             </div>
@@ -944,7 +1153,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="liliana solomakhina" data-id="2813782">
             <div class="card-header">
-                <span class="card-num">#33</span>
+                <span class="card-num">#43</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 11 039 подп.</span>
             </div>
@@ -963,7 +1172,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="darya smirnova" data-id="1145615">
             <div class="card-header">
-                <span class="card-num">#34</span>
+                <span class="card-num">#44</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 10 922 подп.</span>
             </div>
@@ -978,7 +1187,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="tatiana skvortsova" data-id="483775624">
             <div class="card-header">
-                <span class="card-num">#35</span>
+                <span class="card-num">#45</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 8 906 подп.</span>
             </div>
@@ -993,7 +1202,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="tatyana chubartseva biodinamika osteoprakt" data-id="308075009">
             <div class="card-header">
-                <span class="card-num">#36</span>
+                <span class="card-num">#46</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 5 759 подп.</span>
             </div>
@@ -1013,7 +1222,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="tatyana akhpayderova" data-id="67119329">
             <div class="card-header">
-                <span class="card-num">#37</span>
+                <span class="card-num">#47</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 5 107 подп.</span>
             </div>
@@ -1028,7 +1237,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в санкт-петербурге" data-id="-163508732">
             <div class="card-header">
-                <span class="card-num">#38</span>
+                <span class="card-num">#48</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 2 392 подп.</span>
             </div>
@@ -1045,7 +1254,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="marina andreeva" data-id="221011929">
             <div class="card-header">
-                <span class="card-num">#39</span>
+                <span class="card-num">#49</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 2 136 подп.</span>
             </div>
@@ -1060,7 +1269,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="психолог елена кириллова" data-id="-67605115">
             <div class="card-header">
-                <span class="card-num">#40</span>
+                <span class="card-num">#50</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 1 995 подп.</span>
             </div>
@@ -1086,7 +1295,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="гипноз | психология | василий данилов" data-id="-148997553">
             <div class="card-header">
-                <span class="card-num">#41</span>
+                <span class="card-num">#51</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 1 650 подп.</span>
             </div>
@@ -1106,7 +1315,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в томске" data-id="-68132188">
             <div class="card-header">
-                <span class="card-num">#42</span>
+                <span class="card-num">#52</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 1 458 подп.</span>
             </div>
@@ -1123,7 +1332,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в челябинске" data-id="-148635798">
             <div class="card-header">
-                <span class="card-num">#43</span>
+                <span class="card-num">#53</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 1 330 подп.</span>
             </div>
@@ -1140,7 +1349,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="институт «интеграция» в москве" data-id="-177807147">
             <div class="card-header">
-                <span class="card-num">#44</span>
+                <span class="card-num">#54</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 948 подп.</span>
             </div>
@@ -1157,7 +1366,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в хабаровске" data-id="-169736203">
             <div class="card-header">
-                <span class="card-num">#45</span>
+                <span class="card-num">#55</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 914 подп.</span>
             </div>
@@ -1174,7 +1383,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="ежегодный фестиваль психологии" data-id="-96360682">
             <div class="card-header">
-                <span class="card-num">#46</span>
+                <span class="card-num">#56</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 878 подп.</span>
             </div>
@@ -1196,7 +1405,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в ростове-на-дону" data-id="-172569578">
             <div class="card-header">
-                <span class="card-num">#47</span>
+                <span class="card-num">#57</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 826 подп.</span>
             </div>
@@ -1213,7 +1422,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в уфе" data-id="-158176486">
             <div class="card-header">
-                <span class="card-num">#48</span>
+                <span class="card-num">#58</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 804 подп.</span>
             </div>
@@ -1230,7 +1439,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="alexander burundukov" data-id="80389146">
             <div class="card-header">
-                <span class="card-num">#49</span>
+                <span class="card-num">#59</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 640 подп.</span>
             </div>
@@ -1245,7 +1454,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в перми" data-id="-144987752">
             <div class="card-header">
-                <span class="card-num">#50</span>
+                <span class="card-num">#60</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 588 подп.</span>
             </div>
@@ -1262,7 +1471,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в иркутске" data-id="-185448262">
             <div class="card-header">
-                <span class="card-num">#51</span>
+                <span class="card-num">#61</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 583 подп.</span>
             </div>
@@ -1279,7 +1488,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="ольга травина | телесная терапия" data-id="-221310970">
             <div class="card-header">
-                <span class="card-num">#52</span>
+                <span class="card-num">#62</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 548 подп.</span>
             </div>
@@ -1294,7 +1503,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в ижевске" data-id="-190338020">
             <div class="card-header">
-                <span class="card-num">#53</span>
+                <span class="card-num">#63</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 312 подп.</span>
             </div>
@@ -1311,7 +1520,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в алматы" data-id="-149860173">
             <div class="card-header">
-                <span class="card-num">#54</span>
+                <span class="card-num">#64</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 192 подп.</span>
             </div>
@@ -1328,7 +1537,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="chertkova natalya" data-id="620292751">
             <div class="card-header">
-                <span class="card-num">#55</span>
+                <span class="card-num">#65</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 184 подп.</span>
             </div>
@@ -1343,7 +1552,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="институт &quot;интеграция&quot; в благовещенске" data-id="-144240894">
             <div class="card-header">
-                <span class="card-num">#56</span>
+                <span class="card-num">#66</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 131 подп.</span>
             </div>
@@ -1360,7 +1569,7 @@ PF_R помогает мягко освободить тело от н...</div>
         
         <div class="card" data-category="body" data-name="йони массаж краснодар | обучени | михаил стифеев" data-id="-239824690">
             <div class="card-header">
-                <span class="card-num">#57</span>
+                <span class="card-num">#67</span>
                 <span class="badge badge-body">Телесная терапия / ТОТ</span>
                 <span class="members-badge">👥 13 подп.</span>
             </div>
@@ -1387,7 +1596,7 @@ PF_R помогает мягко освободить тело от н...</div>
     <div id="toast" class="toast">ID скопированы в буфер обмена!</div>
     
     <script>
-        const rawIds = `5018439\n177015856\n494946011\n254209902\n204578018\n553505700\n665733273\n4124395\n168671206\n-222738435\n24441810\n26801269\n299468861\n-199941672\n429480675\n-211682663\n5161387\n17910047\n472277836\n-236274472\n-35731017\n-214622068\n10852859\n-212856733\n-238743635\n676393094\n-241370573\n-236934892\n-236531216\n-240235440\n-63485629\n-63424733\n2813782\n1145615\n483775624\n308075009\n67119329\n-163508732\n221011929\n-67605115\n-148997553\n-68132188\n-148635798\n-177807147\n-169736203\n-96360682\n-172569578\n-158176486\n80389146\n-144987752\n-185448262\n-221310970\n-190338020\n-149860173\n620292751\n-144240894\n-239824690`;
+        const rawIds = `5018439\n177015856\n494946011\n254209902\n204578018\n553505700\n665733273\n4124395\n168671206\n-222738435\n24441810\n26801269\n299468861\n-199941672\n429480675\n-211682663\n5161387\n17910047\n472277836\n-236274472\n-35731017\n-214622068\n10852859\n-212856733\n-238743635\n676393094\n-241370573\n-236934892\n-236531216\n-240235440\n-201335086\n6415164\n30140195\n-60051656\n133785841\n40929845\n-76599908\n147450066\n-228888998\n-226621959\n-63485629\n-63424733\n2813782\n1145615\n483775624\n308075009\n67119329\n-163508732\n221011929\n-67605115\n-148997553\n-68132188\n-148635798\n-177807147\n-169736203\n-96360682\n-172569578\n-158176486\n80389146\n-144987752\n-185448262\n-221310970\n-190338020\n-149860173\n620292751\n-144240894\n-239824690`;
         let currentFilter = 'all';
         
         function setCategory(cat, btn) {
