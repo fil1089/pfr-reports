@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ТестУдаления</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --surface: #161b22;
+            --surface-hover: #1f242c;
+            --border: #30363d;
+            --primary: #58a6ff;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --text-bright: #f0f6fc;
+            --success: #3fb950;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 20px 15px;
+        }
+        .container { max-width: 960px; margin: 0 auto; }
+        .nav-back {
+            margin-bottom: 15px;
+        }
+        .nav-back a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .nav-back a:hover { text-decoration: underline; }
+        header {
+            background: linear-gradient(135deg, #161b22 0%, #1a2230 100%);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        h1 { color: var(--text-bright); font-size: 1.5rem; margin-bottom: 8px; }
+        .subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 18px; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+        .stat-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+        }
+        .stat-value { font-size: 1.6rem; font-weight: 700; color: var(--text-bright); }
+        .stat-value.success { color: var(--success); }
+        .stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; margin-top: 4px; }
+        .action-bar { display: flex; gap: 10px; flex-wrap: wrap; }
+        .btn {
+            background: var(--surface);
+            color: var(--text-bright);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn:hover { background: var(--surface-hover); border-color: var(--primary); color: var(--primary); }
+        .btn-primary { background: #238636; border-color: rgba(240, 246, 252, 0.1); color: #fff; }
+        .btn-primary:hover { background: #2ea043; color: #fff; }
+        .search-input {
+            width: 100%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 14px;
+            color: var(--text-bright);
+            font-size: 0.95rem;
+            outline: none;
+            margin-bottom: 20px;
+        }
+        .search-input:focus { border-color: var(--primary); }
+        .cards-list { display: flex; flex-direction: column; gap: 14px; }
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+            transition: transform 0.15s ease, border-color 0.15s ease;
+        }
+        .card:hover { border-color: #484f58; transform: translateY(-2px); }
+        .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+        .card-num { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); }
+        .badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 12px;
+            text-transform: uppercase;
+        }
+        .members-badge {
+            margin-left: auto;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-bright);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3px 10px;
+            border-radius: 8px;
+        }
+        .card-title { font-size: 1.15rem; margin-bottom: 4px; }
+        .card-title a { color: var(--text-bright); text-decoration: none; }
+        .card-title a:hover { color: var(--primary); text-decoration: underline; }
+        .card-id { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px; }
+        .card-id code { background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; color: var(--primary); }
+        .vk-link { color: var(--primary); text-decoration: none; }
+        .vk-link:hover { text-decoration: underline; }
+        .card-status { color: #d2a8ff; font-size: 0.88rem; margin-bottom: 8px; }
+        .card-desc { font-size: 0.88rem; color: var(--text-main); margin-bottom: 12px; white-space: pre-line; }
+        .post-preview {
+            background: rgba(0, 0, 0, 0.25);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #238636;
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        .toast.show { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-back">
+            <a href="index.html">&larr; 🏠 Все отчёты и базы (Главный хаб)</a>
+        </div>
+        <header>
+            <h1>ТестУдаления</h1>
+            <p class="subtitle">Автономный поиск через VK API + калиброванная фильтрация Jev</p>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-value success">10</div>
+                    <div class="stat-label">Одобрено целевых</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Отсеяно мусора</div>
+                </div>
+            </div>
+            <div class="action-bar">
+                <button class="btn btn-primary" onclick="downloadIds()">📥 Скачать 10 ID (TXT)</button>
+                <button class="btn" onclick="copyIds()">📋 Скопировать ID</button>
+            </div>
+        </header>
+
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Поиск по названию или описанию..." onkeyup="filterCards()">
+
+        <div class="cards-list" id="cardsList">
+            
+        <div class="card" data-name="тантра двигательная медитация в екатеринбурге." data-id="-201335086">
+            <div class="card-header">
+                <span class="card-num">#1</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Тест</span>
+                <span class="members-badge">👥 18 135 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/club201335086" target="_blank" rel="noopener noreferrer">Тантра Двигательная Медитация в Екатеринбурге.</a>
+            </h3>
+            <div class="card-id">ID: <code>-201335086</code> &bull; <a href="https://vk.com/club201335086" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Я тантра-сексолог и тантра-психолог, обучаю тантре, медитации, дао и цигун как очно, так и онлайн. Делаю 14 видов авторских массажей.»</em></div>
+            <div class="card-desc">Меня зовут Алексей Лазебный, я сексолог, тантрик и тренер. Моя цель — помочь женщинам, мужчинам и парам достигать сексуальной реализованности и жить жизнью мечты. Я практикую тантру 25 года и объединяю методы классической сексологии, тантры и даосские техники. В какой-то момент родился мой авторс...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «👩‍❤‍💋‍👨Найдись, моя любовь👩‍❤‍👨 — тренинг для тех, кто готов к НАСТОЯЩЕЙ любви!  —-----------------------------------------------------------------------------------------------...»</div>
+        </div>
+        
+        <div class="card" data-name="andrey dunaev" data-id="6415164">
+            <div class="card-header">
+                <span class="card-num">#2</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Тест</span>
+                <span class="members-badge">👥 10 607 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/energiamassage" target="_blank" rel="noopener noreferrer">Andrey Dunaev</a>
+            </h3>
+            <div class="card-id">ID: <code>6415164</code> &bull; <a href="https://vk.com/energiamassage" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Организация тренингов и семинаров. Ведущий тантрических практик, массажи, ретриты, группа vk.com/massagelegko +79219109186»</em></div>
+            
+            <div class="post-preview"><strong>Последний пост:</strong> «Загородный ретрит &quot;Живая тантра&quot; 16-18 октября.  Ведущие Андрей Дунаев (Нитья Ананда) и Наталья Ильина  В мини эко центре &quot;Ананда&quot; под Петербургом на берегу ...»</div>
+        </div>
+        
+        <div class="card" data-name="tonya zarubina" data-id="30140195">
+            <div class="card-header">
+                <span class="card-num">#3</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Тест</span>
+                <span class="members-badge">👥 2 020 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/suntoniya" target="_blank" rel="noopener noreferrer">Tonya Zarubina</a>
+            </h3>
+            <div class="card-id">ID: <code>30140195</code> &bull; <a href="https://vk.com/suntoniya" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Жизнь со вкусом ° телесный терапевт, sексолог. Про тело, чувственность, близость и удовольствие.»</em></div>
+            
+            <div class="post-preview"><strong>Последний пост:</strong> «Замечали, как внутренние перемены сразу меняют лицо? Новая аватарка — это как раз про то, что сейчас внутри.  Я получила второе высшее — психолог-тренер. И соединила это с дипло...»</div>
+        </div>
+        
+        <div class="card" data-name="любовь. отношения. саморазвитие. практики" data-id="-60051656">
+            <div class="card-header">
+                <span class="card-num">#4</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Тест</span>
+                <span class="members-badge">👥 1 784 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/tantricway" target="_blank" rel="noopener noreferrer">Любовь. Отношения. Саморазвитие. Практики</a>
+            </h3>
+            <div class="card-id">ID: <code>-60051656</code> &bull; <a href="https://vk.com/tantricway" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Тренинг Севы Прем &quot;Искусство прикосновений&quot; (Тантрический массаж 24-25.09 СПб. Запись парами и по одному.»</em></div>
+            <div class="card-desc">Тренинги. Ведущий Сева Прем.
+
+Как создавать
+яркие и гармоничные отношения?
+Знания из древних традиций, очищенные от религии и мистики до практики, которая просто работает.
+Ощутимые эффекты от практики
+
+Увеличение притягательности
+Сила притяжения между мужчиной и женщиной - это основа для построен...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «19-20 сентября НОВЫЙ ТРЕНИНГ СЕВЫ ПРЕМ —  «ИСКУССТВО ПРИКОСНОВЕНИЙ МОДУЛЬ-2»  (&quot;Тантрический массаж 2.0) в Санкт-Петербурге ❤  ПЕРВЫЙ РАЗ В ПЕТЕРБУРГЕ!  СЕВА САМ В ЗАЛЕ ВЕД...»</div>
+        </div>
+        
+        <div class="card" data-name="elena pavlova" data-id="133785841">
+            <div class="card-header">
+                <span class="card-num">#5</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Тест</span>
+                <span class="members-badge">👥 1 539 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/alena1006" target="_blank" rel="noopener noreferrer">Elena Pavlova</a>
+            </h3>
+            <div class="card-id">ID: <code>133785841</code> &bull; <a href="https://vk.com/alena1006" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Мастер Звука чашами 🥣Квантовый проводник&amp; Духовный психолог&amp;Энерготерапевт&amp; практик Access Bars»</em></div>
+            <div class="card-desc">Общительная, люблю помогать людям</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «Вечерняя тишина, природа и звук… 🌅🍁🔔✨  Посмотрите на это фото. В нём — весь смысл того, зачем мы выезжаем на природу и устраиваем себе такие дни ретрита.  Тихий осенний вечер на...»</div>
+        </div>
+        
+        <div class="card" data-name="irina zhogina" data-id="40929845">
+            <div class="card-header">
+                <span class="card-num">#6</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Тест</span>
+                <span class="members-badge">👥 1 520 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/zhogirina" target="_blank" rel="noopener noreferrer">Irina Zhogina</a>
+            </h3>
+            <div class="card-id">ID: <code>40929845</code> &bull; <a href="https://vk.com/zhogirina" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Телесные практики, психосоматика, трансформационные игры»</em></div>
+            <div class="card-desc">Таких, как Ира, встретишь редко —
+Не размазня и не кокетка,
+Нож на соперницу не точит
+И твердо знает, чего хочет.
+
+Ее коллеги уважают,
+Соседи просто обожают
+И ставят все в пример детишкам.
+Она гордится — но не слишком.
+
+Она вперед идет по плану
+И свой растит авторитет,
+Коль запланирует нирвану,
+Е...</div>
+            
+        </div>
+        
+        <div class="card" data-name="анатолий семашков • целитель • наставник" data-id="-76599908">
+            <div class="card-header">
+                <span class="card-num">#7</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Тест</span>
+                <span class="members-badge">👥 1 312 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/zelitel89678632111" target="_blank" rel="noopener noreferrer">Анатолий Семашков • Целитель • Наставник</a>
+            </h3>
+            <div class="card-id">ID: <code>-76599908</code> &bull; <a href="https://vk.com/zelitel89678632111" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Энерговолна | Регресс | Правка тела | Тантра массаж | Телесная психотерапия | Экстрасенсорная диагностика чакр |Таро | WhatsApp +79678632111»</em></div>
+            <div class="card-desc">АВТОРСКИЕ МЕТОДИКИ | OЧНО | ONLINЕ
+В арсенале мастера: 
+Массажные техники от классики до востока. 
+Авторская методика &quot;Правка, Ладка, Чистка Огнём&quot;.
+Регрессивный гипноз от возрастной регрессии до прошлых жизней. 
+Авторская практика &quot;Запуск Энерговолны&quot;.
+Глубинная телесная псих...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «⭐️МОСКВА  АНАТОЛИЙ СЕМАШКОВ    25 -30 сентября  ️🔮 Индивидуальные приёмы.  • Экстрасенсорные консультации;  • Остеопрактика;  • Запуск Энерговолны;  • Энергорегресс;  • Наставни...»</div>
+        </div>
+        
+        <div class="card" data-name="elena ivannikova psikholog" data-id="147450066">
+            <div class="card-header">
+                <span class="card-num">#8</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Тест</span>
+                <span class="members-badge">👥 318 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/ivelena111" target="_blank" rel="noopener noreferrer">Elena Ivannikova Psikholog</a>
+            </h3>
+            <div class="card-id">ID: <code>147450066</code> &bull; <a href="https://vk.com/ivelena111" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            <div class="card-status"><em>«Психолог / психотерапия онлайн»</em></div>
+            
+            <div class="post-preview"><strong>Последний пост:</strong> «Почему он едет к матери, а не остаётся с вами Мне вчера написали в комментариях мысль, которая зацепила: &quot;Мужчина, который не может сказать матери «нет», так и не научился ...»</div>
+        </div>
+        
+        <div class="card" data-name="красноярский психологический центр" data-id="-228888998">
+            <div class="card-header">
+                <span class="card-num">#9</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Тест</span>
+                <span class="members-badge">👥 85 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/trigger_happines" target="_blank" rel="noopener noreferrer">Красноярский психологический центр</a>
+            </h3>
+            <div class="card-id">ID: <code>-228888998</code> &bull; <a href="https://vk.com/trigger_happines" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Здравствуйте, я профессиональный психолог Максим Воронцов 
+
+Добро пожаловать на страницу моего Центра. 
+
+Инновационные методики в психологическом консультировании. 
+
+4D психология: 
+- тело
+- энергия 
+- разум 
+- род
+
+Уникальная методика в работе к клиентами на всех уровнях: 
+
+РАБОТА С ТЕЛОМ - это:...</div>
+            
+        </div>
+        
+        <div class="card" data-name="запуск энерговолны в пензе" data-id="-226621959">
+            <div class="card-header">
+                <span class="card-num">#10</span>
+                <span class="badge" style="color: #58a6ff; background: rgba(88, 166, 255, 0.15); border: 1px solid rgba(88, 166, 255, 0.3);">Тест</span>
+                <span class="members-badge">👥 4 подп.</span>
+            </div>
+            <h3 class="card-title">
+                <a href="https://vk.com/zapuskenergovolny" target="_blank" rel="noopener noreferrer">Запуск энерговолны в Пензе</a>
+            </h3>
+            <div class="card-id">ID: <code>-226621959</code> &bull; <a href="https://vk.com/zapuskenergovolny" target="_blank" class="vk-link">Открыть в VK &rarr;</a></div>
+            
+            <div class="card-desc">Запуск энерговолны в Пензе или Энергетической волны (Energy Wave)
+
+Консультации, индивидуальные и групповые сессии по запуску Энерговолны в теле. Телесная терапия
+ 
+С чем обычно приходят на сессию по Запуску Энерговолны: 
+ 
+✅с постоянной усталостью 
+✅с проблемой с сексуальностью и принятием себя ...</div>
+            <div class="post-preview"><strong>Последний пост:</strong> «👉Отзыв на сессию по запуску энерговолны в теле   Дмитрий, спасибо! Было что-то невероятное. Сначала было сопротивление, потом расслабление, а вот потом... Даже стыдно сказать)) ...»</div>
+        </div>
+        
+        </div>
+    </div>
+
+    <div id="toast" class="toast">ID скопированы!</div>
+
+    <script>
+        const rawIds = `-201335086\n6415164\n30140195\n-60051656\n133785841\n40929845\n-76599908\n147450066\n-228888998\n-226621959`;
+        function filterCards() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = (!query || text.includes(query)) ? 'block' : 'none';
+            });
+        }
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+        function copyIds() {
+            navigator.clipboard.writeText(rawIds).then(() => showToast('✓ ID скопированы в буфер!'));
+        }
+        function downloadIds() {
+            const blob = new Blob([rawIds], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'test_del_me_clean_ids.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast('✓ Файл test_del_me_clean_ids.txt скачивается');
+        }
+    </script>
+</body>
+</html>
