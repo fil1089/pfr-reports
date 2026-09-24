@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анализ рынка и конкурентов ПФР во ВКонтакте</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0d14;
+            --bg-secondary: #121722;
+            --bg-card: rgba(22, 29, 43, 0.7);
+            --border: rgba(255, 255, 255, 0.08);
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --accent-purple: #8b5cf6;
+            --accent-emerald: #10b981;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, sans-serif; }
+        body { background-color: var(--bg-primary); color: var(--text-main); line-height: 1.6; padding: 24px 16px; min-height: 100vh; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        /* Header */
+        header { text-align: center; margin-bottom: 40px; padding: 30px 20px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%); border-radius: 24px; border: 1px solid var(--border); backdrop-filter: blur(12px); }
+        .badge { display: inline-block; padding: 6px 14px; background: rgba(59, 130, 246, 0.2); color: #60a5fa; border-radius: 9999px; font-size: 13px; font-weight: 600; margin-bottom: 12px; border: 1px solid rgba(59, 130, 246, 0.3); }
+        h1 { font-size: 32px; font-weight: 800; background: linear-gradient(to right, #60a5fa, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 12px; }
+        .subtitle { color: var(--text-muted); font-size: 16px; max-width: 700px; margin: 0 auto; }
+        
+        /* Stats Grid */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 36px; }
+        .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; text-align: center; backdrop-filter: blur(8px); }
+        .stat-val { font-size: 32px; font-weight: 700; color: #60a5fa; margin-bottom: 4px; }
+        .stat-label { font-size: 13px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+        
+        /* Sections */
+        .section-title { font-size: 22px; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .section-title::before { content: ''; display: inline-block; width: 4px; height: 24px; background: var(--accent-blue); border-radius: 2px; }
+        
+        /* PFR Leaders Grid */
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px; margin-bottom: 48px; }
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s, border-color 0.2s; }
+        .card:hover { transform: translateY(-4px); border-color: rgba(96, 165, 250, 0.4); }
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+        .card-name { font-size: 18px; font-weight: 700; color: #fff; text-decoration: none; }
+        .card-name:hover { color: #60a5fa; }
+        .tag { font-size: 11px; padding: 4px 10px; border-radius: 9999px; background: rgba(16, 185, 129, 0.2); color: #34d399; font-weight: 600; border: 1px solid rgba(16, 185, 129, 0.3); }
+        .metrics-pill { display: flex; gap: 16px; background: rgba(0,0,0,0.3); padding: 10px 14px; border-radius: 12px; margin: 14px 0; font-size: 13px; }
+        .pill-item span { color: var(--text-muted); font-size: 11px; display: block; }
+        .pill-item strong { color: #f3f4f6; font-weight: 600; }
+        .card-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; }
+        .hooks-box { background: rgba(59, 130, 246, 0.05); border-left: 3px solid var(--accent-blue); padding: 10px 12px; border-radius: 0 8px 8px 0; font-size: 12px; }
+        .hooks-box strong { color: #93c5fd; display: block; margin-bottom: 4px; }
+        
+        /* Patterns Box */
+        .patterns-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-bottom: 48px; }
+        .pattern-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 22px; }
+        .pattern-card h3 { font-size: 16px; font-weight: 700; color: #60a5fa; margin-bottom: 10px; }
+        .pattern-card ul { list-style: none; }
+        .pattern-card li { font-size: 13px; color: #d1d5db; margin-bottom: 8px; position: relative; padding-left: 18px; }
+        .pattern-card li::before { content: '•'; color: var(--accent-cyan); position: absolute; left: 4px; font-weight: bold; }
+
+        /* Filter & Table */
+        .table-controls { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+        .filter-btn { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-muted); padding: 8px 16px; border-radius: 10px; cursor: pointer; font-size: 13px; font-weight: 500; transition: all 0.2s; }
+        .filter-btn.active, .filter-btn:hover { background: var(--accent-blue); color: #fff; border-color: var(--accent-blue); }
+        
+        .table-wrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow-x: auto; margin-bottom: 40px; }
+        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
+        th { background: rgba(0,0,0,0.4); padding: 14px 16px; color: var(--text-muted); font-weight: 600; border-bottom: 1px solid var(--border); white-space: nowrap; }
+        td { padding: 14px 16px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+        tr:hover td { background: rgba(255,255,255,0.02); }
+        .src-link { color: #60a5fa; text-decoration: none; font-weight: 500; }
+        .src-link:hover { text-decoration: underline; }
+        
+        footer { text-align: center; color: var(--text-muted); font-size: 12px; padding: 24px 0; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="badge">PFR Autonomous Analytics 2026</div>
+            <h1>Анализ рынка и продвижения ПФР во ВКонтакте</h1>
+            <p class="subtitle">Полный маркетинговый аудит 62 страниц и сообществ: позиционирование, виральные хуки, показатели вовлеченности (ER%), форматы контента и воронки продаж.</p>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-val">55</div>
+                <div class="stat-label">Источников в выборке</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val">7</div>
+                <div class="stat-label">Практиков ПФР</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val">8 877</div>
+                <div class="stat-label">Макс. средний охват</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val">21.3%</div>
+                <div class="stat-label">Рекордный ER%</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Ведущие практики и сообщества ПФР</h2>
+        <div class="cards-grid">
+
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <a href="https://vk.com/psytdspb" target="_blank" class="card-name">Психология. PF_R,  Психосоматика.</a>
+                        <span class="tag">Сообщество</span>
+                    </div>
+                    <div class="metrics-pill">
+                        <div class="pill-item">
+                            <span>Подписчики</span>
+                            <strong>861</strong>
+                        </div>
+                        <div class="pill-item">
+                            <span>Ср. охват</span>
+                            <strong>110</strong>
+                        </div>
+                        <div class="pill-item">
+                            <span>Вовлеченность</span>
+                            <strong>3.83%</strong>
+                        </div>
+                    </div>
+                    <p class="card-desc"><strong>Статус/Био:</strong> Специалист PF_R, психолог,  Психосомат - Дания Андросова https://t.me/+Jt2JzvoKf0MxMWMy   "Жизнь с ясными сознанием"  https://t.me/+OyRoUsv8eooyNmRi  Психо-функ...</p>
+                </div>
+                <div class="hooks-box">
+                    <strong>Характерные хуки и темы:</strong>
+                    <ul><li>«Дорогие друзья, приглашаю 24.09 на встречу в 18.00.»</li></ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <a href="https://vk.com/osteo_odi" target="_blank" class="card-name">Остеопат Одинцово, Москва, Рязань , PF_R DUB</a>
+                        <span class="tag">Сообщество</span>
+                    </div>
+                    <div class="metrics-pill">
+                        <div class="pill-item">
+                            <span>Подписчики</span>
+                            <strong>105</strong>
+                        </div>
+                        <div class="pill-item">
+                            <span>Ср. охват</span>
+                            <strong>236</strong>
+                        </div>
+                        <div class="pill-item">
+                            <span>Вовлеченность</span>
+                            <strong>1.86%</strong>
+                        </div>
+                    </div>
+                    <p class="card-desc"><strong>Статус/Био:</strong> С какими запросами я могу помочь: - Головокружение и мигрень - Плохой сон и быстрая утомляемость - Дискомфорт в шее и спине - Восстановление после травм - Искри...</p>
+                </div>
+                <div class="hooks-box">
+                    <strong>Характерные хуки и темы:</strong>
+                    <ul><li>«🧬 Какой коллаген купить, чтобы не выбросить деньги на ветер?»</li></ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <a href="https://vk.com/club216209437" target="_blank" class="card-name">Pf r. Психо - функциональная разблокировка</a>
+                        <span class="tag">Сообщество</span>
+                    </div>
+                    <div class="metrics-pill">
+                        <div class="pill-item">
+                            <span>Подписчики</span>
+                            <strong>4</strong>
+                        </div>
+                        <div class="pill-item">
+                            <span>Ср. охват</span>
+                            <strong>44</strong>
+                        </div>
+                        <div class="pill-item">
+                            <span>Вовлеченность</span>
+                            <strong>0.0%</strong>
+                        </div>
+                    </div>
+                    <p class="card-desc"><strong>Статус/Био:</strong> Психо-функциональная разблокировка - это процесс, который помогает людям избавиться от психологических блоков, которые мешают им достичь желаемых результатов и ...</p>
+                </div>
+                <div class="hooks-box">
+                    <strong>Характерные хуки и темы:</strong>
+                    <ul><li>«Во время прохождения сеанса #PF_R происходит процесс высвобождения тех блоков, которые вы не прожили в прошлом и тело до»</li></ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <a href="https://vk.com/logian_pro_psy" target="_blank" class="card-name">Армен и Алена про Психологию | Воронеж</a>
+                        <span class="tag">Сообщество</span>
+                    </div>
+                    <div class="metrics-pill">
+                        <div class="pill-item">
+                            <span>Подписчики</span>
+                            <strong>2,070</strong>
+                        </div>
+                        <div class="pill-item">
+                            <span>Ср. охват</span>
+                            <strong>170</strong>
+                        </div>
+                        <div class="pill-item">
+                            <span>Вовлеченность</span>
+                            <strong>1.53%</strong>
+                        </div>
+                    </div>
+                    <p class="card-desc"><strong>Статус/Био:</strong> Мир таинственных знаний, саморазвития и духовного пробуждения  Проводим сессии телесной терапии, психофункциональной разблокировке, гипноз, гвозди, медитации, и...</p>
+                </div>
+                <div class="hooks-box">
+                    <strong>Характерные хуки и темы:</strong>
+                    <ul><li>«Почему нам так сложно говорить о своих чувствах и потребностях?»</li></ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <a href="https://vk.com/pfr_lipetsk" target="_blank" class="card-name">Психолог онлайн  | Олеся Есипова | ПФР- терапия</a>
+                        <span class="tag">Сообщество</span>
+                    </div>
+                    <div class="metrics-pill">
+                        <div class="pill-item">
+                            <span>Подписчики</span>
+                            <strong>79</strong>
+                        </div>
+                        <div class="pill-item">
+                            <span>Ср. охват</span>
+                            <strong>2,204</strong>
+                        </div>
+                        <div class="pill-item">
+                            <span>Вовлеченность</span>
+                            <strong>1.0%</strong>
+                        </div>
+                    </div>
+                    <p class="card-desc"><strong>Статус/Био:</strong> Я Олеся Есипова, практикующий психолог, единственный дипломированный  терапевт по психосоматике и психо-функциональной разблокировке (ПФР)   в городе Липецк.  🗝...</p>
+                </div>
+                <div class="hooks-box">
+                    <strong>Характерные хуки и темы:</strong>
+                    <ul><li>«Я в тупике, дорогие  мои, срочно нужна ваша помощь. 🆘🆘🆘»</li></ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <a href="https://vk.com/177015856" target="_blank" class="card-name">Gulnara Sibgatullina</a>
+                        <span class="tag">Профиль</span>
+                    </div>
+                    <div class="metrics-pill">
+                        <div class="pill-item">
+                            <span>Подписчики</span>
+                            <strong>7,433</strong>
+                        </div>
+                        <div class="pill-item">
+                            <span>Ср. охват</span>
+                            <strong>4,788</strong>
+                        </div>
+                        <div class="pill-item">
+                            <span>Вовлеченность</span>
+                            <strong>1.46%</strong>
+                        </div>
+                    </div>
+                    <p class="card-desc"><strong>Статус/Био:</strong> Телесный психолог</p>
+                </div>
+                <div class="hooks-box">
+                    <strong>Характерные хуки и темы:</strong>
+                    <ul><li>«Встали в 5:40, чтобы увидеть магию 🌅»</li></ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-header">
+                        <a href="https://vk.com/24682937" target="_blank" class="card-name">Larisa Mikhalchuk</a>
+                        <span class="tag">Профиль</span>
+                    </div>
+                    <div class="metrics-pill">
+                        <div class="pill-item">
+                            <span>Подписчики</span>
+                            <strong>4,576</strong>
+                        </div>
+                        <div class="pill-item">
+                            <span>Ср. охват</span>
+                            <strong>8,877</strong>
+                        </div>
+                        <div class="pill-item">
+                            <span>Вовлеченность</span>
+                            <strong>1.23%</strong>
+                        </div>
+                    </div>
+                    <p class="card-desc"><strong>Статус/Био:</strong> Я PF_R терапевт, работаю с большими группами и индивидуально.  Применяю гипнотерапию, потому что это очень быстрый результат....</p>
+                </div>
+                <div class="hooks-box">
+                    <strong>Характерные хуки и темы:</strong>
+                    <ul><li>«Как же я попала в первый лагерь [club218371062|Причина во мне]»</li></ul>
+                </div>
+            </div>
+
+        </div>
+
+        <h2 class="section-title">Ключевые маркетинговые паттерны в ПФР</h2>
+        <div class="patterns-grid">
+            <div class="pattern-card">
+                <h3>🎯 Позиционирование и УТП</h3>
+                <ul>
+                    <li><strong>«БЕЗ СЛОВ»:</strong> Главная отстройка от классической разговорной терапии. Решение через тело, а не через беседы.</li>
+                    <li><strong>Краткосрочность:</strong> Оффер «Освобождение за 3 сеанса» против месяцев и лет походов к психологам.</li>
+                    <li><strong>Связка с психосоматикой:</strong> ПФР преподносится как метод снятия зажимов, головных болей, мигреней.</li>
+                </ul>
+            </div>
+            <div class="pattern-card">
+                <h3>🔥 Виральные форматы</h3>
+                <ul>
+                    <li><strong>Видео и клипы:</strong> Дают охваты в 5–15 раз выше подписной базы (до 8 000–15 000 просмотров).</li>
+                    <li><strong>Эмоциональный драматизм:</strong> Хуки вида «Я в тупике», «Это фиаско», «Тело уже решило за меня».</li>
+                    <li><strong>Закулисье ретритов:</strong> Контент из лагерей и выездных программ дает максимальное социальное доверие.</li>
+                </ul>
+            </div>
+            <div class="pattern-card">
+                <h3>🔄 Воронка продаж</h3>
+                <ul>
+                    <li><strong>Лид-магнит:</strong> Бесплатная экспресс-диагностика 15-20 минут онлайн (WhatsApp/VK).</li>
+                    <li><strong>Перелив в Telegram:</strong> Стена VK собирает охват, прогрев и продажи идут в закрытых TG-каналах.</li>
+                    <li><strong>Пакетные чеки:</strong> Активный отказ практиков от разовых консультаций в пользу пакетов из 3–5 сеансов.</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="section-title">Сводный реестр всех 62 источников</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Имя / Название</th>
+                        <th>Тип</th>
+                        <th>Подписчики</th>
+                        <th>Ср. Охват</th>
+                        <th>ER%</th>
+                        <th>Топ-хук</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td><a href="https://vk.com/festival_harmony" target="_blank" class="src-link">Фестиваль "Гармония".</a></td>
+                        <td>Сообщество</td>
+                        <td>225</td>
+                        <td>20</td>
+                        <td>5.85%</td>
+                        <td>Друзья! Уже скоро вас ждет новое мероприятие!!!</td>
+                    </tr>
+
+                    <tr>
+                        <td>2</td>
+                        <td><a href="https://vk.com/centristochnik" target="_blank" class="src-link">Центр развития личности "Источник"</a></td>
+                        <td>Сообщество</td>
+                        <td>2,641</td>
+                        <td>1,277</td>
+                        <td>5.88%</td>
+                        <td>Край красот и мыслей о прекрасном</td>
+                    </tr>
+
+                    <tr>
+                        <td>3</td>
+                        <td><a href="https://vk.com/club157957603" target="_blank" class="src-link">ЗДРАВУШКА</a></td>
+                        <td>Сообщество</td>
+                        <td>395</td>
+                        <td>14</td>
+                        <td>2.11%</td>
+                        <td>Друзья! Уже скоро вас ждет новое мероприятие!!!</td>
+                    </tr>
+
+                    <tr>
+                        <td>4</td>
+                        <td><a href="https://vk.com/club167738644" target="_blank" class="src-link">Женский клуб "500".</a></td>
+                        <td>Сообщество</td>
+                        <td>281</td>
+                        <td>15</td>
+                        <td>3.36%</td>
+                        <td>Клуб "Сверхспособности" объявляет организационный сбор ...</td>
+                    </tr>
+
+                    <tr>
+                        <td>5</td>
+                        <td><a href="https://vk.com/psytdspb" target="_blank" class="src-link" style='color: #34d399; font-weight: 600;'>Психология. PF_R,  Психосоматика.</a></td>
+                        <td>Сообщество</td>
+                        <td>861</td>
+                        <td>110</td>
+                        <td>3.83%</td>
+                        <td>Дорогие друзья, приглашаю 24.09 на встречу в 18.00.</td>
+                    </tr>
+
+                    <tr>
+                        <td>6</td>
+                        <td><a href="https://vk.com/modelnn_52" target="_blank" class="src-link">Ищу мастера / модель Нижний Новгород 2026г</a></td>
+                        <td>Сообщество</td>
+                        <td>18,048</td>
+                        <td>965</td>
+                        <td>0.69%</td>
+                        <td>Нужны модели на ✨ламинирование ресниц✨</td>
+                    </tr>
+
+                    <tr>
+                        <td>7</td>
+                        <td><a href="https://vk.com/galina_pfr" target="_blank" class="src-link">Психолог Галина Феоктистова</a></td>
+                        <td>Сообщество</td>
+                        <td>1,091</td>
+                        <td>1,228</td>
+                        <td>7.73%</td>
+                        <td>Бывает такое, что долго не разрешается какая-то проблем...</td>
+                    </tr>
+
+                    <tr>
+                        <td>8</td>
+                        <td><a href="https://vk.com/osteo_odi" target="_blank" class="src-link" style='color: #34d399; font-weight: 600;'>Остеопат Одинцово, Москва, Рязань , PF_R DUB</a></td>
+                        <td>Сообщество</td>
+                        <td>105</td>
+                        <td>236</td>
+                        <td>1.86%</td>
+                        <td>🧬 Какой коллаген купить, чтобы не выбросить деньги на в...</td>
+                    </tr>
+
+                    <tr>
+                        <td>9</td>
+                        <td><a href="https://vk.com/pf_r_kotlas" target="_blank" class="src-link">ПЕРЕПРОГРАММИРОВАНИЕ НА СТРОЙНОСТЬ +МАССАЖ</a></td>
+                        <td>Сообщество</td>
+                        <td>263</td>
+                        <td>159</td>
+                        <td>2.14%</td>
+                        <td>Я даже не верю, что такое бывает» ❤️</td>
+                    </tr>
+
+                    <tr>
+                        <td>10</td>
+                        <td><a href="https://vk.com/club216209437" target="_blank" class="src-link" style='color: #34d399; font-weight: 600;'>Pf r. Психо - функциональная разблокировка</a></td>
+                        <td>Сообщество</td>
+                        <td>4</td>
+                        <td>44</td>
+                        <td>0.0%</td>
+                        <td>Во время прохождения сеанса #PF_R происходит процесс вы...</td>
+                    </tr>
+
+                    <tr>
+                        <td>11</td>
+                        <td><a href="https://vk.com/prichina_vomne" target="_blank" class="src-link">Причина во мне - тренинги, лагерь, ретриты</a></td>
+                        <td>Сообщество</td>
+                        <td>1,162</td>
+                        <td>5,977</td>
+                        <td>1.47%</td>
+                        <td>Вы сами разрешаете другим распоряжаться вашей жизнью!</td>
+                    </tr>
+
+                    <tr>
+                        <td>12</td>
+                        <td><a href="https://vk.com/s_gorohova" target="_blank" class="src-link">Светлана Горохова</a></td>
+                        <td>Сообщество</td>
+                        <td>45</td>
+                        <td>76</td>
+                        <td>3.69%</td>
+                        <td>Приветствую!</td>
+                    </tr>
+
+                    <tr>
+                        <td>13</td>
+                        <td><a href="https://vk.com/styazhina_pro" target="_blank" class="src-link">Звуковые медитации ТИШИНА • в Тамбове</a></td>
+                        <td>Сообщество</td>
+                        <td>1,427</td>
+                        <td>663</td>
+                        <td>3.61%</td>
+                        <td>Я всё про себя понимаю, но ничего не меняется...</td>
+                    </tr>
+
+                    <tr>
+                        <td>14</td>
+                        <td><a href="https://vk.com/logian_pro_psy" target="_blank" class="src-link" style='color: #34d399; font-weight: 600;'>Армен и Алена про Психологию | Воронеж</a></td>
+                        <td>Сообщество</td>
+                        <td>2,070</td>
+                        <td>170</td>
+                        <td>1.53%</td>
+                        <td>Почему нам так сложно говорить о своих чувствах и потре...</td>
+                    </tr>
+
+                    <tr>
+                        <td>15</td>
+                        <td><a href="https://vk.com/club224989759" target="_blank" class="src-link">АНО «Источник Добра»</a></td>
+                        <td>Сообщество</td>
+                        <td>580</td>
+                        <td>1,673</td>
+                        <td>4.19%</td>
+                        <td>Мастер класс ,,Уход за кожей"</td>
+                    </tr>
+
+                    <tr>
+                        <td>16</td>
+                        <td><a href="https://vk.com/ras_svet2026" target="_blank" class="src-link">РАС-СВЕТ фестиваль самопознания и психологии</a></td>
+                        <td>Сообщество</td>
+                        <td>1,366</td>
+                        <td>595</td>
+                        <td>1.44%</td>
+                        <td>Приглашаем в наш Клуб РАС-СВЕТ😍</td>
+                    </tr>
+
+                    <tr>
+                        <td>17</td>
+                        <td><a href="https://vk.com/hs120" target="_blank" class="src-link">Школа здоровья 120+</a></td>
+                        <td>Сообщество</td>
+                        <td>1,134</td>
+                        <td>230</td>
+                        <td>2.79%</td>
+                        <td>Менопауза — не конец, а новая глава: как прожить её с д...</td>
+                    </tr>
+
+                    <tr>
+                        <td>18</td>
+                        <td><a href="https://vk.com/propodcastclub" target="_blank" class="src-link">Pro Podcast</a></td>
+                        <td>Сообщество</td>
+                        <td>313</td>
+                        <td>597</td>
+                        <td>12.38%</td>
+                        <td>ПФР: психо-функциональная разблокировка  Почему мы част...</td>
+                    </tr>
+
+                    <tr>
+                        <td>19</td>
+                        <td><a href="https://vk.com/dagnoretreat" target="_blank" class="src-link">«неРетриты в Дагестане» |Организация|Программы</a></td>
+                        <td>Сообщество</td>
+                        <td>20</td>
+                        <td>78</td>
+                        <td>1.55%</td>
+                        <td>‼️Здесь «БЕЗ ВОДЫ» -ТОЛЬКО пошаговый план‼️</td>
+                    </tr>
+
+                    <tr>
+                        <td>20</td>
+                        <td><a href="https://vk.com/samara_praktiki" target="_blank" class="src-link">Практики Самара</a></td>
+                        <td>Сообщество</td>
+                        <td>173</td>
+                        <td>23</td>
+                        <td>3.46%</td>
+                        <td>🔥 ДЕНЬ, КОТОРЫЙ ПЕРЕЗАГРУЗИТ ТЕБЯ ИЗНУТРИ 🔥</td>
+                    </tr>
+
+                    <tr>
+                        <td>21</td>
+                        <td><a href="https://vk.com/pfr_lipetsk" target="_blank" class="src-link" style='color: #34d399; font-weight: 600;'>Психолог онлайн  | Олеся Есипова | ПФР- терапия</a></td>
+                        <td>Сообщество</td>
+                        <td>79</td>
+                        <td>2,204</td>
+                        <td>1.0%</td>
+                        <td>Я в тупике, дорогие  мои, срочно нужна ваша помощь. 🆘🆘🆘</td>
+                    </tr>
+
+                    <tr>
+                        <td>22</td>
+                        <td><a href="https://vk.com/club240153135" target="_blank" class="src-link">"Корни и Крылья" - семейный фестиваль</a></td>
+                        <td>Сообщество</td>
+                        <td>158</td>
+                        <td>374</td>
+                        <td>3.08%</td>
+                        <td>Друзья! Делимся фото с теплой встречи Мастеров фестивал...</td>
+                    </tr>
+
+                    <tr>
+                        <td>23</td>
+                        <td><a href="https://vk.com/energybodyekaterinburg" target="_blank" class="src-link">Клуб «Энергия Тела» г.Екатеринбург</a></td>
+                        <td>Сообщество</td>
+                        <td>728</td>
+                        <td>254</td>
+                        <td>1.02%</td>
+                        <td>https://t.me/ekaterinburgretrit</td>
+                    </tr>
+
+                    <tr>
+                        <td>24</td>
+                        <td><a href="https://vk.com/nikolaeva_vlz" target="_blank" class="src-link">Юлия Николаева | Психолог, гипнолог, регрессолог</a></td>
+                        <td>Сообщество</td>
+                        <td>279</td>
+                        <td>308</td>
+                        <td>2.89%</td>
+                        <td>#горе #утрата #осложненноегоре #психологволжский #помощ...</td>
+                    </tr>
+
+                    <tr>
+                        <td>25</td>
+                        <td><a href="https://vk.com/1067609358" target="_blank" class="src-link">Natalya Markova</a></td>
+                        <td>Профиль</td>
+                        <td>61</td>
+                        <td>101</td>
+                        <td>4.06%</td>
+                        <td>#ПФР это не всегда яркие реакции, похожие на сеансы экз...</td>
+                    </tr>
+
+                    <tr>
+                        <td>26</td>
+                        <td><a href="https://vk.com/1093678445" target="_blank" class="src-link">Mila Kozlovskaya</a></td>
+                        <td>Профиль</td>
+                        <td>320</td>
+                        <td>257</td>
+                        <td>4.78%</td>
+                        <td>Верите в сны? Иногда приходят знаки. Если в сны можно н...</td>
+                    </tr>
+
+                    <tr>
+                        <td>27</td>
+                        <td><a href="https://vk.com/151374898" target="_blank" class="src-link">Natalya Merzlyakova</a></td>
+                        <td>Профиль</td>
+                        <td>5,758</td>
+                        <td>909</td>
+                        <td>2.66%</td>
+                        <td>Сегодня. 24 сентября, 20:00. Разговор по душам.</td>
+                    </tr>
+
+                    <tr>
+                        <td>28</td>
+                        <td><a href="https://vk.com/154487228" target="_blank" class="src-link">Anna Novichkova</a></td>
+                        <td>Профиль</td>
+                        <td>9,974</td>
+                        <td>2,352</td>
+                        <td>3.23%</td>
+                        <td>Край красот и мыслей о прекрасном</td>
+                    </tr>
+
+                    <tr>
+                        <td>29</td>
+                        <td><a href="https://vk.com/155974400" target="_blank" class="src-link">Irina Fedorova</a></td>
+                        <td>Профиль</td>
+                        <td>313</td>
+                        <td>117</td>
+                        <td>2.13%</td>
+                        <td>#pfr #pfrонлайн #психофункциональнаяразблокировка</td>
+                    </tr>
+
+                    <tr>
+                        <td>30</td>
+                        <td><a href="https://vk.com/15889065" target="_blank" class="src-link">Khan Viktor</a></td>
+                        <td>Профиль</td>
+                        <td>94</td>
+                        <td>68</td>
+                        <td>4.74%</td>
+                        <td>Много думал как написать то, что не выразить словами ♥️</td>
+                    </tr>
+
+                    <tr>
+                        <td>31</td>
+                        <td><a href="https://vk.com/16284121" target="_blank" class="src-link">Dania Androsova</a></td>
+                        <td>Профиль</td>
+                        <td>672</td>
+                        <td>33</td>
+                        <td>6.12%</td>
+                        <td>Хороший или удобный.</td>
+                    </tr>
+
+                    <tr>
+                        <td>32</td>
+                        <td><a href="https://vk.com/177015856" target="_blank" class="src-link" style='color: #34d399; font-weight: 600;'>Gulnara Sibgatullina</a></td>
+                        <td>Профиль</td>
+                        <td>7,433</td>
+                        <td>4,788</td>
+                        <td>1.46%</td>
+                        <td>Встали в 5:40, чтобы увидеть магию 🌅</td>
+                    </tr>
+
+                    <tr>
+                        <td>33</td>
+                        <td><a href="https://vk.com/24441810" target="_blank" class="src-link">Anna Falschenko</a></td>
+                        <td>Профиль</td>
+                        <td>1,889</td>
+                        <td>513</td>
+                        <td>3.22%</td>
+                        <td>https://t.me/Magic_Anna_Falshchenko</td>
+                    </tr>
+
+                    <tr>
+                        <td>34</td>
+                        <td><a href="https://vk.com/24682937" target="_blank" class="src-link" style='color: #34d399; font-weight: 600;'>Larisa Mikhalchuk</a></td>
+                        <td>Профиль</td>
+                        <td>4,576</td>
+                        <td>8,877</td>
+                        <td>1.23%</td>
+                        <td>Как же я попала в первый лагерь [club218371062|Причина ...</td>
+                    </tr>
+
+                    <tr>
+                        <td>35</td>
+                        <td><a href="https://vk.com/249179040" target="_blank" class="src-link">Anna Topyuk</a></td>
+                        <td>Профиль</td>
+                        <td>2,085</td>
+                        <td>201</td>
+                        <td>3.88%</td>
+                        <td>КАК РОДСТВЕННИКАМ ПОДДЕРЖАТЬ БЛИЗКОГО С ОНКОЛОГИЧЕСКОЙ ...</td>
+                    </tr>
+
+                    <tr>
+                        <td>36</td>
+                        <td><a href="https://vk.com/254209902" target="_blank" class="src-link">Olesya Esipova</a></td>
+                        <td>Профиль</td>
+                        <td>4,433</td>
+                        <td>328</td>
+                        <td>5.16%</td>
+                        <td>🤬Можешь и дальше прокачивать свои проблемы ночными бесе...</td>
+                    </tr>
+
+                    <tr>
+                        <td>37</td>
+                        <td><a href="https://vk.com/26801269" target="_blank" class="src-link">Tatyana Bazhenova</a></td>
+                        <td>Профиль</td>
+                        <td>1,713</td>
+                        <td>806</td>
+                        <td>2.77%</td>
+                        <td>✨Закрытый Клуб “Разблокируй свой МИР с Татьяной Баженов...</td>
+                    </tr>
+
+                    <tr>
+                        <td>38</td>
+                        <td><a href="https://vk.com/381740448" target="_blank" class="src-link">Anna Razvitie</a></td>
+                        <td>Профиль</td>
+                        <td>3,580</td>
+                        <td>1,226</td>
+                        <td>5.41%</td>
+                        <td>Край красот и мыслей о прекрасном</td>
+                    </tr>
+
+                    <tr>
+                        <td>39</td>
+                        <td><a href="https://vk.com/41755415" target="_blank" class="src-link">Natalya Ivanova-Osmanskaya</a></td>
+                        <td>Профиль</td>
+                        <td>6,300</td>
+                        <td>390</td>
+                        <td>8.68%</td>
+                        <td>Ну вот мне уже 53, а сколько еще интересного ждет меня ...</td>
+                    </tr>
+
+                    <tr>
+                        <td>40</td>
+                        <td><a href="https://vk.com/429480675" target="_blank" class="src-link">Vasily Danilov-Psikholog</a></td>
+                        <td>Профиль</td>
+                        <td>1,059</td>
+                        <td>107</td>
+                        <td>5.9%</td>
+                        <td>Когда город не принимает…</td>
+                    </tr>
+
+                    <tr>
+                        <td>41</td>
+                        <td><a href="https://vk.com/5132" target="_blank" class="src-link">Natalya Botneva</a></td>
+                        <td>Профиль</td>
+                        <td>24,421</td>
+                        <td>133</td>
+                        <td>7.08%</td>
+                        <td>Меня можно поздравить. Сертификат еще один в капилочку ...</td>
+                    </tr>
+
+                    <tr>
+                        <td>42</td>
+                        <td><a href="https://vk.com/5161387" target="_blank" class="src-link">Guzel Rakhmatullina</a></td>
+                        <td>Профиль</td>
+                        <td>926</td>
+                        <td>200</td>
+                        <td>2.85%</td>
+                        <td>Как часто за последнюю неделю вы ловили себя на том, чт...</td>
+                    </tr>
+
+                    <tr>
+                        <td>43</td>
+                        <td><a href="https://vk.com/53649169" target="_blank" class="src-link">Tatyana Tulisova</a></td>
+                        <td>Профиль</td>
+                        <td>6,429</td>
+                        <td>660</td>
+                        <td>1.17%</td>
+                        <td>ВСТРЕЧА-ТЕРАПИЯ(психосоматика)</td>
+                    </tr>
+
+                    <tr>
+                        <td>44</td>
+                        <td><a href="https://vk.com/553505700" target="_blank" class="src-link">Yulia Filicheva</a></td>
+                        <td>Профиль</td>
+                        <td>3,898</td>
+                        <td>1,171</td>
+                        <td>2.82%</td>
+                        <td>Почему я больше не беру на 1 сеанс? 🙅‍♀</td>
+                    </tr>
+
+                    <tr>
+                        <td>45</td>
+                        <td><a href="https://vk.com/563068898" target="_blank" class="src-link">Yulia Matallana Kielmann</a></td>
+                        <td>Профиль</td>
+                        <td>93</td>
+                        <td>145</td>
+                        <td>3.6%</td>
+                        <td>📍Дорогие друзья, 9 августа я буду принимать участие в ф...</td>
+                    </tr>
+
+                    <tr>
+                        <td>46</td>
+                        <td><a href="https://vk.com/563601248" target="_blank" class="src-link">Inna Ksanti</a></td>
+                        <td>Профиль</td>
+                        <td>3,089</td>
+                        <td>431</td>
+                        <td>2.29%</td>
+                        <td>Поздравляю выпускников ,попутного ветра ,успехов в рабо...</td>
+                    </tr>
+
+                    <tr>
+                        <td>47</td>
+                        <td><a href="https://vk.com/600276323" target="_blank" class="src-link">Olga Travina</a></td>
+                        <td>Профиль</td>
+                        <td>6,094</td>
+                        <td>618</td>
+                        <td>6.15%</td>
+                        <td>Цикл терапевтических off-line встреч</td>
+                    </tr>
+
+                    <tr>
+                        <td>48</td>
+                        <td><a href="https://vk.com/65484631" target="_blank" class="src-link">Ekaterina Babicheva</a></td>
+                        <td>Профиль</td>
+                        <td>2,536</td>
+                        <td>309</td>
+                        <td>2.98%</td>
+                        <td>Энерготерапия — это совокупность практик, которые, помо...</td>
+                    </tr>
+
+                    <tr>
+                        <td>49</td>
+                        <td><a href="https://vk.com/691091333" target="_blank" class="src-link">Svetlana Zasimova</a></td>
+                        <td>Профиль</td>
+                        <td>1,768</td>
+                        <td>11</td>
+                        <td>21.3%</td>
+                        <td>Тревога, страх осуждения, подавленные слова, слезы...</td>
+                    </tr>
+
+                    <tr>
+                        <td>50</td>
+                        <td><a href="https://vk.com/714375973" target="_blank" class="src-link">Marina Vlasova</a></td>
+                        <td>Профиль</td>
+                        <td>23</td>
+                        <td>34</td>
+                        <td>4.9%</td>
+                        <td>🩻 Когда ноги болят не просто так: История одной расстан...</td>
+                    </tr>
+
+                    <tr>
+                        <td>51</td>
+                        <td><a href="https://vk.com/715402566" target="_blank" class="src-link">Kristina Burkova</a></td>
+                        <td>Профиль</td>
+                        <td>827</td>
+                        <td>964</td>
+                        <td>3.18%</td>
+                        <td>Я долго думала, что уверенность, спокойствие и ощущение...</td>
+                    </tr>
+
+                    <tr>
+                        <td>52</td>
+                        <td><a href="https://vk.com/71613545" target="_blank" class="src-link">Alina Mikhalchuk-Bannikova</a></td>
+                        <td>Профиль</td>
+                        <td>3,564</td>
+                        <td>216</td>
+                        <td>10.64%</td>
+                        <td>Мне безумно повезло , что в моей жизни появилась Ксюша ...</td>
+                    </tr>
+
+                    <tr>
+                        <td>53</td>
+                        <td><a href="https://vk.com/77505149" target="_blank" class="src-link">Yulia Al-Akkumi</a></td>
+                        <td>Профиль</td>
+                        <td>847</td>
+                        <td>63</td>
+                        <td>4.46%</td>
+                        <td>Один в однин ..Лягушка теперь у меня осталась на ухе)))</td>
+                    </tr>
+
+                    <tr>
+                        <td>54</td>
+                        <td><a href="https://vk.com/88424454" target="_blank" class="src-link">Anzhela Bakhareva</a></td>
+                        <td>Профиль</td>
+                        <td>3,667</td>
+                        <td>382</td>
+                        <td>3.45%</td>
+                        <td>⬅ПУТЬ К СЕБЕ➡</td>
+                    </tr>
+
+                    <tr>
+                        <td>55</td>
+                        <td><a href="https://vk.com/99327237" target="_blank" class="src-link">Ennnnn Annnnn</a></td>
+                        <td>Профиль</td>
+                        <td>1,116</td>
+                        <td>1,226</td>
+                        <td>2.09%</td>
+                        <td>✨ САУНДХИЛИНГ • ЗВУКОТЕРАПИЯ ✨</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            Сгенерировано автономным ботом ПФР • Актуальность данных: Сентябрь 2026
+        </footer>
+    </div>
+</body>
+</html>
