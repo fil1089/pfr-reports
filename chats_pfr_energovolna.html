@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💬 Чаты и беседы: психофункциональная разблокировка ПФР энерговолна</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0d1117; --surface: #161b22; --surface2: #1f242c;
+            --border: #30363d; --primary: #58a6ff; --text: #c9d1d9;
+            --muted: #8b949e; --bright: #f0f6fc; --success: #3fb950;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); padding: 20px 15px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        .nav-back { margin-bottom: 15px; }
+        .nav-back a { color: var(--primary); text-decoration: none; font-weight: 600; font-size: .9rem; }
+        .nav-back a:hover { text-decoration: underline; }
+        header { background: linear-gradient(135deg, #161b22 0%, #1a2230 100%); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 24px; box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+        h1 { color: var(--bright); font-size: 1.5rem; margin-bottom: 8px; }
+        .subtitle { color: var(--muted); font-size: .9rem; margin-bottom: 18px; }
+        .stats { display: flex; gap: 16px; flex-wrap: wrap; }
+        .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 20px; text-align: center; }
+        .stat-val { font-size: 1.7rem; font-weight: 700; color: var(--success); }
+        .stat-lbl { font-size: .75rem; color: var(--muted); text-transform: uppercase; margin-top: 2px; }
+        input.search { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; color: var(--bright); font-size: .95rem; outline: none; margin-bottom: 20px; }
+        input.search:focus { border-color: var(--primary); }
+        .cards { display: flex; flex-direction: column; gap: 14px; }
+        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; transition: all .15s; }
+        .card:hover { border-color: #484f58; transform: translateY(-2px); }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .num { font-size: .85rem; font-weight: 700; color: var(--muted); }
+        .members { font-size: .85rem; font-weight: 600; color: var(--bright); background: rgba(255,255,255,.05); padding: 3px 10px; border-radius: 8px; }
+        h3 { font-size: 1.1rem; margin-bottom: 6px; }
+        .group-link { color: var(--bright); text-decoration: none; }
+        .group-link:hover { color: var(--primary); text-decoration: underline; }
+        .group-id { font-size: .85rem; color: var(--muted); margin-bottom: 14px; }
+        .group-id code { background: rgba(255,255,255,.08); padding: 2px 6px; border-radius: 4px; color: var(--primary); }
+        .vk-link { color: var(--primary); text-decoration: none; }
+        .vk-link:hover { text-decoration: underline; }
+        .chat-links { display: flex; flex-direction: column; gap: 8px; }
+        .chat-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .source-badge { font-size: .8rem; color: var(--muted); background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 3px 8px; white-space: nowrap; }
+        .chat-link-btn { display: inline-flex; align-items: center; padding: 6px 14px; background: rgba(88,166,255,.12); border: 1px solid rgba(88,166,255,.35); border-radius: 8px; color: var(--primary); text-decoration: none; font-size: .88rem; font-weight: 600; transition: all .2s; white-space: nowrap; }
+        .chat-link-btn:hover { background: rgba(88,166,255,.25); border-color: var(--primary); }
+        .empty { text-align: center; color: var(--muted); padding: 60px 20px; font-size: 1.1rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-back"><a href="index.html">← 🏠 Все отчёты (Главный хаб)</a></div>
+        <header>
+            <h1>💬 Чаты и беседы: психофункциональная разблокировка ПФР энерговолна</h1>
+            <p class="subtitle">Автоматически найденные открытые чаты и беседы в целевых сообществах ВКонтакте</p>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-val">8</div>
+                    <div class="stat-lbl">Групп с чатами</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-val">9</div>
+                    <div class="stat-lbl">Найдено ссылок</div>
+                </div>
+            </div>
+        </header>
+        <input type="text" class="search" id="search" placeholder="🔍 Поиск по названию группы..." oninput="filterCards()">
+        <div class="cards" id="cards">
+            
+        <div class="card">
+            <div class="card-header">
+                <span class="num">#1</span>
+                <span class="members">👥 2 074 подп.</span>
+            </div>
+            <h3><a href="https://vk.com/logian_pro_psy" target="_blank" class="group-link">Армен и Алена про Психологию | Воронеж</a></h3>
+            <div class="group-id">
+                <code>@logian_pro_psy</code>
+                &bull;
+                <a href="https://vk.com/logian_pro_psy" target="_blank" class="vk-link">Открыть группу →</a>
+            </div>
+            <div class="chat-links">
+            <div class="chat-row">
+                <span class="source-badge">🔗 Ссылки: «Канал в Телеграме»</span>
+                <a href="https://t.me/+6HAUxoRsUY1hZWZi" target="_blank" rel="noopener" class="chat-link-btn">
+                    💬 Открыть чат →
+                </a>
+            </div>
+            <div class="chat-row">
+                <span class="source-badge">🔗 Ссылки: «Отзывы»</span>
+                <a href="https://t.me/+uxjxXfSOZm5jYWIy" target="_blank" rel="noopener" class="chat-link-btn">
+                    💬 Открыть чат →
+                </a>
+            </div></div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <span class="num">#2</span>
+                <span class="members">👥 1 694 подп.</span>
+            </div>
+            <h3><a href="https://vk.com/neoenergo" target="_blank" class="group-link">ЭНЕРГОЦЕНТР ФЕНИКС: наши мастера в вашем городе.</a></h3>
+            <div class="group-id">
+                <code>@neoenergo</code>
+                &bull;
+                <a href="https://vk.com/neoenergo" target="_blank" class="vk-link">Открыть группу →</a>
+            </div>
+            <div class="chat-links">
+            <div class="chat-row">
+                <span class="source-badge">📝 Описание/статус</span>
+                <a href="https://t.me/access_fenix" target="_blank" rel="noopener" class="chat-link-btn">
+                    💬 Открыть чат →
+                </a>
+            </div></div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <span class="num">#3</span>
+                <span class="members">👥 1 333 подп.</span>
+            </div>
+            <h3><a href="https://vk.com/teleska_psycholog_chelyabinsk" target="_blank" class="group-link">Институт &quot;Интеграция&quot; в Челябинске</a></h3>
+            <div class="group-id">
+                <code>@teleska_psycholog_chelyabinsk</code>
+                &bull;
+                <a href="https://vk.com/teleska_psycholog_chelyabinsk" target="_blank" class="vk-link">Открыть группу →</a>
+            </div>
+            <div class="chat-links">
+            <div class="chat-row">
+                <span class="source-badge">📝 Описание/статус</span>
+                <a href="https://t.me/institut_integracia" target="_blank" rel="noopener" class="chat-link-btn">
+                    💬 Открыть чат →
+                </a>
+            </div></div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <span class="num">#4</span>
+                <span class="members">👥 1 090 подп.</span>
+            </div>
+            <h3><a href="https://vk.com/galina_pfr" target="_blank" class="group-link">Психолог Галина Феоктистова</a></h3>
+            <div class="group-id">
+                <code>@galina_pfr</code>
+                &bull;
+                <a href="https://vk.com/galina_pfr" target="_blank" class="vk-link">Открыть группу →</a>
+            </div>
+            <div class="chat-links">
+            <div class="chat-row">
+                <span class="source-badge">🔗 Ссылки: «Телеграмм канал Психолог Галина Феоктистова , терапевт PF_R»</span>
+                <a href="https://t.me/galina_pfr" target="_blank" rel="noopener" class="chat-link-btn">
+                    💬 Открыть чат →
+                </a>
+            </div></div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <span class="num">#5</span>
+                <span class="members">👥 593 подп.</span>
+            </div>
+            <h3><a href="https://vk.com/massage_lovers" target="_blank" class="group-link">Энерговолна и Access Bars/Body: сеансы / курсы</a></h3>
+            <div class="group-id">
+                <code>@massage_lovers</code>
+                &bull;
+                <a href="https://vk.com/massage_lovers" target="_blank" class="vk-link">Открыть группу →</a>
+            </div>
+            <div class="chat-links">
+            <div class="chat-row">
+                <span class="source-badge">📌 Пост на стене</span>
+                <a href="https://t.me/access_fenix" target="_blank" rel="noopener" class="chat-link-btn">
+                    💬 Открыть чат →
+                </a>
+            </div></div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <span class="num">#6</span>
+                <span class="members">👥 588 подп.</span>
+            </div>
+            <h3><a href="https://vk.com/top_perm" target="_blank" class="group-link">Институт &quot;Интеграция&quot; в Перми</a></h3>
+            <div class="group-id">
+                <code>@top_perm</code>
+                &bull;
+                <a href="https://vk.com/top_perm" target="_blank" class="vk-link">Открыть группу →</a>
+            </div>
+            <div class="chat-links">
+            <div class="chat-row">
+                <span class="source-badge">📝 Описание/статус</span>
+                <a href="https://t.me/institut_integracia" target="_blank" rel="noopener" class="chat-link-btn">
+                    💬 Открыть чат →
+                </a>
+            </div></div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <span class="num">#7</span>
+                <span class="members">👥 370 подп.</span>
+            </div>
+            <h3><a href="https://vk.com/alhimia_preobragenia" target="_blank" class="group-link">Психолог Майя Элбакиева</a></h3>
+            <div class="group-id">
+                <code>@alhimia_preobragenia</code>
+                &bull;
+                <a href="https://vk.com/alhimia_preobragenia" target="_blank" class="vk-link">Открыть группу →</a>
+            </div>
+            <div class="chat-links">
+            <div class="chat-row">
+                <span class="source-badge">📝 Описание/статус</span>
+                <a href="https://t.me/mayalero" target="_blank" rel="noopener" class="chat-link-btn">
+                    💬 Открыть чат →
+                </a>
+            </div></div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <span class="num">#8</span>
+                <span class="members">👥 90 подп.</span>
+            </div>
+            <h3><a href="https://vk.com/club235478620" target="_blank" class="group-link">Место нейтральности: практики для счастья</a></h3>
+            <div class="group-id">
+                <code>@club235478620</code>
+                &bull;
+                <a href="https://vk.com/club235478620" target="_blank" class="vk-link">Открыть группу →</a>
+            </div>
+            <div class="chat-links">
+            <div class="chat-row">
+                <span class="source-badge">📝 Описание/статус</span>
+                <a href="https://t.me/Placeofneutrality" target="_blank" rel="noopener" class="chat-link-btn">
+                    💬 Открыть чат →
+                </a>
+            </div></div>
+        </div>
+        </div>
+    </div>
+    <script>
+        function filterCards() {
+            const q = document.getElementById('search').value.toLowerCase();
+            document.querySelectorAll('.card').forEach(c => {
+                c.style.display = !q || c.innerText.toLowerCase().includes(q) ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
